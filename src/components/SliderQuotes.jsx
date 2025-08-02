@@ -142,98 +142,131 @@ const QuotesSlider = () => {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Navigation Arrows - Hidden on mobile, visible on desktop */}
+      {/* Desktop Navigation Arrows - Perfectly symmetrical positioning */}
+      <div className="hidden lg:flex justify-between items-center absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none px-6">
         <button
           onClick={prevSlide}
-          className="hidden lg:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full items-center justify-center text-white hover:bg-white/30 transition-all duration-300 group"
+          className="pointer-events-auto group relative overflow-hidden w-16 h-16 bg-gradient-to-br from-white/25 via-white/15 to-white/5 backdrop-blur-xl rounded-2xl flex items-center justify-center text-white hover:from-white/35 hover:via-white/25 hover:to-white/10 transition-all duration-500 shadow-2xl border-2 border-white/30 hover:border-white/50 hover:scale-105 hover:-translate-y-1 -translate-x-6"
         >
-          <svg className="w-6 h-6 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+          <div className="absolute inset-0.5 bg-gradient-to-br from-white/20 via-transparent to-white/10 rounded-xl opacity-50"></div>
+          <svg className="w-7 h-7 relative z-10 transition-all duration-500 group-hover:-translate-x-1 group-hover:scale-110 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
           </svg>
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400/25 to-purple-400/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
         </button>
 
         <button
           onClick={nextSlide}
-          className="hidden lg:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full items-center justify-center text-white hover:bg-white/30 transition-all duration-300 group"
+          className="pointer-events-auto group relative overflow-hidden w-16 h-16 bg-gradient-to-br from-white/25 via-white/15 to-white/5 backdrop-blur-xl rounded-2xl flex items-center justify-center text-white hover:from-white/35 hover:via-white/25 hover:to-white/10 transition-all duration-500 shadow-2xl border-2 border-white/30 hover:border-white/50 hover:scale-105 hover:-translate-y-1 translate-x-6"
         >
-          <svg className="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+          <div className="absolute inset-0.5 bg-gradient-to-br from-white/20 via-transparent to-white/10 rounded-xl opacity-50"></div>
+          <svg className="w-7 h-7 relative z-10 transition-all duration-500 group-hover:translate-x-1 group-hover:scale-110 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
           </svg>
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-400/25 to-pink-400/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-red-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
         </button>
       </div>
 
-      {/* Mobile Navigation - Diperkecil dan lebih responsif */}
-      <div className="flex lg:hidden justify-between items-center mt-4 px-2">
+      {/* Mobile Navigation - Enhanced with glassmorphism */}
+      <div className="flex lg:hidden justify-between items-center mt-6 px-4">
         <button
           onClick={prevSlide}
-          className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 shadow-lg border border-white/30 flex-shrink-0"
+          className="group relative overflow-hidden w-12 h-12 bg-gradient-to-br from-white/20 via-white/10 to-transparent backdrop-blur-xl rounded-xl flex items-center justify-center text-gray-700 hover:text-gray-900 transition-all duration-400 shadow-xl border border-white/30 hover:border-white/50 hover:scale-105"
         >
-          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+          <svg className="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
-        <div className="flex space-x-2 flex-1 justify-center max-w-xs">
+        <div className="flex space-x-3 flex-1 justify-center max-w-sm">
           {quotes.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`transition-all duration-300 flex-shrink-0 ${
+              className={`transition-all duration-400 flex-shrink-0 relative overflow-hidden ${
                 index === currentSlide
-                  ? 'w-6 h-2.5 sm:w-8 sm:h-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-lg'
-                  : 'w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white/40 rounded-full hover:bg-white/60 shadow-md'
+                  ? 'w-10 h-3.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-lg ring-2 ring-white/30'
+                  : 'w-3.5 h-3.5 bg-gradient-to-br from-gray-300 to-gray-400 rounded-full hover:from-gray-400 hover:to-gray-500 shadow-md hover:scale-110'
               }`}
-            />
+            >
+              {index === currentSlide && (
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full animate-pulse opacity-50"></div>
+              )}
+            </button>
           ))}
         </div>
 
         <button
           onClick={nextSlide}
-          className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 shadow-lg border border-white/30 flex-shrink-0"
+          className="group relative overflow-hidden w-12 h-12 bg-gradient-to-br from-white/20 via-white/10 to-transparent backdrop-blur-xl rounded-xl flex items-center justify-center text-gray-700 hover:text-gray-900 transition-all duration-400 shadow-xl border border-white/30 hover:border-white/50 hover:scale-105"
         >
-          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+          <svg className="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </div>
 
-      {/* Desktop Dots Indicator */}
-      <div className="hidden lg:flex justify-center mt-8 space-x-3">
+      {/* Desktop Dots Indicator - Premium glassmorphism design */}
+      <div className="hidden lg:flex justify-center mt-10 space-x-4">
         {quotes.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`transition-all duration-300 ${
+            className={`group relative overflow-hidden transition-all duration-500 ${
               index === currentSlide
-                ? 'w-10 h-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-lg'
-                : 'w-4 h-4 bg-gray-400 rounded-full hover:bg-gray-500 shadow-md'
+                ? 'w-12 h-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-xl ring-2 ring-indigo-300/50 ring-offset-2 ring-offset-white'
+                : 'w-4 h-4 bg-gradient-to-br from-gray-300 to-gray-400 rounded-full hover:from-indigo-300 hover:to-purple-400 shadow-lg hover:shadow-xl hover:scale-125 hover:ring-2 hover:ring-indigo-200/50 hover:ring-offset-1 hover:ring-offset-white'
             }`}
-          />
+          >
+            {index === currentSlide && (
+              <>
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full animate-pulse opacity-60"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full opacity-20 blur-sm animate-pulse"></div>
+              </>
+            )}
+            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </button>
         ))}
       </div>
 
-      {/* Auto-play indicator - Lebih kecil dan responsif */}
-      <div className="flex justify-center mt-3 lg:mt-4">
+      {/* Auto-play indicator - Luxury design */}
+      <div className="flex justify-center mt-6">
         <button
           onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-          className={`flex items-center space-x-1.5 sm:space-x-2 px-2.5 py-1.5 sm:px-3 sm:py-2 lg:px-4 rounded-full text-xs transition-all duration-300 ${
+          className={`group relative overflow-hidden flex items-center space-x-3 px-6 py-3 rounded-2xl text-sm font-medium transition-all duration-500 backdrop-blur-xl border shadow-xl hover:shadow-2xl hover:scale-105 ${
             isAutoPlaying 
-              ? 'bg-green-100 text-green-700 hover:bg-green-200' 
-              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              ? 'bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 border-green-200/50 hover:from-green-100 hover:to-emerald-100' 
+              : 'bg-gradient-to-r from-gray-50 to-slate-50 text-gray-600 border-gray-200/50 hover:from-gray-100 hover:to-slate-100'
           }`}
         >
+          <div className={`absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-10 transition-opacity duration-500 ${
+            isAutoPlaying ? 'from-green-400 to-emerald-400' : 'from-gray-400 to-slate-400'
+          }`}></div>
+          
           {isAutoPlaying ? (
             <>
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="hidden xs:inline sm:text-sm">Auto-play aktif</span>
-              <span className="xs:hidden">Auto</span>
+              <div className="relative">
+                <div className="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
+                <div className="absolute inset-0 w-2.5 h-2.5 bg-green-400 rounded-full animate-ping"></div>
+              </div>
+              <span className="relative z-10">Auto-play Aktif</span>
+              <div className="w-1 h-1 bg-green-400 rounded-full opacity-60"></div>
             </>
           ) : (
             <>
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gray-400 rounded-full"></div>
-              <span className="hidden xs:inline sm:text-sm">Auto-play pause</span>
-              <span className="xs:hidden">Pause</span>
+              <div className="w-2.5 h-2.5 bg-gray-400 rounded-full relative">
+                <div className="absolute inset-0.5 bg-gray-300 rounded-full"></div>
+              </div>
+              <span className="relative z-10">Auto-play Pause</span>
+              <div className="w-1 h-1 bg-gray-300 rounded-full opacity-60"></div>
             </>
           )}
         </button>
