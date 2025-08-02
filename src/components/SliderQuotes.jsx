@@ -86,27 +86,27 @@ const QuotesSlider = () => {
 
   return (
     <div 
-      className="relative w-full max-w-7xl mx-auto px-2 sm:px-4" 
+      className="relative w-full max-w-6xl mx-auto px-3 sm:px-4 md:px-6" 
       style={{ 
         colorScheme: 'light',
         isolation: 'isolate'
       }}
     >
-      <div className={`bg-gradient-to-br ${currentQuote.color} rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 text-white shadow-2xl relative overflow-hidden transition-all duration-700 ease-in-out`}>
+      <div className={`bg-gradient-to-br ${currentQuote.color} rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 text-white shadow-2xl relative overflow-hidden transition-all duration-700 ease-in-out`}>
         {/* Background Decorations */}
         <div className="absolute top-0 right-0 w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-white/5 rounded-full -translate-y-16 translate-x-16 sm:-translate-y-24 sm:translate-x-24 lg:-translate-y-32 lg:translate-x-32 transition-all duration-1000"></div>
         <div className="absolute bottom-0 left-0 w-24 h-24 sm:w-32 sm:h-32 lg:w-48 lg:h-48 bg-white/5 rounded-full translate-y-12 -translate-x-12 sm:translate-y-16 sm:-translate-x-16 lg:translate-y-24 lg:-translate-x-24 transition-all duration-1000"></div>
         <div className="absolute top-1/2 left-1/2 w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-white/3 rounded-full -translate-x-8 -translate-y-8 sm:-translate-x-12 sm:-translate-y-12 lg:-translate-x-16 lg:-translate-y-16 transition-all duration-1000"></div>
         
         {/* Content Container */}
-        <div className="relative z-10 max-w-6xl mx-auto">
-          {/* Mobile Layout */}
-          <div className="block lg:hidden">
+        <div className="relative z-10 max-w-5xl mx-auto">
+          {/* Mobile Layout (< 768px) */}
+          <div className="block md:hidden">
             {/* Author Info Header - Mobile */}
             <div className="flex items-center space-x-3 mb-4">
               {/* Author Photo - Smaller for mobile */}
               <div className="relative group flex-shrink-0">
-                <div className="w-16 h-16 rounded-xl overflow-hidden shadow-xl ring-2 ring-white/30 transition-all duration-500">
+                <div className="w-14 h-14 xs:w-16 xs:h-16 rounded-xl overflow-hidden shadow-xl ring-2 ring-white/30 transition-all duration-500">
                   <img
                     src={currentQuote.image}
                     alt={currentQuote.author}
@@ -114,48 +114,48 @@ const QuotesSlider = () => {
                   />
                 </div>
                 {/* Quote Mark Overlay - Smaller */}
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center shadow-lg">
+                <div className="absolute -bottom-1 -right-1 w-5 h-5 xs:w-6 xs:h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center shadow-lg">
                   <div className="text-xs font-serif text-white leading-none">"</div>
                 </div>
               </div>
 
               {/* Author Info - Horizontal layout */}
               <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-bold mb-1 truncate">{currentQuote.author}</h3>
-                <p className="text-white/80 text-sm truncate">{currentQuote.title}</p>
-                <div className="w-12 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full mt-2"></div>
+                <h3 className="text-base xs:text-lg font-bold mb-1 truncate">{currentQuote.author}</h3>
+                <p className="text-white/80 text-xs xs:text-sm truncate">{currentQuote.title}</p>
+                <div className="w-10 xs:w-12 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full mt-2"></div>
               </div>
             </div>
 
             {/* Quote Content - Mobile */}
             <div className="text-center">
               <div className="mb-4">
-                <h2 className="text-xl font-bold mb-4 italic leading-tight">
+                <h2 className="text-lg xs:text-xl sm:text-2xl font-bold mb-4 italic leading-tight">
                   "{currentQuote.quote}"
                 </h2>
               </div>
               
               {/* Context Box - Mobile */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 xs:p-4 border border-white/20">
                 <div className="flex items-center space-x-2 mb-3">
                   <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse"></div>
                   <span className="text-xs font-semibold text-white/90 uppercase tracking-wider">Relevansi untuk UKM</span>
                 </div>
-                <p className="text-white/90 font-medium leading-relaxed text-sm text-left">
+                <p className="text-white/90 font-medium leading-relaxed text-xs xs:text-sm text-left">
                   {currentQuote.context}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Desktop Layout */}
-          <div className="hidden lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+          {/* Tablet and Desktop Layout (>= 768px) */}
+          <div className="hidden md:grid md:grid-cols-12 gap-6 lg:gap-12 items-center">
             
             {/* Photo & Quote Mark */}
-            <div className="lg:col-span-4 flex flex-col items-center lg:items-start space-y-3 sm:space-y-4 lg:space-y-6">
+            <div className="md:col-span-4 flex flex-col items-center md:items-start space-y-4 lg:space-y-6">
               {/* Author Photo */}
               <div className="relative group">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-40 lg:h-40 rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl ring-1 sm:ring-2 lg:ring-4 ring-white/20 transition-all duration-500 group-hover:ring-white/40">
+                <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl ring-2 lg:ring-4 ring-white/20 transition-all duration-500 group-hover:ring-white/40">
                   <img
                     src={currentQuote.image}
                     alt={currentQuote.author}
@@ -163,34 +163,34 @@ const QuotesSlider = () => {
                   />
                 </div>
                 {/* Quote Mark Overlay */}
-                <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 lg:-bottom-4 lg:-right-4 w-8 h-8 sm:w-10 sm:h-10 lg:w-16 lg:h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center shadow-lg">
-                  <div className="text-sm sm:text-lg lg:text-2xl font-serif text-white leading-none">"</div>
+                <div className="absolute -bottom-2 -right-2 lg:-bottom-4 lg:-right-4 w-10 h-10 lg:w-16 lg:h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl lg:rounded-2xl flex items-center justify-center shadow-lg">
+                  <div className="text-lg lg:text-2xl font-serif text-white leading-none">"</div>
                 </div>
               </div>
 
               {/* Author Info */}
-              <div className="text-center lg:text-left">
-                <h3 className="text-base sm:text-lg lg:text-2xl font-bold mb-1">{currentQuote.author}</h3>
-                <p className="text-white/80 text-xs sm:text-sm lg:text-base">{currentQuote.title}</p>
-                <div className="w-10 sm:w-12 lg:w-16 h-0.5 sm:h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto lg:mx-0 rounded-full mt-1 sm:mt-2 lg:mt-3"></div>
+              <div className="text-center md:text-left">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-1">{currentQuote.author}</h3>
+                <p className="text-white/80 text-sm md:text-base">{currentQuote.title}</p>
+                <div className="w-12 lg:w-16 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto md:mx-0 rounded-full mt-2 lg:mt-3"></div>
               </div>
             </div>
 
             {/* Quote Content */}
-            <div className="lg:col-span-8 text-center lg:text-left">
-              <div className="mb-4 sm:mb-6 lg:mb-8">
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold mb-3 sm:mb-4 lg:mb-6 italic leading-tight transition-all duration-500">
+            <div className="md:col-span-8 text-center md:text-left">
+              <div className="mb-6 lg:mb-8">
+                <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-4 lg:mb-6 italic leading-tight transition-all duration-500">
                   "{currentQuote.quote}"
                 </h2>
               </div>
               
               {/* Context Box */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-4 lg:p-8 border border-white/20">
-                <div className="flex items-center space-x-2 mb-2 sm:mb-3 lg:mb-4">
-                  <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 lg:w-2 lg:h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                  <span className="text-xs sm:text-xs lg:text-sm font-semibold text-white/90 uppercase tracking-wider">Relevansi untuk UKM</span>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 lg:p-8 border border-white/20">
+                <div className="flex items-center space-x-2 mb-3 lg:mb-4">
+                  <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                  <span className="text-xs lg:text-sm font-semibold text-white/90 uppercase tracking-wider">Relevansi untuk UKM</span>
                 </div>
-                <p className="text-white/90 font-medium leading-relaxed text-xs sm:text-sm lg:text-lg">
+                <p className="text-white/90 font-medium leading-relaxed text-sm lg:text-lg">
                   {currentQuote.context}
                 </p>
               </div>
@@ -200,74 +200,67 @@ const QuotesSlider = () => {
       </div>
 
       {/* Desktop Navigation - Outside card */}
-      <div className="hidden lg:flex justify-between items-center absolute top-1/2 -translate-y-1/2 -left-20 -right-20 pointer-events-none">
+      <div className="hidden lg:flex justify-between items-center absolute top-1/2 -translate-y-1/2 -left-16 -right-16 pointer-events-none">
         <button
           onClick={prevSlide}
-          className="pointer-events-auto group relative overflow-hidden w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110"
+          className="pointer-events-auto group relative overflow-hidden w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110"
           style={{
             backgroundColor: 'rgba(255, 255, 255, 0.9)',
             border: '1px solid rgba(0, 0, 0, 0.1)',
             color: '#000000'
           }}
         >
-          <svg className="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
+          <span className="text-xl font-bold relative z-10 transition-transform duration-300 group-hover:-translate-x-0.5">‹</span>
         </button>
 
         <button
           onClick={nextSlide}
-          className="pointer-events-auto group relative overflow-hidden w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110"
+          className="pointer-events-auto group relative overflow-hidden w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110"
           style={{
             backgroundColor: 'rgba(255, 255, 255, 0.9)',
             border: '1px solid rgba(0, 0, 0, 0.1)',
             color: '#000000'
           }}
         >
-          <svg className="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <span className="text-xl font-bold relative z-10 transition-transform duration-300 group-hover:translate-x-0.5">›</span>
         </button>
       </div>
 
-      {/* Mobile Navigation - Improved responsive layout */}
-      <div className="block lg:hidden mt-3 sm:mt-4">
+      {/* Mobile Navigation - Improved and more compact */}
+      <div className="block lg:hidden mt-3 sm:mt-4 px-1">
         {/* Navigation buttons and dots on mobile */}
-        <div className="flex items-center justify-between px-1 gap-2">
+        <div className="flex items-center justify-between gap-2 w-full">
           {/* Previous Button */}
           <button
             onClick={prevSlide}
-            className="group relative flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+            className="group relative flex-shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
             style={{
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
-              border: '2px solid rgba(0, 0, 0, 0.08)',
+              border: '2px solid rgba(0, 0, 0, 0.1)',
               color: '#1f2937'
             }}
           >
-            <svg className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 transition-transform duration-300 group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-            </svg>
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+            <span className="text-xl font-bold relative z-10 transition-transform duration-300 group-hover:-translate-x-0.5">‹</span>
           </button>
 
-          {/* Dots Container - Centered and responsive */}
-          <div className="flex-1 flex justify-center items-center px-2">
-            <div className="flex space-x-2 sm:space-x-3 items-center max-w-xs overflow-x-auto scrollbar-hide">
+          {/* Dots Container - Centered */}
+          <div className="flex-1 flex justify-center items-center px-3">
+            <div className="flex space-x-2 items-center">
               {quotes.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
                   className={`transition-all duration-500 flex-shrink-0 shadow-sm hover:shadow-md active:scale-90 ${
                     index === currentSlide
-                      ? 'w-8 h-3 sm:w-10 sm:h-4 rounded-full scale-110'
-                      : 'w-3 h-3 sm:w-4 sm:h-4 rounded-full hover:scale-125'
+                      ? 'w-7 h-3 sm:w-8 sm:h-3 rounded-full scale-110'
+                      : 'w-3 h-3 rounded-full hover:scale-125'
                   }`}
                   style={
                     index === currentSlide
                       ? {
                           background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%)',
-                          boxShadow: '0 4px 12px rgba(99, 102, 241, 0.4)',
-                          border: '2px solid rgba(255, 255, 255, 0.9)'
+                          boxShadow: '0 2px 8px rgba(99, 102, 241, 0.4)',
+                          border: '1px solid rgba(255, 255, 255, 0.9)'
                         }
                       : {
                           backgroundColor: 'rgba(255, 255, 255, 0.7)',
@@ -290,24 +283,21 @@ const QuotesSlider = () => {
           {/* Next Button */}
           <button
             onClick={nextSlide}
-            className="group relative flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+            className="group relative flex-shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
             style={{
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
-              border: '2px solid rgba(0, 0, 0, 0.08)',
+              border: '2px solid rgba(0, 0, 0, 0.1)',
               color: '#1f2937'
             }}
           >
-            <svg className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+            <span className="text-xl font-bold relative z-10 transition-transform duration-300 group-hover:translate-x-0.5">›</span>
           </button>
         </div>
 
-        {/* Slide counter for mobile */}
-        <div className="flex justify-center mt-2 sm:mt-3">
+        {/* Slide counter for mobile - More compact */}
+        <div className="flex justify-center mt-2">
           <div 
-            className="px-3 py-1 rounded-full text-xs font-medium"
+            className="px-2.5 xs:px-3 py-1 rounded-full text-xs font-medium"
             style={{
               backgroundColor: 'rgba(255, 255, 255, 0.8)',
               color: '#4b5563',
@@ -319,16 +309,16 @@ const QuotesSlider = () => {
         </div>
       </div>
 
-      {/* Desktop Dots Indicator - Fixed with solid colors */}
-      <div className="hidden lg:flex justify-center mt-10 space-x-4">
+      {/* Desktop Dots Indicator */}
+      <div className="hidden lg:flex justify-center mt-8 space-x-3">
         {quotes.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             className={`group relative overflow-hidden transition-all duration-500 shadow-lg hover:scale-125 ${
               index === currentSlide
-                ? 'w-12 h-4 rounded-full'
-                : 'w-4 h-4 rounded-full'
+                ? 'w-10 h-3 rounded-full'
+                : 'w-3 h-3 rounded-full'
             }`}
             style={
               index === currentSlide
@@ -363,11 +353,11 @@ const QuotesSlider = () => {
         ))}
       </div>
 
-      {/* Auto-play indicator - Fixed with solid background */}
-      <div className="flex justify-center mt-4 sm:mt-6">
+      {/* Auto-play indicator - More compact */}
+      <div className="flex justify-center mt-3 sm:mt-4">
         <button
           onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-          className={`group relative overflow-hidden flex items-center space-x-2 sm:space-x-3 px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-medium transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-105 border active:scale-95`}
+          className={`group relative overflow-hidden flex items-center space-x-2 px-3 py-2 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 rounded-lg xs:rounded-xl text-xs sm:text-sm font-medium transition-all duration-500 shadow-md hover:shadow-lg hover:scale-105 border active:scale-95`}
           style={
             isAutoPlaying 
               ? {
@@ -393,11 +383,11 @@ const QuotesSlider = () => {
             <>
               <div className="relative">
                 <div 
-                  className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full"
+                  className="w-2 h-2 rounded-full"
                   style={{ backgroundColor: '#10b981' }}
                 ></div>
                 <div 
-                  className="absolute inset-0 w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full animate-ping"
+                  className="absolute inset-0 w-2 h-2 rounded-full animate-ping"
                   style={{ backgroundColor: '#34d399' }}
                 ></div>
               </div>
@@ -406,7 +396,7 @@ const QuotesSlider = () => {
           ) : (
             <>
               <div 
-                className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full relative"
+                className="w-2 h-2 rounded-full relative"
                 style={{ backgroundColor: '#9ca3af' }}
               >
                 <div 
