@@ -167,10 +167,10 @@ const QuotesSlider = () => {
       <div className="flex lg:hidden justify-between items-center mt-4 px-2">
         <button
           onClick={prevSlide}
-          className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-gray-700 transition-all duration-300 shadow-lg border border-gray-600/50 flex-shrink-0"
+          className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 shadow-lg border border-white/30 flex-shrink-0"
         >
-          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
@@ -182,7 +182,7 @@ const QuotesSlider = () => {
               className={`transition-all duration-300 flex-shrink-0 ${
                 index === currentSlide
                   ? 'w-6 h-2.5 sm:w-8 sm:h-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-lg'
-                  : 'w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-600 rounded-full hover:bg-gray-500 shadow-md'
+                  : 'w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white/40 rounded-full hover:bg-white/60 shadow-md'
               }`}
             />
           ))}
@@ -190,10 +190,10 @@ const QuotesSlider = () => {
 
         <button
           onClick={nextSlide}
-          className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-gray-700 transition-all duration-300 shadow-lg border border-gray-600/50 flex-shrink-0"
+          className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 shadow-lg border border-white/30 flex-shrink-0"
         >
-          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </div>
