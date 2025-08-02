@@ -97,19 +97,19 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden relative w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1"
+            className="lg:hidden relative w-10 h-10 rounded-xl bg-indigo-50 hover:bg-indigo-100 flex items-center justify-center transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1"
             onClick={() => setOpen(!open)}
           >
             <div className="relative w-5 h-5 flex items-center justify-center">
               <Menu 
                 size={18} 
-                className={`absolute transition-all duration-300 text-gray-800 ${
+                className={`absolute transition-all duration-300 text-indigo-600 ${
                   open ? 'opacity-0 rotate-180 scale-75' : 'opacity-100 rotate-0 scale-100'
                 }`} 
               />
               <X 
                 size={18} 
-                className={`absolute transition-all duration-300 text-gray-800 ${
+                className={`absolute transition-all duration-300 text-indigo-600 ${
                   open ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-180 scale-75'
                 }`} 
               />
