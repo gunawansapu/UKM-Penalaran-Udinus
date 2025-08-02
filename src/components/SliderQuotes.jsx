@@ -85,7 +85,13 @@ const QuotesSlider = () => {
   const currentQuote = quotes[currentSlide];
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto px-2 sm:px-4">
+    <div 
+      className="relative w-full max-w-7xl mx-auto px-2 sm:px-4" 
+      style={{ 
+        colorScheme: 'light',
+        isolation: 'isolate'
+      }}
+    >
       <div className={`bg-gradient-to-br ${currentQuote.color} rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 text-white shadow-2xl relative overflow-hidden transition-all duration-700 ease-in-out`}>
         {/* Background Decorations */}
         <div className="absolute top-0 right-0 w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-white/5 rounded-full -translate-y-16 translate-x-16 sm:-translate-y-24 sm:translate-x-24 lg:-translate-y-32 lg:translate-x-32 transition-all duration-1000"></div>
@@ -94,13 +100,62 @@ const QuotesSlider = () => {
         
         {/* Content Container */}
         <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+          {/* Mobile Layout */}
+          <div className="block lg:hidden">
+            {/* Author Info Header - Mobile */}
+            <div className="flex items-center space-x-3 mb-4">
+              {/* Author Photo - Smaller for mobile */}
+              <div className="relative group flex-shrink-0">
+                <div className="w-16 h-16 rounded-xl overflow-hidden shadow-xl ring-2 ring-white/30 transition-all duration-500">
+                  <img
+                    src={currentQuote.image}
+                    alt={currentQuote.author}
+                    className="w-full h-full object-cover transition-all duration-700"
+                  />
+                </div>
+                {/* Quote Mark Overlay - Smaller */}
+                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center shadow-lg">
+                  <div className="text-xs font-serif text-white leading-none">"</div>
+                </div>
+              </div>
+
+              {/* Author Info - Horizontal layout */}
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg font-bold mb-1 truncate">{currentQuote.author}</h3>
+                <p className="text-white/80 text-sm truncate">{currentQuote.title}</p>
+                <div className="w-12 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full mt-2"></div>
+              </div>
+            </div>
+
+            {/* Quote Content - Mobile */}
+            <div className="text-center">
+              <div className="mb-4">
+                <h2 className="text-xl font-bold mb-4 italic leading-tight">
+                  "{currentQuote.quote}"
+                </h2>
+              </div>
+              
+              {/* Context Box - Mobile */}
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                <div className="flex items-center space-x-2 mb-3">
+                  <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse"></div>
+                  <span className="text-xs font-semibold text-white/90 uppercase tracking-wider">Relevansi untuk UKM</span>
+                </div>
+                <p className="text-white/90 font-medium leading-relaxed text-sm text-left">
+                  {currentQuote.context}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-center">
             
             {/* Photo & Quote Mark */}
-            <div className="lg:col-span-4 flex flex-col items-center lg:items-start space-y-4 lg:space-y-6">
+            <div className="lg:col-span-4 flex flex-col items-center lg:items-start space-y-3 sm:space-y-4 lg:space-y-6">
               {/* Author Photo */}
               <div className="relative group">
-                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl ring-2 sm:ring-4 ring-white/20 transition-all duration-500 group-hover:ring-white/40">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-40 lg:h-40 rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl ring-1 sm:ring-2 lg:ring-4 ring-white/20 transition-all duration-500 group-hover:ring-white/40">
                   <img
                     src={currentQuote.image}
                     alt={currentQuote.author}
@@ -108,34 +163,34 @@ const QuotesSlider = () => {
                   />
                 </div>
                 {/* Quote Mark Overlay */}
-                <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 lg:-bottom-4 lg:-right-4 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl lg:rounded-2xl flex items-center justify-center shadow-lg">
-                  <div className="text-lg sm:text-xl lg:text-2xl font-serif text-white leading-none">"</div>
+                <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 lg:-bottom-4 lg:-right-4 w-8 h-8 sm:w-10 sm:h-10 lg:w-16 lg:h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center shadow-lg">
+                  <div className="text-sm sm:text-lg lg:text-2xl font-serif text-white leading-none">"</div>
                 </div>
               </div>
 
               {/* Author Info */}
               <div className="text-center lg:text-left">
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-1">{currentQuote.author}</h3>
-                <p className="text-white/80 text-sm lg:text-base">{currentQuote.title}</p>
-                <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto lg:mx-0 rounded-full mt-2 lg:mt-3"></div>
+                <h3 className="text-base sm:text-lg lg:text-2xl font-bold mb-1">{currentQuote.author}</h3>
+                <p className="text-white/80 text-xs sm:text-sm lg:text-base">{currentQuote.title}</p>
+                <div className="w-10 sm:w-12 lg:w-16 h-0.5 sm:h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto lg:mx-0 rounded-full mt-1 sm:mt-2 lg:mt-3"></div>
               </div>
             </div>
 
             {/* Quote Content */}
             <div className="lg:col-span-8 text-center lg:text-left">
-              <div className="mb-6 lg:mb-8">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 italic leading-tight transition-all duration-500">
+              <div className="mb-4 sm:mb-6 lg:mb-8">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold mb-3 sm:mb-4 lg:mb-6 italic leading-tight transition-all duration-500">
                   "{currentQuote.quote}"
                 </h2>
               </div>
               
               {/* Context Box */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 border border-white/20">
-                <div className="flex items-center space-x-2 sm:space-x-3 mb-3 lg:mb-4">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                  <span className="text-xs sm:text-sm font-semibold text-white/90 uppercase tracking-wider">Relevansi untuk UKM</span>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-4 lg:p-8 border border-white/20">
+                <div className="flex items-center space-x-2 mb-2 sm:mb-3 lg:mb-4">
+                  <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 lg:w-2 lg:h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                  <span className="text-xs sm:text-xs lg:text-sm font-semibold text-white/90 uppercase tracking-wider">Relevansi untuk UKM</span>
                 </div>
-                <p className="text-white/90 font-medium leading-relaxed text-sm sm:text-base lg:text-lg">
+                <p className="text-white/90 font-medium leading-relaxed text-xs sm:text-sm lg:text-lg">
                   {currentQuote.context}
                 </p>
               </div>
@@ -144,136 +199,222 @@ const QuotesSlider = () => {
         </div>
       </div>
 
-      {/* Desktop Navigation Arrows - Perfectly symmetrical positioning */}
-      <div className="hidden lg:flex justify-between items-center absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none px-6">
+      {/* Desktop Navigation - Outside card */}
+      <div className="hidden lg:flex justify-between items-center absolute top-1/2 -translate-y-1/2 -left-20 -right-20 pointer-events-none">
         <button
           onClick={prevSlide}
-          className="pointer-events-auto group relative overflow-hidden w-16 h-16 bg-gradient-to-br from-white/25 via-white/15 to-white/5 backdrop-blur-xl rounded-2xl flex items-center justify-center text-white hover:from-white/35 hover:via-white/25 hover:to-white/10 transition-all duration-500 shadow-2xl border-2 border-white/30 hover:border-white/50 hover:scale-105 hover:-translate-y-1 -translate-x-6"
+          className="pointer-events-auto group relative overflow-hidden w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110"
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(0, 0, 0, 0.1)',
+            color: '#000000'
+          }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-          <div className="absolute inset-0.5 bg-gradient-to-br from-white/20 via-transparent to-white/10 rounded-xl opacity-50"></div>
-          <svg className="w-7 h-7 relative z-10 transition-all duration-500 group-hover:-translate-x-1 group-hover:scale-110 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+          <svg className="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400/25 to-purple-400/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
         </button>
 
         <button
           onClick={nextSlide}
-          className="pointer-events-auto group relative overflow-hidden w-16 h-16 bg-gradient-to-br from-white/25 via-white/15 to-white/5 backdrop-blur-xl rounded-2xl flex items-center justify-center text-white hover:from-white/35 hover:via-white/25 hover:to-white/10 transition-all duration-500 shadow-2xl border-2 border-white/30 hover:border-white/50 hover:scale-105 hover:-translate-y-1 translate-x-6"
+          className="pointer-events-auto group relative overflow-hidden w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110"
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(0, 0, 0, 0.1)',
+            color: '#000000'
+          }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-          <div className="absolute inset-0.5 bg-gradient-to-br from-white/20 via-transparent to-white/10 rounded-xl opacity-50"></div>
-          <svg className="w-7 h-7 relative z-10 transition-all duration-500 group-hover:translate-x-1 group-hover:scale-110 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+          <svg className="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-400/25 to-pink-400/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
-          <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-red-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
         </button>
       </div>
 
-      {/* Mobile Navigation - Enhanced with glassmorphism and better touch targets */}
-      <div className="flex lg:hidden justify-between items-center mt-6 px-2 sm:px-4">
-        <button
-          onClick={prevSlide}
-          className="group relative overflow-hidden w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-white/25 via-white/15 to-white/5 backdrop-blur-xl rounded-2xl flex items-center justify-center text-gray-800 active:text-gray-900 transition-all duration-300 shadow-xl border-2 border-white/40 active:border-white/60 active:scale-95 touch-manipulation"
-          style={{ minHeight: '56px', minWidth: '56px' }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/15 to-white/25 opacity-0 group-active:opacity-100 transition-opacity duration-200 rounded-xl"></div>
-          <div className="absolute inset-0.5 bg-gradient-to-br from-white/20 via-transparent to-white/10 rounded-xl opacity-60"></div>
-          <svg className="w-6 h-6 sm:w-7 sm:h-7 relative z-10 transition-transform duration-200 group-active:-translate-x-1 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-active:opacity-100 transition-opacity duration-200 blur-lg"></div>
-        </button>
+      {/* Mobile Navigation - Improved responsive layout */}
+      <div className="block lg:hidden mt-3 sm:mt-4">
+        {/* Navigation buttons and dots on mobile */}
+        <div className="flex items-center justify-between px-1 gap-2">
+          {/* Previous Button */}
+          <button
+            onClick={prevSlide}
+            className="group relative flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              border: '2px solid rgba(0, 0, 0, 0.08)',
+              color: '#1f2937'
+            }}
+          >
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 transition-transform duration-300 group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+            </svg>
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+          </button>
 
-        <div className="flex space-x-2 sm:space-x-3 flex-1 justify-center max-w-xs mx-4">
-          {quotes.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`transition-all duration-400 flex-shrink-0 relative overflow-hidden touch-manipulation ${
-                index === currentSlide
-                  ? 'w-12 h-4 sm:w-14 sm:h-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-lg ring-2 ring-white/40'
-                  : 'w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-br from-gray-400 to-gray-500 rounded-full active:from-gray-500 active:to-gray-600 shadow-md active:scale-90'
-              }`}
-              style={{ minHeight: '20px', minWidth: '16px' }}
-            >
-              {index === currentSlide && (
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full animate-pulse opacity-50"></div>
-              )}
-            </button>
-          ))}
+          {/* Dots Container - Centered and responsive */}
+          <div className="flex-1 flex justify-center items-center px-2">
+            <div className="flex space-x-2 sm:space-x-3 items-center max-w-xs overflow-x-auto scrollbar-hide">
+              {quotes.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`transition-all duration-500 flex-shrink-0 shadow-sm hover:shadow-md active:scale-90 ${
+                    index === currentSlide
+                      ? 'w-8 h-3 sm:w-10 sm:h-4 rounded-full scale-110'
+                      : 'w-3 h-3 sm:w-4 sm:h-4 rounded-full hover:scale-125'
+                  }`}
+                  style={
+                    index === currentSlide
+                      ? {
+                          background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%)',
+                          boxShadow: '0 4px 12px rgba(99, 102, 241, 0.4)',
+                          border: '2px solid rgba(255, 255, 255, 0.9)'
+                        }
+                      : {
+                          backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                          border: '1px solid rgba(0, 0, 0, 0.1)',
+                          backdropFilter: 'blur(4px)'
+                        }
+                  }
+                >
+                  {index === currentSlide && (
+                    <div 
+                      className="absolute inset-0 rounded-full animate-pulse opacity-40"
+                      style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}
+                    ></div>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Next Button */}
+          <button
+            onClick={nextSlide}
+            className="group relative flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              border: '2px solid rgba(0, 0, 0, 0.08)',
+              color: '#1f2937'
+            }}
+          >
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+            </svg>
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+          </button>
         </div>
 
-        <button
-          onClick={nextSlide}
-          className="group relative overflow-hidden w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-white/25 via-white/15 to-white/5 backdrop-blur-xl rounded-2xl flex items-center justify-center text-gray-800 active:text-gray-900 transition-all duration-300 shadow-xl border-2 border-white/40 active:border-white/60 active:scale-95 touch-manipulation"
-          style={{ minHeight: '56px', minWidth: '56px' }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/15 to-white/25 opacity-0 group-active:opacity-100 transition-opacity duration-200 rounded-xl"></div>
-          <div className="absolute inset-0.5 bg-gradient-to-br from-white/20 via-transparent to-white/10 rounded-xl opacity-60"></div>
-          <svg className="w-6 h-6 sm:w-7 sm:h-7 relative z-10 transition-transform duration-200 group-active:translate-x-1 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-400/20 to-pink-400/20 opacity-0 group-active:opacity-100 transition-opacity duration-200 blur-lg"></div>
-        </button>
+        {/* Slide counter for mobile */}
+        <div className="flex justify-center mt-2 sm:mt-3">
+          <div 
+            className="px-3 py-1 rounded-full text-xs font-medium"
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.8)',
+              color: '#4b5563',
+              border: '1px solid rgba(0, 0, 0, 0.1)'
+            }}
+          >
+            {currentSlide + 1} / {quotes.length}
+          </div>
+        </div>
       </div>
 
-      {/* Desktop Dots Indicator - Premium glassmorphism design */}
+      {/* Desktop Dots Indicator - Fixed with solid colors */}
       <div className="hidden lg:flex justify-center mt-10 space-x-4">
         {quotes.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`group relative overflow-hidden transition-all duration-500 ${
+            className={`group relative overflow-hidden transition-all duration-500 shadow-lg hover:scale-125 ${
               index === currentSlide
-                ? 'w-12 h-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-xl ring-2 ring-indigo-300/50 ring-offset-2 ring-offset-white'
-                : 'w-4 h-4 bg-gradient-to-br from-gray-300 to-gray-400 rounded-full hover:from-indigo-300 hover:to-purple-400 shadow-lg hover:shadow-xl hover:scale-125 hover:ring-2 hover:ring-indigo-200/50 hover:ring-offset-1 hover:ring-offset-white'
+                ? 'w-12 h-4 rounded-full'
+                : 'w-4 h-4 rounded-full'
             }`}
+            style={
+              index === currentSlide
+                ? {
+                    background: 'linear-gradient(to right, #6366f1, #a855f7, #ec4899)',
+                    border: '2px solid rgba(255, 255, 255, 0.8)',
+                    boxShadow: '0 0 20px rgba(99, 102, 241, 0.4)'
+                  }
+                : {
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                    border: '1px solid rgba(255, 255, 255, 0.6)'
+                  }
+            }
           >
             {index === currentSlide && (
               <>
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full animate-pulse opacity-60"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full opacity-20 blur-sm animate-pulse"></div>
+                <div 
+                  className="absolute inset-0 rounded-full animate-pulse opacity-60"
+                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }}
+                ></div>
+                <div 
+                  className="absolute -inset-1 rounded-full opacity-20 blur-sm animate-pulse"
+                  style={{ backgroundColor: 'rgba(99, 102, 241, 0.5)' }}
+                ></div>
               </>
             )}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div 
+              className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+            ></div>
           </button>
         ))}
       </div>
 
-      {/* Auto-play indicator - Luxury design */}
-      <div className="flex justify-center mt-6">
+      {/* Auto-play indicator - Fixed with solid background */}
+      <div className="flex justify-center mt-4 sm:mt-6">
         <button
           onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-          className={`group relative overflow-hidden flex items-center space-x-3 px-6 py-3 rounded-2xl text-sm font-medium transition-all duration-500 backdrop-blur-xl border shadow-xl hover:shadow-2xl hover:scale-105 ${
+          className={`group relative overflow-hidden flex items-center space-x-2 sm:space-x-3 px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-medium transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-105 border active:scale-95`}
+          style={
             isAutoPlaying 
-              ? 'bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 border-green-200/50 hover:from-green-100 hover:to-emerald-100' 
-              : 'bg-gradient-to-r from-gray-50 to-slate-50 text-gray-600 border-gray-200/50 hover:from-gray-100 hover:to-slate-100'
-          }`}
+              ? {
+                  backgroundColor: 'rgba(240, 253, 244, 0.95)',
+                  color: '#047857',
+                  borderColor: 'rgba(34, 197, 94, 0.3)'
+                }
+              : {
+                  backgroundColor: 'rgba(249, 250, 251, 0.95)',
+                  color: '#4b5563',
+                  borderColor: 'rgba(156, 163, 175, 0.3)'
+                }
+          }
         >
-          <div className={`absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-10 transition-opacity duration-500 ${
-            isAutoPlaying ? 'from-green-400 to-emerald-400' : 'from-gray-400 to-slate-400'
-          }`}></div>
+          <div 
+            className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+            style={{ 
+              backgroundColor: isAutoPlaying ? '#10b981' : '#6b7280'
+            }}
+          ></div>
           
           {isAutoPlaying ? (
             <>
               <div className="relative">
-                <div className="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
-                <div className="absolute inset-0 w-2.5 h-2.5 bg-green-400 rounded-full animate-ping"></div>
+                <div 
+                  className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full"
+                  style={{ backgroundColor: '#10b981' }}
+                ></div>
+                <div 
+                  className="absolute inset-0 w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full animate-ping"
+                  style={{ backgroundColor: '#34d399' }}
+                ></div>
               </div>
               <span className="relative z-10">Auto-play Aktif</span>
-              <div className="w-1 h-1 bg-green-400 rounded-full opacity-60"></div>
             </>
           ) : (
             <>
-              <div className="w-2.5 h-2.5 bg-gray-400 rounded-full relative">
-                <div className="absolute inset-0.5 bg-gray-300 rounded-full"></div>
+              <div 
+                className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full relative"
+                style={{ backgroundColor: '#9ca3af' }}
+              >
+                <div 
+                  className="absolute inset-0.5 rounded-full"
+                  style={{ backgroundColor: '#d1d5db' }}
+                ></div>
               </div>
               <span className="relative z-10">Auto-play Pause</span>
-              <div className="w-1 h-1 bg-gray-300 rounded-full opacity-60"></div>
             </>
           )}
         </button>
