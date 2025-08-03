@@ -7,7 +7,7 @@ const newsList = [
     title: 'UKM Penalaran Sabet Juara 1 LKTI Nasional',
     date: '25 Juli 2025',
     description: 'Tim dari UKM Penalaran berhasil meraih juara 1 dalam Lomba Karya Tulis Ilmiah Nasional di Universitas Gadjah Mada.',
-    image: '/images/berita1.jpg',
+    image: 'https://dinus.ac.id/wp-content/uploads/2025/03/Narasumber-Sosialisasi-Program-Student-Exchange-dan-Summer-School-300x188.jpeg',
     category: 'Prestasi'
   },
   {
@@ -15,7 +15,7 @@ const newsList = [
     title: 'Diskusi Ilmiah Edisi Juli: AI dan Masa Depan Pendidikan',
     date: '18 Juli 2025',
     description: 'Diskusi rutin membahas dampak positif dan negatif kecerdasan buatan di dunia pendidikan.',
-    image: '/images/berita2.jpg',
+    image: 'https://dinus.ac.id/wp-content/uploads/2025/06/Coaching-Clinic-Dinuslib-1-scaled.jpg',
     category: 'Diskusi'
   },
   {
@@ -23,7 +23,7 @@ const newsList = [
     title: 'Pelatihan PKM dan Strategi Lolos Hibah',
     date: '7 Juli 2025',
     description: 'Kegiatan pelatihan intensif bersama alumni yang sudah sukses lolos pendanaan hibah PKM DIKTI.',
-    image: '/images/berita3.jpg',
+    image: 'https://dinus.ac.id/wp-content/uploads/2024/01/IMG_4368-900x675.jpg',
     category: 'Workshop'
   },
 ];
