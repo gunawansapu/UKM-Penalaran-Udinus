@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import RecruitmentButton from '../components/RecruitmentButton'; // taruh di atas
@@ -7,12 +7,29 @@ import Hero from '../components/Hero';
 import EventCard from '../components/EvenCard';
 
 const Home = () => {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
   useEffect(() => {
     AOS.init({
       duration: 800,
       once: false, // animasi tetap aktif tiap scroll
     });
+
+    // Handle scroll untuk tombol scroll to top
+    const handleScroll = () => {
+      setShowScrollTop(window.pageYOffset > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const events = [
     {
@@ -136,86 +153,115 @@ const Home = () => {
             ))}
           </div>
           <div className="mt-20 text-right" data-aos="fade-up">
-  <a
-    href="/kegiatan"
-    className="text-white font-medium relative transition duration-300 hover:text-indigo-300 hover:underline hover:underline-offset-4"
-  >
-    Lihat kegiatan lainnya →
-  </a>
-</div>
-
+            <a
+              href="/kegiatan"
+              className="text-white font-medium relative transition duration-300 hover:text-indigo-300 hover:underline hover:underline-offset-4"
+            >
+              Lihat kegiatan lainnya →
+            </a>
+          </div>
 
           <div className="text-center mt-20" data-aos="fade-up">
-  <div className="relative bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-3xl p-12 border-2 border-gradient-to-r from-blue-200 to-indigo-200 shadow-2xl overflow-hidden">
-    {/* Decorative Elements */}
-    <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-200/30 to-transparent rounded-full -translate-x-16 -translate-y-16"></div>
-    <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-indigo-200/30 to-transparent rounded-full translate-x-20 translate-y-20"></div>
-    <div className="absolute top-1/2 left-1/4 w-6 h-6 bg-blue-300/40 rounded-full animate-pulse"></div>
-    <div className="absolute top-1/3 right-1/3 w-4 h-4 bg-indigo-300/40 rounded-full animate-bounce" style={{animationDelay: '0.5s'}}></div>
-    <div className="absolute bottom-1/3 left-1/3 w-5 h-5 bg-purple-300/40 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-    
-    {/* Main Content */}
-    <div className="relative z-10">
-      {/* Icon */}
-      <div className="inline-flex items-center justify-center w-28 h-28 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl mb-6 shadow-lg transform hover:scale-105 transition-transform duration-300">
-  <img src="https://raw.githubusercontent.com/gunawansapu/avatar/main/penalaran.png" alt="Icon" className="w-20 h-20 object-contain" />
-</div>
+            <div className="relative bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-3xl p-12 border-2 border-gradient-to-r from-blue-200 to-indigo-200 shadow-2xl overflow-hidden">
+              {/* Decorative Elements */}
+              <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-200/30 to-transparent rounded-full -translate-x-16 -translate-y-16"></div>
+              <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-indigo-200/30 to-transparent rounded-full translate-x-20 translate-y-20"></div>
+              <div className="absolute top-1/2 left-1/4 w-6 h-6 bg-blue-300/40 rounded-full animate-pulse"></div>
+              <div className="absolute top-1/3 right-1/3 w-4 h-4 bg-indigo-300/40 rounded-full animate-bounce" style={{animationDelay: '0.5s'}}></div>
+              <div className="absolute bottom-1/3 left-1/3 w-5 h-5 bg-purple-300/40 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+              
+              {/* Main Content */}
+              <div className="relative z-10">
+                {/* Icon */}
+                <div className="inline-flex items-center justify-center w-28 h-28 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl mb-6 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                  <img src="https://raw.githubusercontent.com/gunawansapu/avatar/main/penalaran.png" alt="Icon" className="w-20 h-20 object-contain" />
+                </div>
 
+                {/* Heading */}
+                <h3 className="text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-900 bg-clip-text text-transparent mb-6 leading-tight">
+                  Tertarik Bergabung?
+                </h3>
 
-      {/* Heading */}
-      <h3 className="text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-900 bg-clip-text text-transparent mb-6 leading-tight">
-        Tertarik Bergabung?
-      </h3>
+                {/* Subheading */}
+                <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+                  Jadilah bagian dari komunitas mahasiswa yang berpikir kritis dan inovatif. 
+                  <span className="block mt-2 text-blue-600 font-medium">
+                    Bergabunglah dengan ribuan mahasiswa lainnya!
+                  </span>
+                </p>
 
-      {/* Subheading */}
-      <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-        Jadilah bagian dari komunitas mahasiswa yang berpikir kritis dan inovatif. 
-        <span className="block mt-2 text-blue-600 font-medium">
-          Bergabunglah dengan ribuan mahasiswa lainnya!
-        </span>
-      </p>
+                {/* Stats Row */}
+                <div className="flex justify-center space-x-8 mb-10">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-600">30+</div>
+                    <div className="text-sm text-gray-500">Anggota Aktif</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-indigo-600">6+</div>
+                    <div className="text-sm text-gray-500">Event Per Tahun</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-purple-600">24/7</div>
+                    <div className="text-sm text-gray-500">Dukungan Komunitas</div>
+                  </div>
+                </div>
 
-      {/* Stats Row */}
-      <div className="flex justify-center space-x-8 mb-10">
-        <div className="text-center">
-          <div className="text-2xl font-bold text-blue-600">30+</div>
-          <div className="text-sm text-gray-500">Anggota Aktif</div>
-        </div>
-        <div className="text-center">
-          <div className="text-2xl font-bold text-indigo-600">6+</div>
-          <div className="text-sm text-gray-500">Event Per Tahun</div>
-        </div>
-        <div className="text-center">
-          <div className="text-2xl font-bold text-purple-600">24/7</div>
-          <div className="text-sm text-gray-500">Dukungan Komunitas</div>
-        </div>
-      </div>
-
-      {/* Enhanced Button Area */}
-      <div className="space-y-4">
-        <RecruitmentButton />
-        
-        {/* Additional Info */}
-        <div className="flex items-center justify-center space-x-6 text-sm text-gray-500">
-          <div className="flex items-center space-x-2">
-            <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-            <span>Mahasiswa Semester 1-5</span>
+                {/* Enhanced Button Area */}
+                <div className="space-y-4">
+                  <RecruitmentButton />
+                  
+                  {/* Additional Info */}
+                  <div className="flex items-center justify-center space-x-6 text-sm text-gray-500">
+                    <div className="flex items-center space-x-2">
+                      <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      <span>Mahasiswa Semester 1-5</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span>Resmi</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="flex items-center space-x-2">
-            <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>Resmi</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
         </div>
       </section>
+
+      {/* Scroll to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`
+          fixed 
+          bottom-6 right-6 w-12 h-12
+          sm:bottom-8 sm:right-8 sm:w-14 sm:h-14
+          bg-gradient-to-r from-blue-500 to-indigo-600
+          rounded-full shadow-lg
+          flex items-center justify-center
+          transition-all duration-300 ease-out
+          hover:shadow-xl hover:scale-110 hover:-translate-y-1
+          active:scale-95
+          focus:outline-none focus:ring-4 focus:ring-blue-300
+          z-40
+          ${showScrollTop 
+            ? 'opacity-100 translate-y-0 pointer-events-auto' 
+            : 'opacity-0 translate-y-4 pointer-events-none'
+          }
+        `}
+        aria-label="Scroll to top"
+      >
+        <svg 
+          className="w-5 h-5 sm:w-6 sm:h-6 text-white transition-transform duration-300 hover:-translate-y-0.5" 
+          fill="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/>
+        </svg>
+      </button>
     </>
   );
 };
