@@ -29,9 +29,11 @@ a:hover {
 button {
   border-radius: 8px;
   padding: 0.6em 1.2em;
-  background-color: #1a1a1a;
-  color: white;
+  background-color: #15bfe0; /* abu terang */
+  color: white; /* teks gelap */
   cursor: pointer;
+  border: 1px solid #ccc;
+  transition: all 0.2s ease;
 }
 button:hover {
   border-color: #646cff;

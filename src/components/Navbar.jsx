@@ -62,7 +62,7 @@ const Navbar = () => {
             </div>
             <div className="block">
               <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-700 to-purple-700 bg-clip-text text-transparent">
-                UKM Penalaran
+                 Penalaran
               </h1>
               <p className="text-xs font-medium" style={{ color: '#374151' }}>UDINUS</p>
             </div>
