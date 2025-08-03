@@ -36,19 +36,19 @@ const Home = () => {
       title: 'Diskusi Ilmiah Bulanan',
       date: '30 Juli 2025',
       description: 'Sesi diskusi topik terkini bersama anggota UKM.',
-      image: '/images/diskusi.jpg',
+      image: 'https://image.idntimes.com/post/20230704/jason-goodman-oalh2mojuuk-unsplash-999d577f583d9b173ee1be4aee0e3683-42c4d9bb4c06889e6f5f8c1276752362.jpg',
     },
     {
       title: 'Pelatihan Debat Mahasiswa',
       date: '12 Agustus 2025',
       description: 'Pelatihan untuk meningkatkan kemampuan berpikir kritis dan berbicara.',
-      image: '/images/debat.jpg',
+      image: 'https://plus.unsplash.com/premium_vector-1682303008693-5b5b0976cbe8?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       title: 'Workshop Riset Ilmiah',
       date: '25 Agustus 2025',
       description: 'Pembelajaran metodologi penelitian dan penulisan karya ilmiah.',
-      image: '/images/workshop.jpg',
+      image: 'https://kampusedu.id/wp-content/uploads/2023/06/Desain-Partisipatif-dan-Desain-untuk-Nilai.jpg',
     },
   ];
 
