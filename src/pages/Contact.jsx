@@ -461,7 +461,7 @@ const Contact = () => {
                 <h3 className="text-lg sm:text-xl font-semibold mb-2">Butuh Respon Cepat?</h3>
                 <p className="text-green-100 mb-4 text-sm sm:text-base">Hubungi kami via WhatsApp untuk mendapat jawaban lebih cepat</p>
                 <a 
-                  href="https://wa.me/6281234567890?text=Halo%20UKM%20Penalaran%20UDINUS"
+                  href="https://wa.me/6283107154446"
                   onClick={() => showToast('Membuka WhatsApp... 💬', 'info', 2000)}
                   className="inline-flex items-center gap-2 bg-white text-green-600 px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-semibold hover:bg-green-50 transition-all duration-300 active:scale-95 text-sm sm:text-base"
                 >

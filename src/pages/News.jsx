@@ -1,13 +1,14 @@
 import { Calendar, ArrowRight, Search, Filter } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const newsList = [
   {
     id: 1,
-    title: 'UKM Penalaran Sabet Juara 1 LKTI Nasional',
-    date: '25 Juli 2025',
-    description: 'Tim dari UKM Penalaran berhasil meraih juara 1 dalam Lomba Karya Tulis Ilmiah Nasional di Universitas Gadjah Mada.',
-    image: 'https://dinus.ac.id/wp-content/uploads/2025/03/Narasumber-Sosialisasi-Program-Student-Exchange-dan-Summer-School-300x188.jpeg',
+    title: 'PENALARAN BERPRESTASI',
+    date: '16 November 2022',
+    description: 'Anggota UKM Penalaran kembali lagi mengukir prestasi👏Selamat dan sukses kepada Afinzaki Amiral atas lolosnya pendanaan riset melalui LPDP dalam program Garuda Research and Academic of Excellence (Garuda ACE) 2022 serta mendapatkan Letter of Experience (LoA) dari profesor USA.Semoga kedepannya bisa terus berkarya serta dapat memberikan semangat dan motivasi kepada seluruh mahasiswa/i Universitas Dian Nuswantoro untuk selalu meningkatkan inovasi dan prestasi. #UKMPenalaran #Penalaran #PenalaranUdinus',
+    image: 'https://raw.githubusercontent.com/gunawansapu/avatar/main/Screenshot%202025-08-28%20at%2018-51-16%20(3)%20Instagram.png',
     category: 'Prestasi'
   },
   {
@@ -26,11 +27,29 @@ const newsList = [
     image: 'https://dinus.ac.id/wp-content/uploads/2024/01/IMG_4368-900x675.jpg',
     category: 'Workshop'
   },
+  {
+    id: 4,
+    title: 'Wisudawan Terbaik Universitas Dian Nuswantoro🤩',
+    date: '31 Agustus 2022',
+    description: 'Selamat kepada senior UKM Penalaran Usamah Bienladen (@ladenoesami )NIM E11.2018.00933. Telah terpilih sebagai wisudawan terbaik berprestasi angkatan ke-75. .Semoga gelar dan prestasi yang diperoleh dapat bermanfaat bagi diri sendiri dan masyarakat. Serta dapat menjadi motivasi bagi teman-teman UKM Penalaran dan mahasiswa UDINUS. ✨. Ayo join UKM Penalaran, menggapai prestasi bersama!',
+    image: 'https://raw.githubusercontent.com/gunawansapu/avatar/main/Screenshot%202025-08-28%20at%2018-56-46%20(3)%20Instagram.png',
+    category: 'Prestasi'
+  },
+  {
+    id: 5,
+    title: 'Di Danai Proposal KBMI💰',
+    date: '5 Agustus 2020',
+    description: 'Selamat dan sukses kepada Team yang lolos KBMI 2020 semoga dapat memberikan semangat dan motivasi kepada seluruh mahasiswa/i UDINUS untuk mampu terus meningkatkan inovasi dan prestasi. Semoga tahun depan bisa semakin banyak lagi yang akan mendapatkan pendanaan proposal baik KBMI maupun lainya dari Kemendikbud. Aamiin.... Congratulation 🎊 Proud of them💕',
+    image: 'https://raw.githubusercontent.com/gunawansapu/avatar/main/Screenshot%202025-08-30%20at%2020-50-35%20(3)%20Instagram.png',
+    category: 'Prestasi'
+  },
 ];
 
 const categories = ['Semua', 'Prestasi', 'Diskusi', 'Workshop'];
 
+// Tambahkan prop onNewsClick untuk navigasi (akan dihandle oleh React Router)
 const News = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [searchTerm, setSearchTerm] = useState('');
   const [showSearch, setShowSearch] = useState(false);
@@ -62,6 +81,11 @@ const News = () => {
       newBookmarked.add(newsId);
     }
     setBookmarkedNews(newBookmarked);
+  };
+
+  // Handler untuk navigasi ke detail menggunakan React Router
+  const handleNewsClick = (newsId) => {
+    navigate(`/news/${newsId}`);
   };
 
   return (
@@ -145,8 +169,9 @@ const News = () => {
           {filteredNews.map((news) => (
             <article
               key={news.id}
-              className="group bg-white/70 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 border border-white/50 overflow-hidden"
+              className="group bg-white/70 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 border border-white/50 overflow-hidden cursor-pointer"
               style={{colorScheme: 'light'}}
+              onClick={() => handleNewsClick(news.id)}
             >
               {/* Image Container */}
               <div className="relative overflow-hidden">
@@ -167,7 +192,10 @@ const News = () => {
                 {/* Action Buttons */}
                 <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <button
-                    onClick={() => toggleLike(news.id)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card click
+                      toggleLike(news.id);
+                    }}
                     className={`w-8 h-8 rounded-full backdrop-blur-sm border border-white/50 flex items-center justify-center transition-all duration-300 ${
                       likedNews.has(news.id)
                         ? 'bg-red-500 text-white'
@@ -177,7 +205,10 @@ const News = () => {
                     ❤️
                   </button>
                   <button
-                    onClick={() => toggleBookmark(news.id)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card click
+                      toggleBookmark(news.id);
+                    }}
                     className={`w-8 h-8 rounded-full backdrop-blur-sm border border-white/50 flex items-center justify-center transition-all duration-300 ${
                       bookmarkedNews.has(news.id)
                         ? 'bg-yellow-500 text-white'
@@ -206,6 +237,10 @@ const News = () => {
                 
                 {/* Enhanced button */}
                 <button 
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent double trigger
+                    handleNewsClick(news.id);
+                  }}
                   className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 sm:py-2.5 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-medium text-sm rounded-lg shadow-md hover:shadow-lg group/btn transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:scale-[0.98]"
                   style={{colorScheme: 'light'}}
                 >
@@ -247,6 +282,7 @@ const News = () => {
             Jangan lewatkan update terbaru dari kegiatan UKM Penalaran
           </p>
           <button 
+            onClick={() => navigate('/semua-berita')}
             className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-[0.98]"
             style={{colorScheme: 'light'}}
           >
@@ -254,53 +290,55 @@ const News = () => {
           </button>
         </div>
 
-        {/* Additional Interactive Elements - Mobile Optimized */}
+       {/* Modern Interactive Cards - Mobile Optimized */}
         <div className="mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
-          {/* Newsletter Subscription */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/50 shadow-lg" style={{colorScheme: 'light'}}>
-            <h4 className="text-lg font-semibold text-gray-800 mb-3">
-              📬 Subscribe Newsletter
-            </h4>
+          {/* Quick Actions Hub */}
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/50 shadow-lg group hover:shadow-2xl transition-all duration-300" style={{colorScheme: 'light'}}>
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center mr-3">
+                <span className="text-lg">⚡</span>
+              </div>
+              <h4 className="text-lg font-semibold text-gray-800">
+                Quick Actions
+              </h4>
+            </div>
             <p className="text-gray-600 text-sm mb-4">
-              Dapatkan notifikasi berita terbaru langsung di email Anda
+              Akses cepat ke fitur-fitur penting UKM Penalaran
             </p>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                placeholder="Email Anda"
-                className="flex-1 px-3 py-2 sm:py-2.5 bg-white/50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
-                style={{colorScheme: 'light'}}
-              />
-              <button 
-                className="px-4 py-2 sm:py-2.5 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white text-sm font-medium rounded-lg transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-indigo-500 active:scale-[0.98]"
-                style={{colorScheme: 'light'}}
-              >
-                Subscribe
+            <div className="grid grid-cols-2 gap-3">
+              <button className="flex items-center justify-center p-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white text-sm font-medium rounded-lg transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 active:scale-[0.98] group/btn">
+                <span className="mr-2">📝</span>
+                <span>Daftar</span>
+              </button>
+              <button className="flex items-center justify-center p-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white text-sm font-medium rounded-lg transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-emerald-500 active:scale-[0.98] group/btn">
+                <span className="mr-2">💬</span>
+                <span>Kontak</span>
               </button>
             </div>
           </div>
 
-          {/* Social Media Follow */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/50 shadow-lg" style={{colorScheme: 'light'}}>
-            <h4 className="text-lg font-semibold text-gray-800 mb-3">
-              🌐 Follow Us
-            </h4>
+          {/* Achievement Showcase */}
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/50 shadow-lg group hover:shadow-2xl transition-all duration-300" style={{colorScheme: 'light'}}>
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl flex items-center justify-center mr-3">
+                <span className="text-lg">🏆</span>
+              </div>
+              <h4 className="text-lg font-semibold text-gray-800">
+                Achievement Hub
+              </h4>
+            </div>
             <p className="text-gray-600 text-sm mb-4">
-              Ikuti media sosial kami untuk update real-time
+              Jelajahi prestasi dan pencapaian terbaru anggota
             </p>
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-              <button 
-                className="flex-1 px-3 py-2 sm:py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-sm font-medium rounded-lg transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 active:scale-[0.98]"
-                style={{colorScheme: 'light'}}
-              >
-                Instagram
-              </button>
-              <button 
-                className="flex-1 px-3 py-2 sm:py-2.5 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-sm font-medium rounded-lg transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-green-500 active:scale-[0.98]"
-                style={{colorScheme: 'light'}}
-              >
-                WhatsApp
-              </button>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between p-2 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg border border-yellow-200/50">
+                <span className="text-sm text-gray-700">🥇 Prestasi Terbaru</span>
+                <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">2 baru</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200/50">
+                <span className="text-sm text-gray-700">📊 Riset Published</span>
+                <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">5 artikel</span>
+              </div>
             </div>
           </div>
         </div>

@@ -54,7 +54,7 @@ const RecruitmentButton = () => {
         }
       }, 3000);
     } else {
-      window.open("https://forms.gle/link-google-form-mu", "_blank");
+      window.open("https://docs.google.com/forms/d/e/1FAIpQLSeMMFycrPpbOl94W_uS5Vo4V_6E9BE7Wq9xABT1jRhkw7JGEw/viewform", "_blank");
     }
   };
 

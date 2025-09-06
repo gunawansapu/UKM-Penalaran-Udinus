@@ -7,6 +7,9 @@ import Gallery from '../pages/Gallery';
 import Contact from '../pages/Contact';
 import Kuis from '../pages/Kuis';
 import ScrollToTop from '../components/ScrollOnTop'; // pastikan path sesuai
+import DetailNews from '../pages/NewsDetail';
+import AllNews from '../pages/Allnews';
+
 
 const AppRoutes = () => {
   return (
@@ -20,6 +23,9 @@ const AppRoutes = () => {
         <Route path="/galeri" element={<Gallery />} />
         <Route path="/kontak" element={<Contact />} />
         <Route path="/kuis" element={<Kuis />} />
+        <Route path="/news/:id" element={<DetailNews />} />
+        <Route path="/berita/:id" element={<DetailNews />} />
+        <Route path="/semua-berita" element={<AllNews />} />
       </Routes>
     </>
   );
