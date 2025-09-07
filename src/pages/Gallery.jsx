@@ -100,7 +100,7 @@ const Gallery = () => {
             <div className="text-gray-600">Anggota Aktif</div>
           </div>
           <div className="text-center p-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/20">
-            <div className="text-3xl font-bold text-pink-600 mb-2">5+</div>
+            <div className="text-3xl font-bold text-pink-600 mb-2">12+</div>
             <div className="text-gray-600">Tahun Berpengalaman</div>
           </div>
         </div>

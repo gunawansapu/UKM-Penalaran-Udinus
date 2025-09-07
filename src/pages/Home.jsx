@@ -89,11 +89,11 @@ const Home = () => {
                   <div className="text-sm text-gray-600">Anggota Aktif</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-indigo-600 mb-2">5+</div>
+                  <div className="text-3xl font-bold text-indigo-600 mb-2">6+</div>
                   <div className="text-sm text-gray-600">Program Tahunan</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600 mb-2">5+</div>
+                  <div className="text-3xl font-bold text-purple-600 mb-2">12+</div>
                   <div className="text-sm text-gray-600">Tahun Berpengalaman</div>
                 </div>
               </div>
@@ -117,6 +117,10 @@ const Home = () => {
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
                     <span className="text-gray-700">Studi Banding</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                    <span className="text-gray-700">KKN Aktivis</span>
                   </div>
                 </div>
               </div>
@@ -196,7 +200,7 @@ const Home = () => {
                   <div className="text-sm text-gray-500">Anggota Aktif</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-indigo-600">5+</div>
+                  <div className="text-2xl font-bold text-indigo-600">6+</div>
                   <div className="text-sm text-gray-500">Event Per Tahun</div>
                 </div>
                 <div className="text-center">

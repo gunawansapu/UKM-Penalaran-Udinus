@@ -676,7 +676,7 @@ const Activities = () => {
                 label: "Anggota Aktif"
               },
               {
-                number: "5+", 
+                number: "12+", 
                 label: "Tahun Berpengalaman"
               }
             ].map((stat, index) => (

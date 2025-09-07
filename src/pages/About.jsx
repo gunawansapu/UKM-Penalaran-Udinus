@@ -423,7 +423,7 @@ const divisions = [
     >
       {[
         { label: 'Anggota Aktif', value: '30+', icon: '👥', color: 'from-blue-500 to-indigo-600' },
-        { label: 'Tahun Berdiri', value: '2018', icon: '📅', color: 'from-green-500 to-emerald-600' },
+        { label: 'Tahun Berdiri', value: '2012', icon: '📅', color: 'from-green-500 to-emerald-600' },
         { label: 'Prestasi', value: '25+', icon: '🏆', color: 'from-yellow-500 to-orange-600' },
         { label: 'Kegiatan/Tahun', value: '6+', icon: '🎯', color: 'from-purple-500 to-pink-600' },
       ].map((stat, index) => (
