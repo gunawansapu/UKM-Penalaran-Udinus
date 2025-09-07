@@ -44,8 +44,8 @@ const Footer = () => {
     { name: 'Beranda', href: '/' },
     { name: 'Tentang Kami', href: '/tentang' },
     { name: 'Kegiatan', href: '/kegiatan' },
-    { name: 'Penelitian', href: '/penelitian' },
     { name: 'Berita', href: '/berita' },
+    {name: 'Galeri', href:'/galeri'},
     { name: 'Kontak', href: '/kontak' }
   ];
 
