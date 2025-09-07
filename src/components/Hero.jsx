@@ -1,4 +1,8 @@
 import { useState, useEffect } from 'react';
+import Lottie from "lottie-react";
+import innovationAnimation from "../assets/Scientist.json";
+import innovationAnimation2 from "../assets/Champion.json";
+import innovationAnimation3 from "../assets/Business meeting in office.json";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,6 +26,27 @@ const Hero = () => {
       return () => window.removeEventListener('mousemove', handleMouseMove);
     }
   }, []);
+
+  const features = [
+  {
+    lottie: innovationAnimation,
+    title: "Riset Inovatif",
+    desc: "Penelitian berkualitas tinggi",
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
+    lottie: innovationAnimation2,
+    title: "Prestasi Gemilang",
+    desc: "Raih pencapaian terbaik",
+    color: "from-purple-500 to-pink-500",
+  },
+  {
+    lottie: innovationAnimation3,
+    title: "Kolaborasi",
+    desc: "Jaringan akademisi luas",
+    color: "from-emerald-500 to-teal-500",
+  },
+];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
@@ -132,25 +157,27 @@ const Hero = () => {
           </div>
 
           {/* Stats/Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {[
-              { icon: "🔬", title: "Riset Inovatif", desc: "Penelitian berkualitas tinggi", color: "from-blue-500 to-cyan-500" },
-              { icon: "🏆", title: "Prestasi Gemilang", desc: "Raih pencapaian terbaik", color: "from-purple-500 to-pink-500" },
-              { icon: "🤝", title: "Kolaborasi", desc: "Jaringan akademisi luas", color: "from-emerald-500 to-teal-500" }
-            ].map((item, idx) => (
-              <div 
-                key={idx}
-                className="group p-8 bg-white/60 backdrop-blur-md rounded-3xl border border-white/50 hover:bg-white/80 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-                style={{ animationDelay: `${idx * 0.2}s` }}
-              >
-                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
-                <h3 className={`text-xl font-bold mb-3 bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}>{item.title}</h3>
-                <p className="text-slate-600 font-medium">{item.desc}</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          {features.map((item, idx) => (
+            <div
+              key={idx}
+              className="group p-8 bg-white/60 backdrop-blur-md rounded-3xl border border-white/50 hover:bg-white/80 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              style={{ animationDelay: `${idx * 0.2}s` }}
+            >
+             <div className="w-32 h-32 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Lottie animationData={item.lottie} loop={true} />
               </div>
-            ))}
-          </div>
+              <h3
+                className={`text-xl font-bold mb-3 text-center bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}
+              >
+                {item.title}
+              </h3>
+              <p className="text-slate-600 text-center font-medium">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
+    </div>
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">

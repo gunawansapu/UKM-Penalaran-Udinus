@@ -1,6 +1,6 @@
 const newsData = {
-  1: {
-    id: 1,
+  2: {
+    id: 2,
     title: 'PENALARAN BERPRESTASI',
     date: '16 November 2022',
     author: 'Admin UKM Penalaran',
@@ -31,8 +31,8 @@ const newsData = {
     category: 'Prestasi',
     tags: ['LPDP', 'Garuda ACE', 'Riset', 'Prestasi', 'Internasional']
   },
-  2: {
-    id: 2,
+  3: {
+    id: 3,
     title: 'Diskusi Ilmiah Edisi Juli: AI dan Masa Depan Pendidikan',
     date: '18 Juli 2025',
     author: 'Tim UKM Penalaran',
@@ -61,39 +61,7 @@ const newsData = {
     category: 'Diskusi',
     tags: ['AI', 'Pendidikan', 'Teknologi', 'Diskusi Ilmiah', 'Digital']
   },
-  3: {
-    id: 3,
-    title: 'Pelatihan PKM dan Strategi Lolos Hibah',
-    date: '7 Juli 2025',
-    author: 'Tim Workshop UKM Penalaran',
-    views: 654,
-    description: 'Kegiatan pelatihan intensif bersama alumni yang sudah sukses lolos pendanaan hibah PKM DIKTI.',
-    fullContent: `
-      <p>UKM Penalaran menyelenggarakan workshop intensif tentang Program Kreativitas Mahasiswa (PKM) dan strategi untuk meraih pendanaan hibah dari DIKTI. Workshop ini menghadirkan alumni-alumni sukses yang telah berhasil memperoleh pendanaan PKM sebagai narasumber utama.</p>
-      
-      <h3>Materi Workshop</h3>
-      <p>Workshop ini menyajikan materi komprehensif mulai dari pengenalan berbagai skema PKM, teknik penulisan proposal yang efektif, hingga tips dan trik untuk meningkatkan peluang lolos seleksi. Para peserta juga dibekali dengan contoh-contoh proposal yang telah berhasil didanai.</p>
-      
-      <h3>Sharing Session Alumni</h3>
-      <p>Bagian paling menarik dari workshop ini adalah sesi berbagi pengalaman langsung dari alumni yang telah merasakan manisnya lolos pendanaan PKM. Mereka membagikan journey mereka mulai dari ide awal, proses penulisan proposal, hingga tahap presentasi dan implementasi program.</p>
-      
-      <h3>Strategi Praktis</h3>
-      <p>Para alumni memberikan insight berharga tentang strategi praktis yang dapat diterapkan, seperti cara memilih tema yang relevan dengan kebutuhan masyarakat, teknik storytelling dalam proposal, dan cara membangun tim yang solid. Tips-tips ini sangat aplikatif dan dapat langsung diterapkan oleh peserta.</p>
-      
-      <h3>Pendampingan Berkelanjutan</h3>
-      <p>Workshop ini bukan hanya sekedar transfer knowledge, tetapi juga membuka jalur mentoring berkelanjutan. Alumni yang hadir berkomitmen untuk terus memberikan bimbingan kepada adik-adik tingkat yang serius ingin mengikuti jejak mereka di dunia PKM.</p>
-      
-      <blockquote>
-        "PKM bukan hanya tentang mendapatkan dana, tetapi tentang bagaimana kita belajar mengidentifikasi masalah sosial dan mengembangkan solusi inovatif yang bermanfaat bagi masyarakat."
-      </blockquote>
-      
-      <h3>Target dan Harapan</h3>
-      <p>Melalui workshop ini, UKM Penalaran menargetkan peningkatan jumlah proposal PKM yang diajukan oleh mahasiswa UDINUS, sekaligus meningkatkan kualitas dan tingkat keberhasilan dalam meraih pendanaan. Ini sejalan dengan misi UKM untuk mengembangkan jiwa inovatif dan entrepreneurial mahasiswa.</p>
-    `,
-    image: 'https://dinus.ac.id/wp-content/uploads/2024/01/IMG_4368-900x675.jpg',
-    category: 'Workshop',
-    tags: ['PKM', 'Workshop', 'Hibah', 'DIKTI', 'Alumni']
-  },
+
   4: {
     id: 4,
     title: 'Wisudawan Terbaik Universitas Dian Nuswantoro🤩',
@@ -132,7 +100,7 @@ const newsData = {
   5: {
     id: 5,
     title: 'Di Danai Proposal KBMI💰',
-    date: '5 Agustus 2020',
+    date: '5 Agustus 2024',
     author: 'Humas UKM Penalaran',
     views: 6341,
    description: "Selamat kepada Kurnia Rahmawati (B11.2018.04875) dan Usamah Bienladen (E11.2018.00933) dari UKM Penalaran UDINUS yang berhasil didanai proposalnya dalam ajang KBMI 2020.",

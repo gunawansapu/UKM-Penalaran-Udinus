@@ -1,10 +1,20 @@
 import { Calendar, ArrowRight, Search, Filter } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Lottie from "lottie-react";
+import bookAnim from "../assets/Books.json"; // Ganti dengan animasi kamu
 
 const newsList = [
   {
     id: 1,
+    title: 'Juara 2 🏆',
+    date: '5 Agustus 2024',
+    description: 'Selamat dan sukses kepada Team yang lolos KBMI 2020 semoga dapat memberikan semangat dan motivasi kepada seluruh mahasiswa/i UDINUS untuk mampu terus meningkatkan inovasi dan prestasi. Semoga tahun depan bisa semakin banyak lagi yang akan mendapatkan pendanaan proposal baik KBMI maupun lainya dari Kemendikbud. Aamiin.... Congratulation 🎊 Proud of them💕',
+    image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.03_26183efc.jpg',
+    category: 'Prestasi'
+  },
+  {
+    id: 2,
     title: 'PENALARAN BERPRESTASI',
     date: '16 November 2022',
     description: 'Anggota UKM Penalaran kembali lagi mengukir prestasi👏Selamat dan sukses kepada Afinzaki Amiral atas lolosnya pendanaan riset melalui LPDP dalam program Garuda Research and Academic of Excellence (Garuda ACE) 2022 serta mendapatkan Letter of Experience (LoA) dari profesor USA.Semoga kedepannya bisa terus berkarya serta dapat memberikan semangat dan motivasi kepada seluruh mahasiswa/i Universitas Dian Nuswantoro untuk selalu meningkatkan inovasi dan prestasi. #UKMPenalaran #Penalaran #PenalaranUdinus',
@@ -12,20 +22,12 @@ const newsList = [
     category: 'Prestasi'
   },
   {
-    id: 2,
-    title: 'Diskusi Ilmiah Edisi Juli: AI dan Masa Depan Pendidikan',
+    id: 3,
+    title: 'UKM Penalaran X DinusLib : Eksplorasi Ide Inovatif untuk Penelitian',
     date: '18 Juli 2025',
-    description: 'Diskusi rutin membahas dampak positif dan negatif kecerdasan buatan di dunia pendidikan.',
+    description: 'Eksplorasi ide inovatif untuk penelitian',
     image: 'https://dinus.ac.id/wp-content/uploads/2025/06/Coaching-Clinic-Dinuslib-1-scaled.jpg',
     category: 'Diskusi'
-  },
-  {
-    id: 3,
-    title: 'Pelatihan PKM dan Strategi Lolos Hibah',
-    date: '7 Juli 2025',
-    description: 'Kegiatan pelatihan intensif bersama alumni yang sudah sukses lolos pendanaan hibah PKM DIKTI.',
-    image: 'https://dinus.ac.id/wp-content/uploads/2024/01/IMG_4368-900x675.jpg',
-    category: 'Workshop'
   },
   {
     id: 4,
@@ -271,77 +273,30 @@ const News = () => {
         )}
 
         {/* Bottom CTA - Mobile Optimized */}
-        <div className="text-center mt-12 sm:mt-16">
-          <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-4 sm:mb-6 shadow-lg">
-            <span className="text-xl sm:text-2xl">📚</span>
-          </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
-            Ingin Tahu Lebih Banyak?
-          </h3>
-          <p className="text-gray-600 mb-6 sm:mb-8 max-w-md mx-auto px-4">
-            Jangan lewatkan update terbaru dari kegiatan UKM Penalaran
-          </p>
-          <button 
-            onClick={() => navigate('/semua-berita')}
-            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-[0.98]"
-            style={{colorScheme: 'light'}}
-          >
-            Lihat Semua Berita
-          </button>
-        </div>
+      <div className="text-center mt-12 sm:mt-16">
+      <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-4 sm:mb-6 shadow-lg">
+        <Lottie 
+          animationData={bookAnim} 
+          loop={true} 
+         className="w-14 h-14 sm:w-16 sm:h-16" // Sesuaikan ukuran di sini
+        />
+      </div>
 
-       {/* Modern Interactive Cards - Mobile Optimized */}
-        <div className="mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
-          {/* Quick Actions Hub */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/50 shadow-lg group hover:shadow-2xl transition-all duration-300" style={{colorScheme: 'light'}}>
-            <div className="flex items-center mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center mr-3">
-                <span className="text-lg">⚡</span>
-              </div>
-              <h4 className="text-lg font-semibold text-gray-800">
-                Quick Actions
-              </h4>
-            </div>
-            <p className="text-gray-600 text-sm mb-4">
-              Akses cepat ke fitur-fitur penting UKM Penalaran
-            </p>
-            <div className="grid grid-cols-2 gap-3">
-              <button className="flex items-center justify-center p-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white text-sm font-medium rounded-lg transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 active:scale-[0.98] group/btn">
-                <span className="mr-2">📝</span>
-                <span>Daftar</span>
-              </button>
-              <button className="flex items-center justify-center p-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white text-sm font-medium rounded-lg transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-emerald-500 active:scale-[0.98] group/btn">
-                <span className="mr-2">💬</span>
-                <span>Kontak</span>
-              </button>
-            </div>
-          </div>
+      <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
+        Ingin Tahu Lebih Banyak?
+      </h3>
+      <p className="text-gray-600 mb-6 sm:mb-8 max-w-md mx-auto px-4">
+        Jangan lewatkan update terbaru dari kegiatan UKM Penalaran
+      </p>
 
-          {/* Achievement Showcase */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/50 shadow-lg group hover:shadow-2xl transition-all duration-300" style={{colorScheme: 'light'}}>
-            <div className="flex items-center mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl flex items-center justify-center mr-3">
-                <span className="text-lg">🏆</span>
-              </div>
-              <h4 className="text-lg font-semibold text-gray-800">
-                Achievement Hub
-              </h4>
-            </div>
-            <p className="text-gray-600 text-sm mb-4">
-              Jelajahi prestasi dan pencapaian terbaru anggota
-            </p>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between p-2 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg border border-yellow-200/50">
-                <span className="text-sm text-gray-700">🥇 Prestasi Terbaru</span>
-                <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">2 baru</span>
-              </div>
-              <div className="flex items-center justify-between p-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200/50">
-                <span className="text-sm text-gray-700">📊 Riset Published</span>
-                <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">5 artikel</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <button 
+        onClick={() => navigate('/semua-berita')}
+        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-[0.98]"
+        style={{ colorScheme: 'light' }}
+      >
+        Lihat Semua Berita
+      </button>
+    </div>
 
         {/* Quick Stats - Mobile Friendly */}
         <div className="mt-12 sm:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4">

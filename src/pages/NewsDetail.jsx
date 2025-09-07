@@ -1,7 +1,9 @@
-import { Calendar, Share2, Heart, Bookmark, Eye, MessageCircle, User, Clock, Facebook, Twitter, TrendingUp, Tag } from 'lucide-react';
+import { Calendar, Share2, Heart, Bookmark, Eye, MessageCircle, User, Clock, Facebook, Twitter, TrendingUp, Tag, Instagram  } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import newsData from '../data/newsdata'; // Import data dari file terpisah
+
+
 
 const DetailNews = () => {
   // Gunakan useParams untuk mendapatkan ID dari URL
@@ -507,19 +509,20 @@ const DetailNews = () => {
               </div>
 
               {/* Social Media Follow */}
-              <div className="bg-white rounded-2xl p-6 shadow-lg">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Follow Us</h3>
-                <div className="space-y-3">
-                  <button className="w-full flex items-center gap-3 p-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg font-medium">
-                    <Facebook className="w-5 h-5" />
-                    Facebook
-                  </button>
-                  <button className="w-full flex items-center gap-3 p-4 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-xl hover:from-blue-500 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg font-medium">
-                    <Twitter className="w-5 h-5" />
-                    Twitter
-                  </button>
-                </div>
-              </div>
+               <div className="bg-white rounded-2xl p-6 shadow-lg">
+      <h3 className="text-xl font-bold text-gray-900 mb-6">Follow Us</h3>
+      <div className="space-y-3">
+        <a 
+          href="https://www.instagram.com/penalaranudinus/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="w-full flex items-center gap-3 p-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-xl hover:from-pink-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg font-medium no-underline !text-white hover:!text-white visited:!text-white"
+        >
+          <Instagram className="w-5 h-5" />
+          Instagram
+        </a>
+      </div>
+    </div>
             </div>
           </div>
         </div>

@@ -1,6 +1,15 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import QuotesSlider from '../components/SliderQuotes';
+import Lottie from "lottie-react";
+import ketuaAnim from "../assets/Man Standing at Destination Point.json";
+import wakilAnim from "../assets/Super Woman.json";
+import sekreAnim from "../assets/website design.json";
+import bendaAnim from "../assets/Girl tapping phone.json";
+import humasAnim from "../assets/a women holding megaphone whit a blue dress.json";
+import ristekAnim from "../assets/market-research.json";
+import pengmasAnim from "../assets/business-team.json";
+import medkrefAnim from "../assets/girl-setting-favorite-button-in-website.json";
 
 const About = () => {
   useEffect(() => {
@@ -28,6 +37,50 @@ const About = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const coreTeam = [
+  { 
+    role: 'Bendahara', 
+    name: 'Rikha Maharani',
+    animation: bendaAnim, 
+    bgGradient: 'from-yellow-500 to-orange-600' 
+  },
+  { 
+    role: 'Sekretaris', 
+    name: 'Arianti Oltya Setiawan',
+    animation: sekreAnim, 
+    bgGradient: 'from-green-500 to-emerald-600' ,
+  },
+
+  { 
+    role: 'Humas', 
+    name:'Salwa Devita Sari',
+    animation: humasAnim, 
+    bgGradient: 'from-yellow-500 to-orange-600' 
+  },
+  
+];
+
+const divisions = [
+  {
+    role: 'Kadiv Ristek',
+    name:'Gunawan Cholis Saputra',
+    animation: ristekAnim,
+    bgGradient: 'from-cyan-500 to-blue-500'
+  },
+  {
+    role: 'Kadiv Pengmas',
+    name:'Ivianka Reva Amanda',
+    animation: pengmasAnim,
+    bgGradient: 'from-emerald-500 to-green-500'
+  },
+  {
+    role: 'Kadiv Medkref',
+    name:'Dwi Maulyda Anggraeni',
+    animation: medkrefAnim,
+    bgGradient: 'from-indigo-500 to-purple-500'
+  },
+];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-x-hidden">
@@ -102,6 +155,8 @@ const About = () => {
           transform: translateY(0);
         }
       `}</style>
+
+      
 
       {/* Hero Section */}
       <section className="py-16 sm:py-20 px-4 sm:px-6">
@@ -222,7 +277,7 @@ const About = () => {
       <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full text-indigo-700 text-xs sm:text-sm font-medium mb-4">
         👥 Tim Kami
       </div>
-      <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Struktur Organisasi 2025</h2>
+      <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Struktur Organisasi 2025/2026</h2>
       <p className="text-gray-600 text-base sm:text-lg px-4">Hierarki kepemimpinan yang solid dan terstruktur</p>
     </div>
     
@@ -239,10 +294,15 @@ const About = () => {
               {/* Photo placeholder with crown */}
               <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full mx-auto mb-4 flex items-center justify-center relative overflow-hidden group-hover:scale-110 transition-transform duration-300">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/30 rounded-full flex items-center justify-center">
-                  <span className="text-2xl sm:text-3xl">👑</span>
+                 <Lottie 
+  animationData={ketuaAnim} 
+  loop={true} 
+  className="w-12 h-12 sm:w-16 sm:h-16"
+/>
+
                 </div>
               </div>
-              <h3 className="font-bold text-xl sm:text-2xl text-white text-center mb-2">Ketua</h3>
+              <h3 className="font-bold text-xl sm:text-2xl text-white text-center mb-2">Ketua <br /> Kayla Assifa Riqzi Utami</h3>
               {/* Connecting lines - Hidden on mobile */}
               <div className="hidden sm:block absolute -bottom-8 left-1/2 w-px h-8 bg-gradient-to-b from-indigo-300 to-transparent"></div>
             </div>
@@ -260,10 +320,15 @@ const About = () => {
           <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-400 max-w-xs mx-4">
             <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/30 rounded-full flex items-center justify-center">
-                <span className="text-xl sm:text-2xl">🤝</span>
+                 <Lottie 
+  animationData={wakilAnim} 
+  loop={true} 
+  className="w-12 h-12 sm:w-16 sm:h-16"
+/>
               </div>
             </div>
-            <h3 className="font-bold text-lg sm:text-xl text-white text-center mb-2">Wakil Ketua</h3>
+            <h3 className="font-bold text-lg sm:text-xl text-white text-center mb-2">Wakil Ketua <br/> Diah Apriesa Maimuna Sari
+            </h3>
           </div>
           {/* Connecting lines - Hidden on mobile */}
           <div className="hidden sm:block absolute -bottom-6 left-1/2 w-px h-6 bg-gradient-to-b from-purple-300 to-transparent"></div>
@@ -272,29 +337,32 @@ const About = () => {
       </div>
 
       {/* Level 3 - Core Team */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 justify-items-center px-2 mb-8">
-        {[
-          { role: 'Sekretaris', emoji: '📝', bgGradient: 'from-green-500 to-emerald-600' },
-          { role: 'Bendahara', emoji: '💰', bgGradient: 'from-yellow-500 to-orange-600' },
-          { role: 'Humas', emoji: '📢', bgGradient: 'from-pink-500 to-rose-600' },
-        ].map((pengurus, index) => (
-          <div 
-            key={index} 
-            data-aos="fade-up"
-            data-aos-delay={300 + (index * 100)}
-            className="group relative w-full"
-          >
-            <div className={`bg-gradient-to-br ${pengurus.bgGradient} rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 w-full max-w-xs mx-auto`}>
-              <div className="w-16 h-16 sm:w-18 sm:h-18 bg-white/30 rounded-full mx-auto mb-4 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300 border-2 sm:border-4 border-white/30">
-                <span className="text-lg sm:text-xl">{pengurus.emoji}</span>
-              </div>
-              <h3 className="font-bold text-base sm:text-lg text-white text-center mb-2 leading-tight">{pengurus.role}</h3>
+     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 justify-items-center px-2 mb-8">
+      {coreTeam.map((pengurus, index) => (
+        <div 
+          key={index} 
+          data-aos="fade-up"
+          data-aos-delay={300 + (index * 100)}
+          className="group relative w-full"
+        >
+          <div className={`bg-gradient-to-br ${pengurus.bgGradient} rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 w-full max-w-xs mx-auto`}>
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/30 rounded-full mx-auto mb-4 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300 border-2 sm:border-4 border-white/30">
+              <Lottie 
+                animationData={pengurus.animation}
+                loop={true}
+                className="w-12 h-12 sm:w-16 sm:h-16"
+              />
             </div>
-            {/* Connecting dots - Hidden on mobile */}
-            <div className="hidden lg:block absolute -top-6 left-1/2 w-2 h-2 bg-purple-300 rounded-full transform -translate-x-1/2"></div>
+            <h3 className="font-bold text-base sm:text-lg text-white text-center mb-2 leading-tight">
+              {pengurus.role}
+            </h3>
+            <p className="text-white text-sm text-center opacity-90">{pengurus.name}</p>
           </div>
-        ))}
-      </div>
+          {/* Titik penghubung */}
+          <div className="hidden lg:block absolute -top-6 left-1/2 w-2 h-2 bg-purple-300 rounded-full transform -translate-x-1/2"></div>
+        </div>
+      ))}
+    </div>
 
       {/* Connecting Lines to Divisions */}
       <div className="hidden lg:flex justify-center mb-4">
@@ -306,12 +374,8 @@ const About = () => {
       </div>
 
       {/* Level 4 - Divisions */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center px-2">
-        {[
-          { role: 'Kadiv Ristek', emoji: '💻', bgGradient: 'from-cyan-500 to-blue-500' },
-          { role: 'Kadiv Pengmas', emoji: '🎓', bgGradient: 'from-emerald-500 to-green-500' },
-          { role: 'Kadiv Medkref', emoji: '📊', bgGradient: 'from-indigo-500 to-purple-500' },
-        ].map((division, index) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center px-2">
+        {divisions.map((division, index) => (
           <div 
             key={index} 
             data-aos="zoom-in"
@@ -320,9 +384,16 @@ const About = () => {
           >
             <div className={`bg-gradient-to-br ${division.bgGradient} rounded-xl p-4 sm:p-5 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full max-w-xs mx-auto`}>
               <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white/30 rounded-full mx-auto mb-3 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
-                <span className="text-base sm:text-lg">{division.emoji}</span>
+                <Lottie
+                  animationData={division.animation}
+                  loop
+                 className="w-[60px] h-[60px] sm:w-[64px] sm:h-[64px]"
+                />
               </div>
-              <h3 className="font-bold text-sm sm:text-base text-white text-center leading-tight">{division.role}</h3>
+              <h3 className="font-bold text-sm sm:text-base text-white text-center leading-tight">
+                {division.role}
+              </h3>
+              <p className="text-white text-xs sm:text-sm text-center mt-1 opacity-90">{division.name}</p>
             </div>
           </div>
         ))}

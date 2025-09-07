@@ -1,12 +1,20 @@
 import { useState } from 'react';
 
 const images = [
+  { src: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.03_26183efc.jpg", alt: "Penalaran Juara" },
   { src: "https://raw.githubusercontent.com/gunawansapu/avatar/main/WhatsApp%20Image%202025-08-02%20at%2014.39.32_dbbd2f35.jpg", alt: "Seminar Penalaran" },
+  { src: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.05_585625f8.jpg", alt: "Tim UKM Penalaran" },
   { src: "https://raw.githubusercontent.com/gunawansapu/avatar/main/WhatsApp%20Image%202025-08-02%20at%2014.42.16_57dde200.jpg", alt: "Workshop" },
+  { src: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.07_4e3ba305.jpg", alt: "Game" },
+  { src: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.06_e0628f45.jpg", alt: "Bootcamp" },
   { src: "https://raw.githubusercontent.com/gunawansapu/avatar/main/WhatsApp%20Image%202025-08-01%20at%2023.15.32_8c10ad4a.jpg", alt: "Kegiatan Organisasi" },
-  { src: "https://raw.githubusercontent.com/gunawansapu/avatar/main/WhatsApp%20Image%202025-08-02%20at%2014.21.50_d1fbb90c.jpg", alt: "Tim" },
-  { src: "https://raw.githubusercontent.com/gunawansapu/avatar/main/WhatsApp%20Image%202025-08-02%20at%2014.42.45_3d597c52.jpg", alt: "Diskusi Ilmiah" },
-  { src: "https://raw.githubusercontent.com/gunawansapu/avatar/main/WhatsApp%20Image%202025-08-02%20at%2014.43.15_aafbb239.jpg", alt: "Tim UKM Penalaran" },
+  { src: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.06_b04b3172.jpg", alt: "Coaching" },
+  { src: "https://raw.githubusercontent.com/gunawansapu/avatar/main/WhatsApp%20Image%202025-08-02%20at%2014.21.50_d1fbb90c.jpg", alt: "Buka Bersama" },
+  { src: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.07_3c4140f3.jpg", alt: "Hiking" },
+  { src: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.08_fb3b81d4.jpg", alt: "Rapat Rutin" },
+  { src: "https://raw.githubusercontent.com/gunawansapu/avatar/main/WhatsApp%20Image%202025-08-02%20at%2014.42.45_3d597c52.jpg", alt: "Tim UKM Penalaran" },
+  { src: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.03_a6ffbb88.jpg", alt: "Tim UKM Penalaran" },
+  { src: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.07_ba6efe2a.jpg", alt: "Tim UKM Penalaran" },
 ];
 
 const Gallery = () => {

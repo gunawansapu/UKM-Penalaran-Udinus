@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import RecruitmentButton from '../components/RecruitmentButton'; // taruh di atas
-
 import Hero from '../components/Hero';
 import EventCard from '../components/EvenCard';
 
@@ -33,22 +32,22 @@ const Home = () => {
 
   const events = [
     {
-      title: 'Diskusi Ilmiah Bulanan',
-      date: '30 Juli 2025',
+      title: 'UKM Penalaran X DinusLIb',
+      date: 'Coming Soon',
       description: 'Sesi diskusi topik terkini bersama anggota UKM.',
-      image: 'https://image.idntimes.com/post/20230704/jason-goodman-oalh2mojuuk-unsplash-999d577f583d9b173ee1be4aee0e3683-42c4d9bb4c06889e6f5f8c1276752362.jpg',
+      image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.06_b04b3172.jpg',
     },
     {
-      title: 'Pelatihan Debat Mahasiswa',
-      date: '12 Agustus 2025',
-      description: 'Pelatihan untuk meningkatkan kemampuan berpikir kritis dan berbicara.',
-      image: 'https://plus.unsplash.com/premium_vector-1682303008693-5b5b0976cbe8?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      title: 'LKTIN (Lomba Karya Tulis Ilmiah Nasional)',
+      date: 'Coming Soon',
+      description: 'Lomba tingkat nasional',
+      image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.03_a6ffbb88.jpg',
     },
     {
-      title: 'Workshop Riset Ilmiah',
-      date: '25 Agustus 2025',
-      description: 'Pembelajaran metodologi penelitian dan penulisan karya ilmiah.',
-      image: 'https://cdn.sejutacita.id/dealls-blog-cms/apa_itu_workshop_3_f7f4451d78.webp',
+      title: 'PKM Masterclass',
+      date: 'Coming Soon',
+      description: 'Nantikan Segera',
+      image: 'https://images.unsplash.com/photo-1614332287897-cdc485fa562d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
   ];
 
@@ -105,11 +104,11 @@ const Home = () => {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                    <span className="text-gray-700">Diskusi Ilmiah Berkala</span>
+                    <span className="text-gray-700">Coaching Clinic</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                    <span className="text-gray-700">Pelatihan Debat & Public Speaking</span>
+                    <span className="text-gray-700">PKM Masterclass</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
@@ -197,7 +196,7 @@ const Home = () => {
                   <div className="text-sm text-gray-500">Anggota Aktif</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-indigo-600">6+</div>
+                  <div className="text-2xl font-bold text-indigo-600">5+</div>
                   <div className="text-sm text-gray-500">Event Per Tahun</div>
                 </div>
                 <div className="text-center">
