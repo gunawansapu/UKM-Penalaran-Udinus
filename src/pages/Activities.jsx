@@ -257,7 +257,7 @@ const Activities = () => {
       category: "Seminar",
       time: "Menyusul",
       location: "Gedung i Lantai 3",
-      image: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.03_a6ffbb88.jpg",
+      image: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/Screenshot%20(708).png",
       status: "upcoming",
       registrationUrl: null,
       registrationDeadline: null,

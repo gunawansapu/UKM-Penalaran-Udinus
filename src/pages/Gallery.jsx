@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 const images = [
+  { src: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-08%20at%2017.15.30_da40381e.jpg", alt: "Juara 2 Krenova 2025" },
   { src: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.03_26183efc.jpg", alt: "Penalaran Juara" },
   { src: "https://raw.githubusercontent.com/gunawansapu/avatar/main/WhatsApp%20Image%202025-08-02%20at%2014.39.32_dbbd2f35.jpg", alt: "Seminar Penalaran" },
   { src: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.05_585625f8.jpg", alt: "Tim UKM Penalaran" },

@@ -1,4 +1,33 @@
 const newsData = {
+  1: {
+    id: 1,
+    title: 'Juara 2 🏆 Krenova Kategori Mahasiswa Tahun 2025',
+    date: '8 September 2025',
+    author: 'Admin UKM Penalaran',
+    views: 12477637,
+    description: 'Kayla Assifa Rizqi Utami, mahasiswa Teknik Biomedis dari Universitas Dian Nuswantoro, berhasil meraih Juara 2 dalam ajang Krenova (Kreativitas dan Inovasi Masyarakat) 2025 untuk Kategori Mahasiswa. Karya inovatif yang diusungnya tidak hanya menunjukkan tingkat kreativitas tinggi, tetapi juga menjadi solusi nyata bagi masyarakat. Prestasi ini menjadi bukti semangat generasi muda dalam menghadirkan inovasi yang bermanfaat dan berdaya guna.',
+    fullContent: `
+      <p>UKM Penalaran Universitas Dian Nuswantoro kembali menorehkan prestasi membanggakan melalui salah satu anggotanya, <strong>Kayla Assifa Rizqi Utami</strong>, mahasiswa program studi Teknik Biomedis. Kayla berhasil meraih <strong>Juara 2</strong> dalam ajang <em>Krenova (Kreativitas dan Inovasi Masyarakat)</em> tahun 2025 untuk kategori mahasiswa.</p>
+
+      <h3>Karya Inovatif yang Bermanfaat</h3>
+      <p>Karya yang diajukan oleh Kayla tidak hanya menggambarkan kemampuan berpikir kreatif dan solutif, tetapi juga menjawab kebutuhan nyata di masyarakat. Inovasi yang dibuatnya menggabungkan pendekatan teknologi dan kemanfaatan sosial, sehingga dinilai sangat aplikatif dan potensial untuk dikembangkan lebih lanjut.</p>
+
+      <h3>Semangat Generasi Muda</h3>
+      <p>Keberhasilan ini menjadi cerminan semangat generasi muda, khususnya mahasiswa, dalam menghadirkan inovasi-inovasi yang berdampak positif. Sebagai anggota aktif UKM Penalaran, Kayla membuktikan bahwa dukungan dari lingkungan organisasi dan kampus dapat mendorong lahirnya karya-karya unggul yang kompetitif.</p>
+
+      <h3>Motivasi bagi Mahasiswa Lain</h3>
+      <p>Prestasi ini diharapkan menjadi inspirasi bagi seluruh mahasiswa Universitas Dian Nuswantoro untuk terus berinovasi dan berkarya. Kemenangan Kayla membuktikan bahwa dengan semangat, ketekunan, dan dukungan yang tepat, mahasiswa dapat meraih prestasi di tingkat regional hingga nasional.</p>
+
+      <blockquote>
+        "Saya berharap karya ini dapat menjadi awal dari kontribusi nyata saya di bidang kesehatan dan inovasi teknologi di Indonesia," ujar Kayla.
+      </blockquote>
+
+      <p>Dengan pencapaian ini, UKM Penalaran kembali menegaskan komitmennya dalam mencetak mahasiswa-mahasiswa unggul yang siap bersaing dan membawa perubahan positif bagi masyarakat luas.</p>
+    `,
+    image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/2.jpg',
+    category: 'Prestasi',
+    tags: ['Krenova', 'Inovasi', 'Teknik Biomedis', 'Prestasi', 'Mahasiswa']
+  },
   2: {
     id: 2,
     title: 'PENALARAN BERPRESTASI',
@@ -36,7 +65,7 @@ const newsData = {
     title: 'Diskusi Ilmiah Edisi Juli: AI dan Masa Depan Pendidikan',
     date: '18 Juli 2025',
     author: 'Tim UKM Penalaran',
-    views: 892,
+    views: 8992,
     description: 'Diskusi rutin membahas dampak positif dan negatif kecerdasan buatan di dunia pendidikan.',
     fullContent: `
       <p>UKM Penalaran menggelar diskusi ilmiah bulanan dengan tema yang sangat relevan di era digital ini: "AI dan Masa Depan Pendidikan". Acara yang diselenggarakan pada Juli 2025 ini menghadirkan perspektif mendalam tentang bagaimana teknologi kecerdasan buatan akan mengubah lanskap pendidikan di masa depan.</p>

@@ -7,10 +7,10 @@ import bookAnim from "../assets/Books.json"; // Ganti dengan animasi kamu
 const newsList = [
   {
     id: 1,
-    title: 'Juara 2 🏆',
-    date: '5 Agustus 2024',
-    description: 'Selamat dan sukses kepada Team yang lolos KBMI 2020 semoga dapat memberikan semangat dan motivasi kepada seluruh mahasiswa/i UDINUS untuk mampu terus meningkatkan inovasi dan prestasi. Semoga tahun depan bisa semakin banyak lagi yang akan mendapatkan pendanaan proposal baik KBMI maupun lainya dari Kemendikbud. Aamiin.... Congratulation 🎊 Proud of them💕',
-    image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.03_26183efc.jpg',
+    title: ' Juara 2 🏆 krenova kategori mahasiswa tahun 2025 ',
+    date: '8 September 2025',
+    description: 'Kayla Assifa Rizqi Utami, mahasiswa teknik biomedis berhasil meraih Juara 2 Krenova 2025 Kategori Mahasiswa melalui karya inovatif yang mencerminkan kreativitas sekaligus solusi nyata bagi masyarakat. Prestasi ini menjadi bukti semangat generasi muda dalam menghadirkan inovasi yang bermanfaat dan berdaya guna.',
+    image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/2.jpg',
     category: 'Prestasi'
   },
   {

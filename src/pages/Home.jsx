@@ -41,7 +41,7 @@ const Home = () => {
       title: 'LKTIN (Lomba Karya Tulis Ilmiah Nasional)',
       date: 'Coming Soon',
       description: 'Lomba tingkat nasional',
-      image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.03_a6ffbb88.jpg',
+      image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/Screenshot%20(708).png',
     },
     {
       title: 'PKM Masterclass',
