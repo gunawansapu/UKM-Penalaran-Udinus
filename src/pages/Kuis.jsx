@@ -122,6 +122,23 @@ const QuizRedirect = () => {
         .cyber-gradient {
           background: linear-gradient(45deg, #000000, #001122, #002244, #000000);
         }
+
+         boxShadow: {
+        'text-shadow': '0 2px 5px rgba(0, 0, 0, 0.8)',
+      },
+      keyframes: {
+        glitch: {
+          '0%': { transform: 'translate(0)' },
+          '20%': { transform: 'translate(-2px, 2px)' },
+          '40%': { transform: 'translate(-2px, -2px)' },
+          '60%': { transform: 'translate(2px, 2px)' },
+          '80%': { transform: 'translate(2px, -2px)' },
+          '100%': { transform: 'translate(0)' },
+        },
+      },
+      animation: {
+        glitch: 'glitch 1s infinite',
+      },
       `}</style>
 
       <div className="min-h-screen cyber-gradient relative overflow-hidden">
@@ -269,9 +286,12 @@ const QuizRedirect = () => {
               <div className="absolute inset-0 rounded-3xl animate-glow"></div>
             </div>
             
-            <h1 className="text-6xl font-black bg-gradient-to-r from-cyan-300 via-blue-200 to-green-300 bg-clip-text text-transparent mb-6 leading-tight text-shadow">
-              <span className="animate-glitch inline-block">Kuis Penalaran & Logika</span>
-            </h1>
+           <h1 className="text-5xl sm:text-6xl font-black text-white sm:text-transparent sm:bg-clip-text sm:bg-gradient-to-r sm:from-cyan-300 sm:via-blue-200 sm:to-green-300 sm:shadow-text-shadow mb-6 leading-tight">
+  <span className="inline-block sm:animate-glitch">
+    Kuis Penalaran & Logika
+  </span>
+</h1>
+
             <p className="text-xl text-cyan-100/90 max-w-3xl mx-auto leading-relaxed mb-6">
               Uji kemampuan berpikir kritis dan logis Anda melalui serangkaian pertanyaan berbentuk studi kasus nyata yang telah dirancang khusus untuk mengasah intelektualitas
             </p>
@@ -561,15 +581,7 @@ const QuizRedirect = () => {
           <div className="absolute bottom-4 left-4 w-16 h-16 border-b-2 border-l-2 border-cyan-400/30"></div>
           <div className="absolute bottom-4 right-4 w-16 h-16 border-b-2 border-r-2 border-cyan-400/30"></div>
           
-          {/* Status indicators */}
-          <div className="absolute top-6 left-1/2 transform -translate-x-1/2 flex gap-2">
-            {['SYSTEM', 'READY', 'ACTIVE'].map((status, index) => (
-              <div key={index} className="flex items-center gap-1 text-cyan-400 text-xs font-mono">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse border border-green-300"></div>
-                <span>{status}</span>
-              </div>
-            ))}
-          </div>
+          
         </div>
       </div>
     </>
