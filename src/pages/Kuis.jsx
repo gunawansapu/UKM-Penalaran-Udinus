@@ -488,7 +488,7 @@ const QuizRedirect = () => {
     {/* Juara 2 */}
     <div className="bg-gradient-to-br from-blue-400/10 via-blue-300/5 to-blue-200/10 backdrop-blur-md border border-blue-400/30 rounded-xl p-6 shadow-xl transition hover:scale-105 hover:shadow-blue-500/40 duration-300">
       <h3 className="text-xl font-semibold text-blue-300 mb-2 drop-shadow-md">🥈 Juara 2</h3>
-      <p className="mb-3 text-gray-100">Tumbler termos eksklusif untuk keseharianmu! ☕</p>
+      <p className="mb-3 text-gray-100">Tumbler Premium eksklusif untuk keseharianmu! ☕</p>
       <img src="https://img.id.my-best.com/product_images/8ce4739b810fd54d9d5361a12bc2108a.jpeg?ixlib=rails-4.3.1&q=70&lossless=0&w=800&h=800&fit=clip&s=f1e1447d9906c72731b3ecdbf2c7c959" alt="Tumbler Termos" className="mx-auto rounded-lg w-28 sm:w-36 border border-blue-400/40 shadow-md" />
     </div>
 
