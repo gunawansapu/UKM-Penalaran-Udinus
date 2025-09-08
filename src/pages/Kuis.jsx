@@ -467,6 +467,41 @@ const QuizRedirect = () => {
               </div>
             </div>
           </div>
+               <div className="mt-16 text-center px-4 sm:px-8 text-white relative z-10">
+  <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-purple-600 animate-pulse">
+    🎁 Hadiah Menarik Menanti Kamu!
+  </h2>
+
+  <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto backdrop-blur-sm bg-white/5 p-3 rounded-md border border-cyan-400/20 shadow-lg">
+    Ikuti kuis penalaran ini dan jadilah salah satu dari <span className="text-cyan-300 font-bold">4 peserta terbaik</span>!
+    Dapatkan hadiah spesial sebagai bentuk apresiasi atas <span className="text-fuchsia-400 font-bold">pemikiran kritismu</span>!
+  </p>
+
+  <div className="grid gap-8 sm:grid-cols-3 max-w-6xl mx-auto">
+    {/* Juara 1 */}
+    <div className="bg-gradient-to-br from-yellow-400/10 via-yellow-300/5 to-yellow-200/10 backdrop-blur-md border border-yellow-400/30 rounded-xl p-6 shadow-xl transition hover:scale-105 hover:shadow-yellow-500/40 duration-300">
+      <h3 className="text-xl font-semibold text-yellow-300 mb-2 drop-shadow-md">🥇 Juara 1</h3>
+      <p className="mb-3 text-gray-100">Saldo Dana sebesar <span className="text-yellow-200 font-semibold">Rp50.000</span> 💸</p>
+      <img src="https://img.lazcdn.com/g/p/57acb48218ca709ce1fdc36480d3e8f5.png_360x360q80.png_.webp" alt="Saldo 50K" className="mx-auto rounded-lg w-28 sm:w-36 border border-yellow-400/40 shadow-md" />
+    </div>
+
+    {/* Juara 2 */}
+    <div className="bg-gradient-to-br from-blue-400/10 via-blue-300/5 to-blue-200/10 backdrop-blur-md border border-blue-400/30 rounded-xl p-6 shadow-xl transition hover:scale-105 hover:shadow-blue-500/40 duration-300">
+      <h3 className="text-xl font-semibold text-blue-300 mb-2 drop-shadow-md">🥈 Juara 2</h3>
+      <p className="mb-3 text-gray-100">Tumbler termos eksklusif untuk keseharianmu! ☕</p>
+      <img src="https://img.id.my-best.com/product_images/8ce4739b810fd54d9d5361a12bc2108a.jpeg?ixlib=rails-4.3.1&q=70&lossless=0&w=800&h=800&fit=clip&s=f1e1447d9906c72731b3ecdbf2c7c959" alt="Tumbler Termos" className="mx-auto rounded-lg w-28 sm:w-36 border border-blue-400/40 shadow-md" />
+    </div>
+
+    {/* Juara 3 & 4 */}
+    <div className="bg-gradient-to-br from-pink-400/10 via-pink-300/5 to-pink-200/10 backdrop-blur-md border border-pink-400/30 rounded-xl p-6 shadow-xl transition hover:scale-105 hover:shadow-pink-500/40 duration-300">
+      <h3 className="text-xl font-semibold text-pink-300 mb-2 drop-shadow-md">🥉 Juara 3 & 4</h3>
+      <p className="mb-3 text-gray-100">Tumbler biasa sebagai bentuk apresiasi partisipasimu! 🎁</p>
+      <img src="https://garmenesia.co.id/wp-content/uploads/2020/06/plastic-tumbler-cup_1339-60086.jpg" alt="Tumbler Biasa" className="mx-auto rounded-lg w-28 sm:w-36 border border-pink-400/40 shadow-md" />
+    </div>
+  </div>
+</div>
+
+<br />
 
           {/* Additional Info */}
           <div 
