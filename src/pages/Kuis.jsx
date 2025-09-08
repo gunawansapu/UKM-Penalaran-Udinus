@@ -513,7 +513,13 @@ const QuizRedirect = () => {
                 dan website resmi organisasi.
               </p>
               
-              
+              <div className="mt-6 flex gap-2 relative z-10">
+                {['Assessment', 'Development', 'Community'].map((tag, index) => (
+                  <span key={index} className="px-3 py-1 bg-green-500/20 rounded-full text-green-300 text-sm border border-green-400/30">
+                    {tag}
+                  </span>
+                ))}
+              </div>
               
               {/* Cyber corners */}
               <div className="absolute bottom-2 left-2 w-6 h-6 border-b-2 border-l-2 border-cyan-400/50"></div>
