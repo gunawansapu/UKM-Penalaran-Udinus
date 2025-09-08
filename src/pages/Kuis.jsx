@@ -126,19 +126,6 @@ const QuizRedirect = () => {
          boxShadow: {
         'text-shadow': '0 2px 5px rgba(0, 0, 0, 0.8)',
       },
-      keyframes: {
-        glitch: {
-          '0%': { transform: 'translate(0)' },
-          '20%': { transform: 'translate(-2px, 2px)' },
-          '40%': { transform: 'translate(-2px, -2px)' },
-          '60%': { transform: 'translate(2px, 2px)' },
-          '80%': { transform: 'translate(2px, -2px)' },
-          '100%': { transform: 'translate(0)' },
-        },
-      },
-      animation: {
-        glitch: 'glitch 1s infinite',
-      },
       `}</style>
 
       <div className="min-h-screen cyber-gradient relative overflow-hidden">
@@ -533,13 +520,7 @@ const QuizRedirect = () => {
                 dan website resmi organisasi.
               </p>
               
-              <div className="mt-6 flex gap-2 relative z-10">
-                {['Assessment', 'Development', 'Community'].map((tag, index) => (
-                  <span key={index} className="px-3 py-1 bg-green-500/20 rounded-full text-green-300 text-sm border border-green-400/30">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+             
               
               {/* Cyber corners */}
               <div className="absolute bottom-2 left-2 w-6 h-6 border-b-2 border-l-2 border-cyan-400/50"></div>
