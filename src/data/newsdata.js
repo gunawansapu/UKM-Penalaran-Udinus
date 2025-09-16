@@ -1,10 +1,55 @@
 const newsData = {
-  1: {
-    id: 1,
+  
+  1:{
+  id: 1,
+  title: 'Raih Emas di ISPC 2025! 🏅',
+  date: '16 September 2025',
+  author: 'Humas UKM Penalaran',
+  views: 13000000,
+  description: "Amelia Calista dari D3 RMIK 2024 bersama Tim Salmona berhasil meraih Gold Medal di ajang bergengsi International Science Project Competition (ISPC) 2025 yang diselenggarakan secara offline oleh IYSA x Udinus. Prestasi ini menjadi bukti semangat dan dedikasi mahasiswa UDINUS dalam berinovasi dan bersaing di kancah internasional.",
+  fullContent: `
+    <p>✨ Hi, I’m <strong>Amelia Calista</strong> from <strong>D3 RMIK 2024</strong>!</p>
+
+    <p>Super grateful and excited because together with the <strong>Salmona Team</strong>, we just brought home the <strong>Gold Medal 🏅</strong> at the <strong>International Science Project Competition (ISPC) 2025</strong> offline competition by IYSA x Udinus 💛</p>
+
+    <h3>Apresiasi dari UKM Penalaran</h3>
+    <p>Selamat dan sukses untuk <strong>Amelia Calista</strong> beserta tim atas prestasi gemilang yang berhasil diraih. Semoga capaian ini dapat menjadi motivasi dan inspirasi bagi mahasiswa/i <strong>Universitas Dian Nuswantoro</strong> untuk terus berkarya, berinovasi, dan mengukir prestasi membanggakan di tingkat nasional maupun internasional. 🌟</p>
+
+    <h3>Bangga Jadi Bagian dari UKM Penalaran</h3>
+    <p>UKM Penalaran bangga menjadi wadah yang mendorong kreativitas dan inovasi mahasiswa UDINUS. Prestasi ini membuktikan bahwa mahasiswa mampu bersaing dan memberikan kontribusi nyata dalam forum ilmiah tingkat dunia.</p>
+
+    <blockquote>
+      "Prestasi adalah buah dari konsistensi, kerja keras, dan semangat kolaborasi. Selamat untuk Tim Salmona dan Amelia Calista!" — Humas UKM Penalaran
+    </blockquote>
+
+    <h3>Ayo Terus Ukir Prestasi!</h3>
+    <p>Dengan semangat yang tinggi, mari terus kita harumkan nama UDINUS melalui karya-karya dan inovasi yang berdampak. Jadilah bagian dari gerakan mahasiswa yang aktif, produktif, dan inspiratif bersama UKM Penalaran.</p>
+
+    <h3>#UKMPenalaran #PenalaranBerprestasi #Udinus</h3>
+  `,
+  image: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/Screenshot%202025-09-16%20at%2018-18-39%20(3)%20Instagram.png",
+  category: "Prestasi",
+  tags: [
+    "ISPC", 
+    "Gold Medal", 
+    "Udinus", 
+    "UKM Penalaran", 
+    "Salmona", 
+    "IYSA", 
+    "Prestasi Internasional", 
+    "Amelia Calista", 
+    "PenalaranBerprestasi", 
+    "D3 RMIK",
+    "Kompetisi Ilmiah",
+    "Mahasiswa Berprestasi"
+  ]
+},
+2: {
+    id: 2,
     title: 'Juara 2 🏆 Krenova Kategori Mahasiswa Tahun 2025',
     date: '8 September 2025',
     author: 'Admin UKM Penalaran',
-    views: 12477637,
+    views: 12479,
     description: 'Kayla Assifa Rizqi Utami, mahasiswa Teknik Biomedis dari Universitas Dian Nuswantoro, berhasil meraih Juara 2 dalam ajang Krenova (Kreativitas dan Inovasi Masyarakat) 2025 untuk Kategori Mahasiswa. Karya inovatif yang diusungnya tidak hanya menunjukkan tingkat kreativitas tinggi, tetapi juga menjadi solusi nyata bagi masyarakat. Prestasi ini menjadi bukti semangat generasi muda dalam menghadirkan inovasi yang bermanfaat dan berdaya guna.',
     fullContent: `
       <p>UKM Penalaran Universitas Dian Nuswantoro kembali menorehkan prestasi membanggakan melalui salah satu anggotanya, <strong>Kayla Assifa Rizqi Utami</strong>, mahasiswa program studi Teknik Biomedis. Kayla berhasil meraih <strong>Juara 2</strong> dalam ajang <em>Krenova (Kreativitas dan Inovasi Masyarakat)</em> tahun 2025 untuk kategori mahasiswa.</p>
@@ -28,8 +73,8 @@ const newsData = {
     category: 'Prestasi',
     tags: ['Krenova', 'Inovasi', 'Teknik Biomedis', 'Prestasi', 'Mahasiswa']
   },
-  2: {
-    id: 2,
+  3: {
+    id: 3,
     title: 'PENALARAN BERPRESTASI',
     date: '16 November 2022',
     author: 'Admin UKM Penalaran',
@@ -60,8 +105,8 @@ const newsData = {
     category: 'Prestasi',
     tags: ['LPDP', 'Garuda ACE', 'Riset', 'Prestasi', 'Internasional']
   },
-  3: {
-    id: 3,
+  4: {
+    id: 4,
     title: 'Diskusi Ilmiah Edisi Juli: AI dan Masa Depan Pendidikan',
     date: '18 Juli 2025',
     author: 'Tim UKM Penalaran',
@@ -91,8 +136,8 @@ const newsData = {
     tags: ['AI', 'Pendidikan', 'Teknologi', 'Diskusi Ilmiah', 'Digital']
   },
 
-  4: {
-    id: 4,
+  5: {
+    id: 5,
     title: 'Wisudawan Terbaik Universitas Dian Nuswantoro🤩',
     date: '31 Agustus 2022',
     author: 'Humas UKM Penalaran',
@@ -126,8 +171,8 @@ const newsData = {
     category: 'Prestasi',
     tags: ['Wisuda', 'Prestasi', 'Alumni', 'UDINUS', 'Inspirasi']
   },
-  5: {
-    id: 5,
+  6: {
+    id: 6,
     title: 'Di Danai Proposal KBMI💰',
     date: '5 Agustus 2024',
     author: 'Humas UKM Penalaran',
@@ -151,6 +196,8 @@ const newsData = {
   image: "https://raw.githubusercontent.com/gunawansapu/avatar/main/Screenshot%202025-08-30%20at%2020-50-35%20(3)%20Instagram.png",
   category: "Prestasi",
   tags: ["KBMI", "Proposal", "Pendanaan", "UDINUS", "UKM Penalaran"]
-  }}
+  },
+
+}
 
 export default newsData;

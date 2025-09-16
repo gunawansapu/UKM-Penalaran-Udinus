@@ -5,8 +5,16 @@ import Lottie from "lottie-react";
 import bookAnim from "../assets/Books.json"; // Ganti dengan animasi kamu
 
 const newsList = [
-  {
+    {
     id: 1,
+    title: 'Amelia Calista dan Tim berhasil raih Gold Medal ISPC 2025.🏆',
+    date: '16 September 2025',
+    description: '"Selamat kepada Amelia Calista Salah satu anggota penalaran dan tim karena telah mendapat Gold Medal dari International Science Project Competition (ISPC) 2025 offline competition by IYSA x Udinus 💛! Semoga prestasi ini menginspirasi seluruh mahasiswa UDINUS untuk terus berinovasi dan meraih prestasi. Proud of them 🎊",',
+    image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/Screenshot%202025-09-16%20at%2018-18-39%20(3)%20Instagram.png',
+    category: 'Prestasi'
+  },
+  {
+    id: 2,
     title: ' Juara 2 🏆 krenova kategori mahasiswa tahun 2025 ',
     date: '8 September 2025',
     description: 'Kayla Assifa Rizqi Utami, mahasiswa teknik biomedis berhasil meraih Juara 2 Krenova 2025 Kategori Mahasiswa melalui karya inovatif yang mencerminkan kreativitas sekaligus solusi nyata bagi masyarakat. Prestasi ini menjadi bukti semangat generasi muda dalam menghadirkan inovasi yang bermanfaat dan berdaya guna.',
@@ -14,7 +22,7 @@ const newsList = [
     category: 'Prestasi'
   },
   {
-    id: 2,
+    id: 3,
     title: 'PENALARAN BERPRESTASI',
     date: '16 November 2022',
     description: 'Anggota UKM Penalaran kembali lagi mengukir prestasi👏Selamat dan sukses kepada Afinzaki Amiral atas lolosnya pendanaan riset melalui LPDP dalam program Garuda Research and Academic of Excellence (Garuda ACE) 2022 serta mendapatkan Letter of Experience (LoA) dari profesor USA.Semoga kedepannya bisa terus berkarya serta dapat memberikan semangat dan motivasi kepada seluruh mahasiswa/i Universitas Dian Nuswantoro untuk selalu meningkatkan inovasi dan prestasi. #UKMPenalaran #Penalaran #PenalaranUdinus',
@@ -22,7 +30,7 @@ const newsList = [
     category: 'Prestasi'
   },
   {
-    id: 3,
+    id: 4,
     title: 'UKM Penalaran X DinusLib : Eksplorasi Ide Inovatif untuk Penelitian',
     date: '18 Juli 2025',
     description: 'Eksplorasi ide inovatif untuk penelitian',
@@ -30,7 +38,7 @@ const newsList = [
     category: 'Diskusi'
   },
   {
-    id: 4,
+    id: 5,
     title: 'Wisudawan Terbaik Universitas Dian Nuswantoro🤩',
     date: '31 Agustus 2022',
     description: 'Selamat kepada senior UKM Penalaran Usamah Bienladen (@ladenoesami )NIM E11.2018.00933. Telah terpilih sebagai wisudawan terbaik berprestasi angkatan ke-75. .Semoga gelar dan prestasi yang diperoleh dapat bermanfaat bagi diri sendiri dan masyarakat. Serta dapat menjadi motivasi bagi teman-teman UKM Penalaran dan mahasiswa UDINUS. ✨. Ayo join UKM Penalaran, menggapai prestasi bersama!',
@@ -38,13 +46,14 @@ const newsList = [
     category: 'Prestasi'
   },
   {
-    id: 5,
+    id: 6,
     title: 'Di Danai Proposal KBMI💰',
     date: '5 Agustus 2020',
     description: 'Selamat dan sukses kepada Team yang lolos KBMI 2020 semoga dapat memberikan semangat dan motivasi kepada seluruh mahasiswa/i UDINUS untuk mampu terus meningkatkan inovasi dan prestasi. Semoga tahun depan bisa semakin banyak lagi yang akan mendapatkan pendanaan proposal baik KBMI maupun lainya dari Kemendikbud. Aamiin.... Congratulation 🎊 Proud of them💕',
     image: 'https://raw.githubusercontent.com/gunawansapu/avatar/main/Screenshot%202025-08-30%20at%2020-50-35%20(3)%20Instagram.png',
     category: 'Prestasi'
   },
+
 ];
 
 const categories = ['Semua', 'Prestasi', 'Diskusi', 'Workshop'];
