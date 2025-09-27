@@ -251,7 +251,7 @@ const Home = () => {
                     <div className="flex justify-center mb-4">
                       <div className="bg-white p-4 rounded-xl shadow-sm border-2 border-gray-100 hover:border-blue-300 transition-colors duration-300">
                         <img 
-                          src="https://raw.githubusercontent.com/gunawansapu/avatar/main/WhatsApp%20Image%202025-09-04%20at%2022.21.45_13727013.jpg"
+                          src=""
                           alt="QR Code untuk Pendaftaran" 
                           className="w-32 h-32 object-contain"
                         />

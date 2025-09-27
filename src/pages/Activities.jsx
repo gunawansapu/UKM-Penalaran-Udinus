@@ -73,8 +73,103 @@ const EvenCard = ({
     }
   };
 
+  const handleClosedRegistration = () => {
+    // Show modal for closed registration
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    modal.innerHTML = `
+      <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl transform">
+        <div class="text-6xl mb-4">🚫</div>
+        <h3 class="text-2xl font-bold text-red-600 mb-4">Pendaftaran Ditutup</h3>
+        <p class="text-gray-600 mb-6">Maaf, periode pendaftaran untuk <strong>${title}</strong> sudah berakhir.<br><br>Nantikan kegiatan berikutnya!</p>
+        <button onclick="this.parentElement.parentElement.remove()" class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors">
+          Mengerti
+        </button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+      if (document.body.contains(modal)) {
+        document.body.removeChild(modal);
+      }
+    }, 4000);
+  };
+
+  const handleCompletedEvent = () => {
+    // Show modal for completed event
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    modal.innerHTML = `
+      <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl transform">
+        <div class="text-6xl mb-4">✅</div>
+        <h3 class="text-2xl font-bold text-green-600 mb-4">Kegiatan Selesai</h3>
+        <p class="text-gray-600 mb-6">Kegiatan <strong>${title}</strong> telah selesai dilaksanakan.<br><br>Terima kasih kepada semua peserta yang telah berpartisipasi!</p>
+        <button onclick="this.parentElement.parentElement.remove()" class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors">
+          Oke
+        </button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+      if (document.body.contains(modal)) {
+        document.body.removeChild(modal);
+      }
+    }, 4000);
+  };
+
   const isRegistrationOpen = status === 'upcoming' || status === 'ongoing';
+  const isRegistrationClosed = status === 'closed';
+  const isEventCompleted = status === 'completed';
   const showCapacity = capacity && registeredCount !== undefined;
+
+  const getButtonConfig = () => {
+    if (isEventCompleted) {
+      return {
+        text: 'Kegiatan Selesai',
+        onClick: handleCompletedEvent,
+        className: 'bg-gradient-to-r from-gray-500 to-gray-600 text-white cursor-pointer hover:from-gray-600 hover:to-gray-700',
+        icon: (
+          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+          </svg>
+        )
+      };
+    }
+    
+    if (isRegistrationClosed) {
+      return {
+        text: 'Pendaftaran Ditutup',
+        onClick: handleClosedRegistration,
+        className: 'bg-gradient-to-r from-red-500 to-red-600 text-white cursor-pointer hover:from-red-600 hover:to-red-700',
+        icon: (
+          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clipRule="evenodd" />
+          </svg>
+        )
+      };
+    }
+    
+    if (registrationUrl && isRegistrationOpen) {
+      return {
+        text: 'Daftar Sekarang',
+        onClick: handleRegistration,
+        className: 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700',
+        icon: (
+          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+          </svg>
+        )
+      };
+    }
+    
+    return null;
+  };
+
+  const buttonConfig = getButtonConfig();
 
   return (
     <div className={`bg-white rounded-2xl shadow-lg hover:shadow-xl overflow-hidden border border-gray-100 transition-all duration-300 ${className}`}>
@@ -172,12 +267,13 @@ const EvenCard = ({
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-2">
-          {registrationUrl && isRegistrationOpen && (
+          {buttonConfig && (
             <button
-              onClick={handleRegistration}
-              className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg"
+              onClick={buttonConfig.onClick}
+              className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center ${buttonConfig.className}`}
             >
-              Daftar Sekarang
+              {buttonConfig.icon}
+              {buttonConfig.text}
             </button>
           )}
         </div>
@@ -197,7 +293,7 @@ const Activities = () => {
       time: null,
       location: null,
       image: "https://raw.githubusercontent.com/gunawansapu/avatar/main/WhatsApp%20Image%202025-08-02%20at%2014.42.16_57dde200.jpg",
-      status: "ongoing",
+      status: "closed", // Changed to closed for demonstration
       registrationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSeMMFycrPpbOl94W_uS5Vo4V_6E9BE7Wq9xABT1jRhkw7JGEw/viewform",
       registrationDeadline: null,
       capacity: null,
@@ -217,7 +313,7 @@ const Activities = () => {
       time: "Menyusul",
       location: "Perpustakaan Udinus Lantai 1",
       image: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.06_b04b3172.jpg",
-      status: "upcoming",
+      status: "upcoming", // Changed to completed for demonstration
       registrationUrl: null,
       registrationDeadline: null,
       capacity: null,
@@ -237,7 +333,7 @@ const Activities = () => {
       time: "Menyusul", 
       location: "Menyusul",
       image: "https://images.unsplash.com/photo-1614332287897-cdc485fa562d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      status: "upcoming",
+      status: "upcoming", // Keep as ongoing
       registrationUrl:null,
       registrationDeadline: null,
       capacity: null,

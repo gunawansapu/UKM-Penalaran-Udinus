@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import newsData from '../data/newsdata'; // Import data dari file terpisah
 
-
-
 const DetailNews = () => {
   // Gunakan useParams untuk mendapatkan ID dari URL
   const { id } = useParams();
@@ -172,22 +170,22 @@ const DetailNews = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
       {/* Font Size Notification */}
       {fontNotification && (
-        <div className="fixed top-6 right-6 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl shadow-lg z-50 flex items-center gap-3 animate-slideInRight">
+        <div className="fixed top-20 right-6 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl shadow-lg z-40 flex items-center gap-3 animate-slideInRight">
           <div className="w-3 h-3 bg-green-200 rounded-full animate-pulse"></div>
           <span className="font-medium">Ukuran font: {getFontSizeName()}</span>
         </div>
       )}
       
-      {/* Modern Header with Floating Actions */}
-      <div className="sticky top-0 z-50 backdrop-blur-md bg-white/90 border-b border-gray-200/80 shadow-sm">
+      {/* Modern Header with Floating Actions - Fixed z-index untuk mobile */}
+      <div className="sticky top-16 z-40 backdrop-blur-md bg-white/90 border-b border-gray-200/80 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo/Brand */}
+            {/* Logo/Brand - Tambah Penalaran News untuk mobile */}
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">PN</span>
               </div>
-              <span className="font-bold text-gray-900 hidden sm:block">Penalaran News</span>
+              <span className="font-bold text-gray-900">Penalaran News</span>
             </div>
 
             {/* Action Controls */}
@@ -237,7 +235,7 @@ const DetailNews = () => {
                 </button>
                 
                 {shareDropdown && (
-                  <div className="absolute right-0 top-full mt-3 w-52 bg-white/95 backdrop-blur-lg rounded-xl shadow-xl border border-gray-200/80 py-3 z-20 animate-fadeIn">
+                  <div className="absolute right-0 top-full mt-3 w-52 bg-white/95 backdrop-blur-lg rounded-xl shadow-xl border border-gray-200/80 py-3 z-50 animate-fadeIn">
                     <button
                       onClick={() => handleShare('facebook')}
                       className="w-full px-4 py-3 text-left text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 flex items-center gap-3 font-medium"
@@ -275,8 +273,8 @@ const DetailNews = () => {
         </div>
       </div>
 
-      {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
+      {/* Main Container - Tambah padding top untuk mobile */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12 pt-6">
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-8 lg:gap-12">
           
           {/* Main Content */}
@@ -467,7 +465,7 @@ const DetailNews = () => {
 
           {/* Modern Sidebar */}
           <div className="xl:col-span-1">
-            <div className="sticky top-24 space-y-6">
+            <div className="sticky top-36 space-y-6">
               {/* Trending News */}
               <div className="bg-white rounded-2xl p-6 shadow-lg">
                 <div className="flex items-center gap-3 mb-6">

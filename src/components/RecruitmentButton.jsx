@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react';
 const RecruitmentButton = () => {
   const [timeLeft, setTimeLeft] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [isClosed, setIsClosed] = useState(true); // Registration is now closed
 
   const openDate = new Date("2025-08-10T00:00:00");
+  const closeDate = new Date("2025-08-31T23:59:59"); // Example close date
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -20,9 +22,16 @@ const RecruitmentButton = () => {
         
         setTimeLeft({ days, hours, minutes, seconds });
         setIsOpen(false);
-      } else {
+        setIsClosed(false);
+      } else if (now >= openDate && now <= closeDate) {
         setTimeLeft(null);
         setIsOpen(true);
+        setIsClosed(false);
+      } else {
+        // Registration is closed
+        setTimeLeft(null);
+        setIsOpen(false);
+        setIsClosed(true);
       }
     }, 1000);
 
@@ -31,8 +40,30 @@ const RecruitmentButton = () => {
 
   const handleClick = () => {
     const now = new Date();
-    if (now < openDate) {
-      // Custom modal instead of alert
+    if (isClosed) {
+      // Show closed modal
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+      modal.innerHTML = `
+        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl transform">
+          <div class="text-6xl mb-4">🚫</div>
+          <h3 class="text-2xl font-bold text-red-600 mb-4">Pendaftaran Ditutup</h3>
+          <p class="text-gray-600 mb-6">Maaf, periode pendaftaran sudah berakhir.<br>Nantikan periode berikutnya!</p>
+          <button onclick="this.parentElement.parentElement.remove()" class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors">
+            Mengerti
+          </button>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      
+      // Auto remove after 3 seconds
+      setTimeout(() => {
+        if (document.body.contains(modal)) {
+          document.body.removeChild(modal);
+        }
+      }, 3000);
+    } else if (now < openDate) {
+      // Custom modal for not yet open
       const modal = document.createElement('div');
       modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
       modal.innerHTML = `
@@ -58,6 +89,35 @@ const RecruitmentButton = () => {
     }
   };
 
+  // If registration is closed
+  if (isClosed) {
+    return (
+      <div className="text-center space-y-6">
+        {/* Closed Notice */}
+        <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-2xl p-6 border-2 border-red-200">
+          <div className="text-4xl mb-3">🚫</div>
+          <h4 className="text-xl font-bold text-red-600 mb-2">Pendaftaran Ditutup</h4>
+          <p className="text-gray-600">Periode pendaftaran telah berakhir. Terima kasih atas minat Anda!</p>
+        </div>
+
+        {/* Disabled Button */}
+        <button
+          onClick={handleClick}
+          className="relative bg-gradient-to-r from-red-400 to-red-500 text-white px-10 py-4 rounded-2xl font-bold text-lg cursor-pointer hover:from-red-500 hover:to-red-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden group"
+        >
+          <span className="flex items-center justify-center space-x-2">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clipRule="evenodd" />
+            </svg>
+            <span>Pendaftaran Ditutup</span>
+          </span>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+        </button>
+      </div>
+    );
+  }
+
+  // If not yet open, show countdown
   if (!isOpen && timeLeft) {
     return (
       <div className="text-center space-y-6">
@@ -101,6 +161,7 @@ const RecruitmentButton = () => {
     );
   }
 
+  // If registration is open
   return (
     <button
       onClick={handleClick}
