@@ -17,7 +17,7 @@ const EvenCard = ({
   registeredCount,
   price,
   speaker,
-  requirements
+  requirements,
 }) => {
   const getCategoryColor = (category) => {
     switch (category) {
@@ -318,11 +318,11 @@ const Activities = () => {
       registrationDeadline: null,
       capacity: null,
       registeredCount: 18,
-      price: 0,
+      price: 15000,
       speaker: "Tim DinusLib",
       requirements: [
         "Terbuka untuk Anggota Penalaran",
-      ]
+      ],
     },
     {
       id: 3,

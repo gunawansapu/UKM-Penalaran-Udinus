@@ -30,6 +30,77 @@ const Home = () => {
     });
   };
 
+  // Tambahkan ini di bagian atas component (dalam useEffect atau script terpisah)
+useEffect(() => {
+  const eventStart = new Date('2025-10-04T00:00:00');
+  const eventEnd = new Date('2025-10-25T23:59:59');
+
+  const updateCountdown = () => {
+    const now = new Date();
+    const countdownSection = document.getElementById('event-countdown-section');
+    
+    if (now < eventStart) {
+      // FASE 1: Sebelum Event (Countdown)
+      const difference = eventStart - now;
+      
+      document.getElementById('countdown-days').textContent = 
+        String(Math.floor(difference / (1000 * 60 * 60 * 24))).padStart(2, '0');
+      document.getElementById('countdown-hours').textContent = 
+        String(Math.floor((difference / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+      document.getElementById('countdown-minutes').textContent = 
+        String(Math.floor((difference / 1000 / 60) % 60)).padStart(2, '0');
+      document.getElementById('countdown-seconds').textContent = 
+        String(Math.floor((difference / 1000) % 60)).padStart(2, '0');
+      
+      // Show countdown elements
+      document.getElementById('phase-before').style.display = 'block';
+      document.getElementById('phase-during').style.display = 'none';
+      document.getElementById('phase-after').style.display = 'none';
+      
+      countdownSection.className = countdownSection.className.replace(/from-\S+-\d+/g, 'from-indigo-600');
+      countdownSection.className = countdownSection.className.replace(/via-\S+-\d+/g, 'via-purple-600');
+      countdownSection.className = countdownSection.className.replace(/to-\S+-\d+/g, 'to-pink-600');
+      
+    } else if (now >= eventStart && now <= eventEnd) {
+      // FASE 2: Event Berlangsung (Meriah!)
+      const difference = eventEnd - now;
+      
+      document.getElementById('countdown-days-during').textContent = 
+        String(Math.floor(difference / (1000 * 60 * 60 * 24))).padStart(2, '0');
+      document.getElementById('countdown-hours-during').textContent = 
+        String(Math.floor((difference / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+      document.getElementById('countdown-minutes-during').textContent = 
+        String(Math.floor((difference / 1000 / 60) % 60)).padStart(2, '0');
+      document.getElementById('countdown-seconds-during').textContent = 
+        String(Math.floor((difference / 1000) % 60)).padStart(2, '0');
+      
+      document.getElementById('phase-before').style.display = 'none';
+      document.getElementById('phase-during').style.display = 'block';
+      document.getElementById('phase-after').style.display = 'none';
+      
+      // Gradient meriah
+      countdownSection.className = countdownSection.className.replace(/from-\S+-\d+/g, 'from-yellow-400');
+      countdownSection.className = countdownSection.className.replace(/via-\S+-\d+/g, 'via-orange-500');
+      countdownSection.className = countdownSection.className.replace(/to-\S+-\d+/g, 'to-red-500');
+      
+    } else {
+      // FASE 3: Event Selesai
+      document.getElementById('phase-before').style.display = 'none';
+      document.getElementById('phase-during').style.display = 'none';
+      document.getElementById('phase-after').style.display = 'block';
+      
+      countdownSection.className = countdownSection.className.replace(/from-\S+-\d+/g, 'from-gray-600');
+      countdownSection.className = countdownSection.className.replace(/via-\S+-\d+/g, 'via-gray-700');
+      countdownSection.className = countdownSection.className.replace(/to-\S+-\d+/g, 'to-gray-800');
+    }
+  };
+
+  updateCountdown();
+  const timer = setInterval(updateCountdown, 1000);
+
+  return () => clearInterval(timer);
+}, []);
+
   const events = [
     {
       title: 'UKM Penalaran X DinusLIb',
@@ -130,6 +201,196 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+
+
+<section id="event-countdown-section" className="py-20 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 relative overflow-hidden transition-all duration-1000" data-aos="fade-up">
+  {/* Animated Background Elements */}
+  <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+  <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full">
+    <div className="absolute top-10 left-10 w-4 h-4 bg-white/30 rounded-full animate-bounce"></div>
+    <div className="absolute top-20 right-20 w-3 h-3 bg-white/30 rounded-full animate-bounce"></div>
+    <div className="absolute bottom-20 left-1/3 w-5 h-5 bg-white/30 rounded-full animate-bounce"></div>
+  </div>
+
+  <div className="max-w-7xl mx-auto px-6 relative z-10">
+    {/* FASE 1: SEBELUM EVENT (COUNTDOWN) */}
+    <div id="phase-before">
+      <div className="text-center mb-12" data-aos="fade-down">
+        <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-4">
+          ⏰ Event Segera Hadir
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          Coaching Clinic X DinusLib
+        </h2>
+        <p className="text-xl text-white/90 max-w-2xl mx-auto">
+          Eksplorasi ide inovatif untuk penelitian bersama Tim DinusLib
+        </p>
+      </div>
+
+      <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl" data-aos="zoom-in">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+          {[
+            { id: 'days', label: 'Hari' },
+            { id: 'hours', label: 'Jam' },
+            { id: 'minutes', label: 'Menit' },
+            { id: 'seconds', label: 'Detik' }
+          ].map((unit, index) => (
+            <div key={unit.id} className="text-center" data-aos="flip-up" data-aos-delay={index * 100}>
+              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 border border-white/30">
+                <div id={`countdown-${unit.id}`} className="text-5xl md:text-6xl font-bold text-white mb-2">00</div>
+                <div className="text-white/80 text-sm uppercase tracking-wider font-medium">{unit.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="flex items-center justify-center space-x-3 text-white">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span className="font-medium">4-25 Oktober 2025</span>
+          </div>
+          <div className="flex items-center justify-center space-x-3 text-white">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span className="font-medium">Perpustakaan Udinus Lt. 1</span>
+          </div>
+          <div className="flex items-center justify-center space-x-3 text-white">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+            </svg>
+            <span className="font-medium">HTM Rp 15.000</span>
+          </div>
+        </div>
+
+        <div className="text-center">
+          <a href="/kegiatan#event-2" className="inline-flex items-center px-8 py-4 bg-white text-indigo-600 rounded-full font-bold text-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+            Lihat Detail Event
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {/* FASE 2: EVENT BERLANGSUNG (MERIAH!) */}
+    <div id="phase-during" style={{display: 'none'}}>
+      <div className="text-center mb-12" data-aos="fade-down">
+        <div className="inline-flex items-center px-4 py-2 bg-white/30 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-4 animate-pulse">
+          🎉 EVENT SEDANG BERLANGSUNG!
+        </div>
+        <h2 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-pulse">
+          Coaching Clinic X DinusLib
+        </h2>
+        <p className="text-2xl text-white font-bold max-w-2xl mx-auto animate-bounce">
+          🔥 Ayo Bergabung Sekarang! 🔥
+        </p>
+      </div>
+
+      <div className="bg-white/20 backdrop-blur-md rounded-3xl p-8 border-4 border-yellow-300 shadow-2xl animate-pulse" data-aos="zoom-in">
+        <div className="text-center mb-6">
+          <h3 className="text-3xl font-bold text-white mb-2">⏰ Event Berakhir Dalam:</h3>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+          {[
+            { id: 'days-during', label: 'Hari' },
+            { id: 'hours-during', label: 'Jam' },
+            { id: 'minutes-during', label: 'Menit' },
+            { id: 'seconds-during', label: 'Detik' }
+          ].map((unit, index) => (
+            <div key={unit.id} className="text-center" data-aos="flip-up" data-aos-delay={index * 100}>
+              <div className="bg-gradient-to-br from-yellow-300 to-orange-400 rounded-2xl p-6 border-4 border-white shadow-xl transform hover:scale-110 transition-all">
+                <div id={`countdown-${unit.id}`} className="text-5xl md:text-6xl font-bold text-gray-900 mb-2">00</div>
+                <div className="text-gray-800 text-sm uppercase tracking-wider font-bold">{unit.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-gradient-to-r from-yellow-200 to-orange-200 rounded-2xl p-6 mb-6">
+          <div className="grid md:grid-cols-3 gap-4 text-gray-900 font-bold">
+            <div className="flex items-center justify-center space-x-3">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>4-25 Oktober 2025</span>
+            </div>
+            <div className="flex items-center justify-center space-x-3">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>Perpustakaan Udinus Lt. 1</span>
+            </div>
+            <div className="flex items-center justify-center space-x-3">
+              <span className="text-2xl">🎊</span>
+              <span>Gratis untuk Semua!</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center">
+          <a href="/kegiatan#event-2" className="inline-flex items-center px-10 py-5 bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 rounded-full font-bold text-xl hover:from-yellow-300 hover:to-orange-400 transform hover:scale-110 transition-all duration-300 shadow-2xl border-4 border-white animate-bounce">
+            🚀 Join Event Sekarang!
+            <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {/* FASE 3: EVENT SELESAI */}
+    <div id="phase-after" style={{display: 'none'}}>
+      <div className="text-center mb-12" data-aos="fade-down">
+        <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-4">
+          ✅ Event Telah Selesai
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          Coaching Clinic X DinusLib
+        </h2>
+        <p className="text-xl text-white/90 max-w-2xl mx-auto">
+          Terima kasih kepada semua peserta yang telah bergabung!
+        </p>
+      </div>
+
+      <div className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl" data-aos="zoom-in">
+        <div className="text-center">
+          <div className="mb-8">
+            <svg className="w-24 h-24 mx-auto text-white/70 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h3 className="text-3xl font-bold text-white mb-4">Event Telah Berakhir</h3>
+            <p className="text-white/80 text-lg mb-8">
+              Event Coaching Clinic X DinusLib telah selesai dilaksanakan pada 25 Oktober 2025.
+            </p>
+          </div>
+
+          <div className="bg-white/5 rounded-2xl p-6 mb-8">
+            <p className="text-white/70 text-lg">
+              📅 Periode Event: 4-25 Oktober 2025<br/>
+              📍 Lokasi: Perpustakaan Udinus Lt. 1
+            </p>
+          </div>
+
+          <a href="/kegiatan" className="inline-flex items-center px-8 py-4 bg-white/20 hover:bg-white/30 text-white rounded-full font-bold text-lg transform hover:scale-105 transition-all duration-300 border border-white/30">
+            Lihat Event Lainnya
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Section: Kegiatan Terbaru */}
       <section className="py-20 bg-white relative" data-aos="fade-up">
