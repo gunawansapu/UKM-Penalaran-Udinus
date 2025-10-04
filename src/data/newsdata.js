@@ -1,4 +1,48 @@
 const newsData = {
+  7:{
+  id: 7,
+  title: 'Coaching Clinic x Dinus Lib 2025: Hari Pertama Belajar Tanda Baca & EYD yang Baik dan Benar ✍️',
+  date: '4 Oktober 2025',
+  author: 'Divisi Ristek UKM Penalaran',
+  views: 3000000,
+  description: "Hari pertama Coaching Clinic x Dinus Lib 2025 resmi dimulai! Peserta antusias mengikuti sesi pembelajaran tentang penggunaan tanda baca dan kaidah EYD yang baik dan benar sebagai dasar penulisan ilmiah yang berkualitas.",
+  fullContent: `
+    <p>📚 <strong>Coaching Clinic x Dinus Lib 2025</strong> resmi dimulai! Kegiatan hari pertama ini berlangsung dengan penuh semangat dan antusiasme dari para peserta.</p>
+
+    <p>Pada sesi pembuka, peserta diajak untuk memahami kembali <strong>kaidah penulisan EYD (Ejaan Yang Disempurnakan)</strong> serta <strong>penggunaan tanda baca yang baik dan benar</strong>. Materi ini menjadi pondasi penting dalam penyusunan karya tulis ilmiah dan artikel penelitian yang sesuai standar akademik.</p>
+
+    <h3>Fokus pada Dasar Penulisan yang Tepat</h3>
+    <p>Pemateri menjelaskan berbagai kesalahan umum yang sering terjadi dalam penulisan ilmiah, seperti penggunaan tanda koma, titik dua, dan huruf kapital. Melalui contoh interaktif, peserta diajak untuk memperbaiki kalimat agar lebih efektif dan sesuai kaidah bahasa Indonesia.</p>
+
+    <h3>Suasana Belajar yang Interaktif</h3>
+    <p>Kegiatan berlangsung dengan suasana santai namun edukatif. Peserta diberikan kesempatan untuk bertanya langsung dan mencoba memperbaiki contoh kalimat yang telah disiapkan oleh pemateri. Interaksi aktif ini membantu peserta memahami konsep EYD dengan lebih mudah dan menyenangkan.</p>
+
+    <blockquote>
+      "Menulis bukan hanya soal ide, tapi juga tentang bagaimana menyampaikannya dengan tata bahasa yang benar." — Pemateri Coaching Clinic 2025
+    </blockquote>
+
+    <h3>Langkah Awal Menuju Penulisan Ilmiah Berkualitas</h3>
+    <p>Hari pertama ini menjadi langkah awal yang penting bagi peserta sebelum memasuki sesi berikutnya yang akan membahas struktur penulisan karya ilmiah, kutipan, dan daftar pustaka. Dengan dasar EYD yang kuat, diharapkan peserta mampu menghasilkan tulisan yang rapi, logis, dan mudah dipahami.</p>
+
+    <h3>#UKMPenalaran #DinusLib2025 #CoachingClinic #PenalaranBerprestasi</h3>
+  `,
+  image: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/DSC00058.JPG",
+  category: "Kegiatan",
+  tags: [
+    "Coaching Clinic",
+    "Dinus Lib 2025",
+    "EYD",
+    "Tanda Baca",
+    "Penalaran",
+    "Ristek",
+    "Pelatihan",
+    "Bahasa Indonesia",
+    "Menulis Ilmiah",
+    "UKM Penalaran",
+    "Kegiatan Mahasiswa",
+    "UDINUS"
+  ]
+},
   
   1:{
   id: 1,

@@ -5,6 +5,14 @@ import Lottie from "lottie-react";
 import bookAnim from "../assets/Books.json"; // Ganti dengan animasi kamu
 
 const newsList = [
+  {
+  id: 7,
+  title: 'Coaching Clinic x Dinus Lib 2025 Hari Pertama: Belajar Tanda Baca & EYD ✍️',
+  date: '4 Oktober 2025',
+  description: 'Hari pertama Coaching Clinic x Dinus Lib 2025 resmi dimulai! Peserta antusias mengikuti sesi pembelajaran tentang penggunaan tanda baca dan kaidah EYD yang baik dan benar sebagai dasar penulisan ilmiah yang berkualitas. Kegiatan berlangsung interaktif dan penuh semangat bersama pemateri dari UKM Penalaran. 📚',
+  image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/DSC00058.JPG',
+  category: 'Kegiatan'
+},
     {
     id: 1,
     title: 'Amelia Calista dan Tim berhasil raih Gold Medal ISPC 2025.🏆',
