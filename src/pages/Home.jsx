@@ -210,6 +210,104 @@ const [isBookOpen, setIsBookOpen] = useState(false);
         className="py-20 bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden"
         data-aos="fade-up"
       >
+        {/* Animated Blob Background */}
+        <style>{`
+          @keyframes blob-float-1 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+            33% { transform: translate(50px, -40px) rotate(120deg); }
+            66% { transform: translate(-30px, 30px) rotate(240deg); }
+          }
+          @keyframes blob-float-2 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+            33% { transform: translate(-50px, 40px) rotate(-120deg); }
+            66% { transform: translate(30px, -30px) rotate(-240deg); }
+          }
+          @keyframes blob-float-3 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+            50% { transform: translate(40px, 40px) rotate(180deg); }
+          }
+          @keyframes blob-float-4 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+            50% { transform: translate(-40px, -40px) rotate(-180deg); }
+          }
+        `}</style>
+        
+
+        
+        {/* KUNING - Top Right */}
+<div 
+  className="absolute top-20 left-20 w-80 h-80"
+  style={{
+    background: 'linear-gradient(135deg, #facc15 0%, #eab308 100%)', // kuning vivid lembut
+    borderRadius: '70% 30% 50% 50% / 30% 50% 50% 70%',
+    opacity: 1, // full solid
+    filter: 'brightness(1.1) saturate(1.2)', // efek HD agar tetap cerah tapi tidak silau
+    animation: 'blob-float-2 25s ease-in-out infinite',
+    zIndex: 0
+  }}
+></div>
+
+        
+       {/* UNGU - Center */}
+<div 
+  className="absolute top-1/2 left-1/2 w-72 h-72"
+  style={{
+    background: 'linear-gradient(135deg, #9333ea 0%, #ec4899 100%)', // ungu-pink vivid
+    borderRadius: '50% 50% 30% 70% / 60% 40% 60% 40%',
+    opacity: 1, // full solid
+    filter: 'brightness(1.1) saturate(1.3)', // efek HD lembut tapi jelas
+    animation: 'blob-float-3 30s ease-in-out infinite',
+    transform: 'translate(-50%, -50%)',
+    zIndex: 0
+  }}
+></div>
+
+        
+       {/* PINK - Bottom Right */}
+<div 
+  className="absolute bottom-20 right-20 w-96 h-96"
+  style={{
+    background: 'linear-gradient(135deg, #ec4899 0%, #f43f5e 100%)',
+    borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+    opacity: 1, // ← biar tidak transparan
+    filter: 'brightness(1.1) saturate(1.2)', // ← warna lebih vivid (HD look)
+    animation: 'blob-float-4 28s ease-in-out infinite',
+    zIndex: 0,
+  }}
+></div>
+
+       
+      {/* BIRU - Top Right */}
+<div
+  className="absolute top-70 right-32 w-72 h-72"
+  style={{
+    background: 'linear-gradient(135deg, #60a5fa 0%, #2563eb 100%)',
+    borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
+    opacity: 1,
+    filter: 'brightness(1.05) saturate(1.2)',
+    animation: 'blob-float-1 20s ease-in-out infinite',
+    zIndex: 0
+  }}
+></div>
+
+
+
+
+        
+        {/* HIJAU - Bottom Left */}
+<div 
+  className="absolute bottom-32 left-32 w-80 h-80"
+  style={{
+    background: 'linear-gradient(135deg, #10b981 0%, #14b8a6 100%)',
+    borderRadius: '40% 60% 50% 50% / 60% 30% 70% 40%',
+    opacity: 1, // ← biar solid, tidak transparan
+    filter: 'brightness(1.1) saturate(1.2)', // ← warna lebih vivid dan tajam (efek HD)
+    animation: 'blob-float-1 22s ease-in-out infinite reverse',
+    zIndex: 0,
+    boxShadow: '0 0 60px 20px rgba(16, 185, 129, 0.4)', // ← efek glow lembut
+  }}
+></div>
+
         <div className="absolute top-0 left-0 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse delay-1000"></div>
 
