@@ -313,7 +313,7 @@ const Activities = () => {
       time: "Menyusul",
       location: "Perpustakaan Udinus Lantai 1",
       image: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/WhatsApp%20Image%202025-09-06%20at%2019.56.06_b04b3172.jpg",
-      status: "upcoming", // Changed to completed for demonstration
+      status: "ongoing", // Changed to completed for demonstration
       registrationUrl: null,
       registrationDeadline: null,
       capacity: null,
