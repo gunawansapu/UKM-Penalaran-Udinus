@@ -7,29 +7,29 @@ import defaultProfileImg from '../assets/images/default_profile.png';
 
 // Pengurus Inti
 import ketuaImg from '../assets/images/Ketua.JPG';
-import wakilImg from '../assets/images/wakil.jpg';
-import sekretarisImg from '../assets/images/sekretaris.jpg';
-import bendaharaImg from '../assets/images/bendahara.jpg';
-import humasImg from '../assets/images/humas.jpg';
+import wakilImg from '../assets/images/wakil.JPG';
+import sekretarisImg from '../assets/images/sekretaris.JPG';
+import bendaharaImg from '../assets/images/bendahara.JPG';
+import humasImg from '../assets/images/humas.JPG';
 
 // Anggota Sekretaris & Humas & Bendahara
-import alifImg from '../assets/images/alif.jpg';
-import nadiaHumasImg from '../assets/images/nadia_humas.jpg';
+import alifImg from '../assets/images/alif.JPG';
+import nadiaHumasImg from '../assets/images/nadia_humas.JPG';
 
 // Divisi Ristek (Kadiv & Anggota)
-import ristekKadivImg from '../assets/images/kadiv_ristek.jpg';
-import arfizanImg from '../assets/images/arfi.jpg';
-import ameliaImg from '../assets/images/amelia.jpg';
+import ristekKadivImg from '../assets/images/kadiv_ristek.JPG';
+import arfizanImg from '../assets/images/arfi.JPG';
+import ameliaImg from '../assets/images/amelia.JPG';
 
 // Divisi Pengmas (Kadiv & Anggota)
-import pengmasKadivImg from '../assets/images/kadiv_pengmas.jpg';
-import halimaImg from '../assets/images/halima.jpg';
+import pengmasKadivImg from '../assets/images/kadiv_pengmas.JPG';
+import halimaImg from '../assets/images/halima.JPG';
 
 // Divisi Medkref (Kadiv & Anggota)
-import medkrefKadivImg from '../assets/images/kadiv_medkref.jpg'; 
-import miftahulImg from '../assets/images/miftah.jpg';
-import israImg from '../assets/images/isra.jpg';
-import dwikyImg from '../assets/images/dwiky.jpg';
+import medkrefKadivImg from '../assets/images/kadiv_medkref.JPG'; 
+import miftahulImg from '../assets/images/miftah.JPG';
+import israImg from '../assets/images/isra.JPG';
+import dwikyImg from '../assets/images/dwiky.JPG';
 
 const OurTeam = () => {
   const [selectedPosition, setSelectedPosition] = useState('ketua');
