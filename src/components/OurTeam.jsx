@@ -6,7 +6,7 @@ import { useState } from 'react';
 import defaultProfileImg from '../assets/images/default_profile.png';
 
 // Pengurus Inti
-import ketuaImg from '../assets/images/Ketua.jpg';
+import ketuaImg from '../assets/images/Ketua.JPG';
 import wakilImg from '../assets/images/wakil.jpg';
 import sekretarisImg from '../assets/images/sekretaris.jpg';
 import bendaharaImg from '../assets/images/bendahara.jpg';
