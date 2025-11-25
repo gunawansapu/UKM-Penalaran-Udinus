@@ -1,7 +1,7 @@
 // src/pages/Contact.jsx
 import { useState, useEffect, useRef } from 'react';
 
-// Toast Component
+// Toast Component (Tidak berubah)
 const Toast = ({ message, type, isVisible, onClose }) => {
   if (!isVisible) return null;
 
@@ -75,7 +75,7 @@ const Toast = ({ message, type, isVisible, onClose }) => {
   );
 };
 
-// Custom hook for scroll animations
+// Custom hook for scroll animations (Tidak berubah)
 const useScrollAnimation = () => {
   const [visibleElements, setVisibleElements] = useState(new Set());
   const observerRef = useRef(null);
@@ -95,7 +95,6 @@ const useScrollAnimation = () => {
       }
     );
 
-    // Observe all elements with data-animate-id
     const elementsToObserve = document.querySelectorAll('[data-animate-id]');
     elementsToObserve.forEach(el => observerRef.current.observe(el));
 
@@ -111,7 +110,7 @@ const useScrollAnimation = () => {
   return { isVisible };
 };
 
-// Custom hook for toast management
+// Custom hook for toast management (Tidak berubah)
 const useToast = () => {
   const [toast, setToast] = useState({ message: '', type: '', isVisible: false });
 
@@ -141,6 +140,9 @@ const Contact = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const { toast, showToast, hideToast } = useToast();
   const { isVisible } = useScrollAnimation();
+
+  // GANTI LINK GOOGLE DRIVE DI SINI
+  const medpartDriveLink = "https://drive.google.com/file/d/1Jhw1IxZfAzwSW6MgeYwQYZhjuxbSyS2v/view?usp=drive_link";
 
   const handleInputChange = (e) => {
     setFormData({
@@ -173,6 +175,15 @@ const Contact = () => {
     }
   };
 
+  const handleDownloadSOP = () => {
+    if (medpartDriveLink === "LINK_GOOGLE_DRIVE_KAMU_DISINI") {
+       showToast('Link SOP belum diatur. Silakan hubungi admin.', 'warning');
+    } else {
+       window.open(medpartDriveLink, '_blank');
+       showToast('Membuka SOP Media Partner... 📄', 'info');
+    }
+  };
+
   return (
     <>
       {/* Toast Notification */}
@@ -185,7 +196,7 @@ const Contact = () => {
 
       <section className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
-          {/* Header Section - Improved mobile spacing */}
+          {/* Header Section */}
           <div 
             className={`text-center mb-8 sm:mb-16 transition-all duration-1000 transform ${
               isVisible('header') 
@@ -203,8 +214,8 @@ const Contact = () => {
               Hubungi Kami
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-2">
-              Jika kamu memiliki pertanyaan, saran, atau ingin bergabung dengan UKM Penalaran, 
-              silakan hubungi kami melalui form berikut atau media sosial kami.
+              Jika kamu memiliki pertanyaan, saran, atau ingin mengajukan <b>Media Partner</b>, 
+              silakan hubungi kami melalui kanal di bawah ini.
             </p>
           </div>
 
@@ -228,7 +239,7 @@ const Contact = () => {
           )}
 
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-start">
-            {/* Contact Form - Enhanced mobile experience */}
+            {/* LEFT COLUMN: Contact Form */}
             <div 
               className={`bg-white/80 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-1000 transform ${
                 isVisible('contact-form') 
@@ -319,7 +330,7 @@ const Contact = () => {
               </form>
             </div>
 
-            {/* Contact Info - Enhanced mobile layout */}
+            {/* RIGHT COLUMN: Contact Info & Medpart */}
             <div 
               className={`space-y-4 sm:space-y-6 transition-all duration-1000 transform ${
                 isVisible('contact-info') 
@@ -328,6 +339,7 @@ const Contact = () => {
               }`}
               data-animate-id="contact-info"
             >
+              {/* Contact Info Card */}
               <div 
                 className={`bg-white/80 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-1200 transform delay-100 ${
                   isVisible('info-card') 
@@ -338,6 +350,7 @@ const Contact = () => {
               >
                 <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6">Informasi Kontak</h2>
                 <div className="space-y-4 sm:space-y-6">
+                  {/* Address */}
                   <div 
                     className={`flex items-start gap-3 sm:gap-4 p-3 sm:p-0 hover:bg-blue-50/50 rounded-xl transition-all duration-800 transform ${
                       isVisible('address-item') 
@@ -358,6 +371,7 @@ const Contact = () => {
                     </div>
                   </div>
 
+                  {/* Email */}
                   <div 
                     className={`flex items-start gap-3 sm:gap-4 p-3 sm:p-0 hover:bg-green-50/50 rounded-xl transition-all duration-900 transform cursor-pointer group delay-100 ${
                       isVisible('email-item') 
@@ -379,6 +393,7 @@ const Contact = () => {
                     </div>
                   </div>
 
+                  {/* Instagram */}
                   <div 
                     className={`flex items-start gap-3 sm:gap-4 p-3 sm:p-0 hover:bg-pink-50/50 rounded-xl transition-all duration-1000 transform cursor-pointer group delay-200 ${
                       isVisible('instagram-item') 
@@ -402,54 +417,66 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Quick Links - Mobile optimized */}
+              {/* MEDPART SECTION (REPLACES QUICK LINKS) */}
               <div 
-                className={`bg-white/80 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-1300 transform delay-200 ${
-                  isVisible('quick-links') 
+                className={`bg-white/90 backdrop-blur-md p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl shadow-xl border border-blue-100 hover:shadow-2xl transition-all duration-1300 transform delay-200 overflow-hidden relative ${
+                  isVisible('medpart-section') 
                     ? 'translate-y-0 opacity-100 scale-100' 
                     : 'translate-y-15 opacity-0 scale-95'
                 }`}
-                data-animate-id="quick-links"
+                data-animate-id="medpart-section"
               >
-                <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6">Quick Links</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                  <button 
-                    onClick={() => showToast('Halaman FAQ akan segera tersedia! 📚', 'info')}
-                    className={`flex items-center gap-3 p-3 sm:p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl hover:from-blue-100 hover:to-indigo-100 transition-all duration-700 transform group active:scale-95 ${
-                      isVisible('faq-button') 
-                        ? 'translate-y-0 opacity-100' 
-                        : 'translate-y-8 opacity-0'
-                    }`}
-                    data-animate-id="faq-button"
-                  >
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                {/* Decorative background element */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full blur-2xl opacity-50 -translate-y-10 translate-x-10 pointer-events-none"></div>
+
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 bg-blue-100 rounded-lg text-blue-600">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                       </svg>
                     </div>
-                    <span className="font-medium text-gray-700 text-sm sm:text-base">FAQ</span>
-                  </button>
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Media Partner</h2>
+                  </div>
                   
-                  <button 
-                    onClick={() => showToast('Terima kasih atas minatnya! Silakan isi form kontak untuk bergabung. 🎉', 'success')}
-                    className={`flex items-center gap-3 p-3 sm:p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl sm:rounded-2xl hover:from-green-100 hover:to-emerald-100 transition-all duration-800 transform group active:scale-95 delay-100 ${
-                      isVisible('join-button') 
-                        ? 'translate-y-0 opacity-100' 
-                        : 'translate-y-8 opacity-0'
-                    }`}
-                    data-animate-id="join-button"
-                  >
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <p className="text-gray-600 text-sm sm:text-base mb-6 leading-relaxed">
+                    Ingin bekerjasama dengan UKM Penalaran? Kami terbuka untuk kolaborasi event dan publikasi. Unduh syarat & ketentuannya di bawah ini.
+                  </p>
+
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center gap-3 text-sm text-gray-700">
+                      <svg className="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                       </svg>
+                      <span>SOP Publikasi & Kerjasama</span>
                     </div>
-                    <span className="font-medium text-gray-700 text-sm sm:text-base">Join Us</span>
+                    <div className="flex items-center gap-3 text-sm text-gray-700">
+                      <svg className="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Template MoU (Opsional)</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-gray-700">
+                      <svg className="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Benefit Media Partner</span>
+                    </div>
+                  </div>
+
+                  <button 
+                    onClick={handleDownloadSOP}
+                    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-gray-800 to-gray-900 text-white py-3 px-6 rounded-xl sm:rounded-2xl hover:from-gray-700 hover:to-gray-800 transition-all duration-300 transform hover:scale-[1.02] shadow-lg group"
+                  >
+                    <span className="font-semibold text-sm sm:text-base">Download SOP & Syarat</span>
+                    <svg className="w-5 h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
                   </button>
                 </div>
               </div>
 
-              {/* WhatsApp Contact - Mobile friendly */}
+              {/* WhatsApp Contact */}
               <div 
                 className={`bg-gradient-to-r from-green-500 to-emerald-500 p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-xl text-white transition-all duration-1400 transform delay-300 ${
                   isVisible('whatsapp-card') 

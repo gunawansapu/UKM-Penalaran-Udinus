@@ -1,253 +1,236 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Lottie from "lottie-react";
 import innovationAnimation from "../assets/Scientist.json";
 import innovationAnimation2 from "../assets/Champion.json";
 import innovationAnimation3 from "../assets/Business meeting in office.json";
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    setIsVisible(true);
-    
-    // Disable mouse effects on mobile/touch devices
-    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
-    
-    if (!isMobile) {
-      const handleMouseMove = (e) => {
-        setMousePosition({
-          x: (e.clientX / window.innerWidth) * 100,
-          y: (e.clientY / window.innerHeight) * 100,
-        });
-      };
+    const handleMouseMove = (e) => {
+      if (containerRef.current) {
+        const { width, height, left, top } = containerRef.current.getBoundingClientRect();
+        const x = (e.clientX - left) / width - 0.5;
+        const y = (e.clientY - top) / height - 0.5;
+        
+        // Parallax effect logic
+        setMousePosition({ x, y });
+      }
+    };
 
-      window.addEventListener('mousemove', handleMouseMove);
-      return () => window.removeEventListener('mousemove', handleMouseMove);
-    }
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const features = [
-  {
-    lottie: innovationAnimation,
-    title: "Riset Inovatif",
-    desc: "Penelitian berkualitas tinggi",
-    color: "from-blue-500 to-cyan-500",
-  },
-  {
-    lottie: innovationAnimation2,
-    title: "Prestasi Gemilang",
-    desc: "Raih pencapaian terbaik",
-    color: "from-purple-500 to-pink-500",
-  },
-  {
-    lottie: innovationAnimation3,
-    title: "Kolaborasi",
-    desc: "Jaringan akademisi luas",
-    color: "from-emerald-500 to-teal-500",
-  },
-];
+    {
+      lottie: innovationAnimation,
+      title: "Riset Inovatif",
+      desc: "Penelitian berkualitas tinggi",
+      gradient: "from-blue-500 to-cyan-500",
+      delay: "0s"
+    },
+    {
+      lottie: innovationAnimation2,
+      title: "Prestasi Gemilang",
+      desc: "Raih pencapaian terbaik",
+      gradient: "from-purple-500 to-pink-500",
+      delay: "0.2s"
+    },
+    {
+      lottie: innovationAnimation3,
+      title: "Kolaborasi",
+      desc: "Jaringan akademisi luas",
+      gradient: "from-emerald-500 to-teal-500",
+      delay: "0.4s"
+    },
+  ];
 
   return (
-  <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 pb-20">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
+    <section 
+      ref={containerRef} 
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#f8fafc] font-sans perspective-1000"
+    >
+      
+      {/* --- 1. CINEMATIC ATMOSPHERE (Background) --- */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30 mix-blend-overlay z-10"></div>
+        
         <div 
-          className="absolute inset-0 opacity-40"
-          style={{
-            background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, 
-              rgba(79, 70, 229, 0.15) 0%, 
-              rgba(147, 51, 234, 0.1) 25%, 
-              rgba(59, 130, 246, 0.1) 50%, 
-              rgba(255, 255, 255, 0.3) 100%)`
+          className="absolute top-1/2 left-1/2 w-[140vw] h-[140vw] bg-gradient-conic from-indigo-100 via-purple-100 to-sky-100 rounded-full blur-[120px] opacity-70 animate-spin-slow"
+          style={{ 
+            transform: `translate(-50%, -50%) translate(${mousePosition.x * -20}px, ${mousePosition.y * -20}px)` 
           }}
-        />
+        ></div>
         
-        {/* Floating particles - reduced for mobile */}
-        <div className="absolute inset-0">
-          {[...Array(window.innerWidth <= 768 ? 8 : 25)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-2 h-2 bg-indigo-400 rounded-full opacity-20 animate-pulse"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 3}s`
-              }}
-            />
-          ))}
-        </div>
-        
-        {/* Decorative blobs */}
-        <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-r from-purple-200/30 to-pink-200/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-32 left-20 w-96 h-96 bg-gradient-to-r from-blue-200/20 to-cyan-200/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white rounded-full blur-[100px] mix-blend-overlay opacity-90"></div>
       </div>
 
-      {/* Geometric shapes - simplified for mobile */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="hidden md:block absolute top-32 left-32 w-24 h-24 border-2 border-indigo-300/40 rotate-45 animate-spin-slow" />
-        <div className="hidden md:block absolute bottom-32 right-32 w-32 h-32 border-2 border-purple-300/40 rotate-12 animate-pulse" />
-        <div className="hidden lg:block absolute top-1/2 left-16 w-16 h-16 bg-gradient-to-r from-blue-300/20 to-purple-300/20 rotate-45 animate-bounce-slow rounded-lg" />
-        <div className="hidden lg:block absolute top-1/4 right-1/4 w-8 h-8 bg-gradient-to-r from-pink-300/30 to-orange-300/30 rounded-full animate-ping" />
-      </div>
-
-      {/* Main content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/70 backdrop-blur-md rounded-full border border-indigo-200/50 mb-8 animate-fadeInUp shadow-lg">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="text-sm font-semibold text-slate-700">Unit Kegiatan Mahasiswa</span>
+      {/* --- 2. FLOATING 3D CHARACTERS --- */}
+      {/* z-index diatur ke 10 agar berada di antara background dan konten utama */}
+      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+        
+        {/* Scientist (KIRI) - Posisi diturunkan agar tidak menabrak teks */}
+        <div 
+          className="absolute top-[23%] -left-4 md:top-[20%] md:left-[5%] w-36 md:w-72 transition-transform duration-100 ease-out animate-float"
+          style={{ transform: `translate(${mousePosition.x * -40}px, ${mousePosition.y * -40}px) rotate(-6deg)` }}
+        >
+          <div className="relative bg-white/40 backdrop-blur-xl p-3 md:p-6 rounded-[2rem] shadow-[0_8px_32px_rgba(31,38,135,0.15)] border border-white/60 ring-1 ring-white/50">
+             <Lottie animationData={innovationAnimation} loop={true} />
+             <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-tr from-white/40 to-transparent opacity-50"></div>
           </div>
+        </div>
 
-          {/* Main heading with gradient text */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-none mb-6">
-            <span className="bg-gradient-to-r from-slate-800 via-slate-600 to-slate-800 bg-clip-text text-transparent animate-gradient">
+        {/* Champion (KANAN) */}
+        <div 
+          className="absolute top-[8%] right-2 md:top-[15%] md:right-[5%] w-36 md:w-72 transition-transform duration-100 ease-out animate-float-delayed"
+          style={{ transform: `translate(${mousePosition.x * -50}px, ${mousePosition.y * -50}px) rotate(6deg)` }}
+        >
+          <div className="relative bg-white/40 backdrop-blur-xl p-3 md:p-6 rounded-[2rem] shadow-[0_8px_32px_rgba(31,38,135,0.15)] border border-white/60 ring-1 ring-white/50">
+             <Lottie animationData={innovationAnimation2} loop={true} />
+             <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-bl from-white/40 to-transparent opacity-50"></div>
+          </div>
+        </div>
+
+        {/* Meeting (BAWAH) - PERBAIKAN: WARNA JELAS
+            - Menghapus opacity, blur, dan grayscale.
+            - Memperbesar ukuran sedikit agar mengisi ruang bawah.
+            - z-index 0 agar di belakang tombol.
+        */}
+        <div 
+          className="absolute bottom-[-8%] left-1/2 transform -translate-x-1/2 w-72 md:w-[35rem] transition-transform duration-100 ease-out z-0"
+          style={{ transform: `translate(-50%, 0) translate(${mousePosition.x * 15}px, ${mousePosition.y * 15}px)` }}
+        >
+           <Lottie animationData={innovationAnimation3} loop={true} />
+        </div>
+      </div>
+
+      {/* --- 3. MAIN CONTENT --- */}
+      {/* z-30 memastikan teks dan tombol bisa diklik dan berada di atas lottie bawah */}
+      <div className="relative z-30 container mx-auto px-4 text-center mt-16 md:mt-10">
+        
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/70 backdrop-blur-md border border-white/80 shadow-lg shadow-indigo-500/10 mb-8 animate-fade-in-up hover:scale-105 transition-transform duration-300">
+          <span className="relative flex h-3 w-3">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
+          </span>
+          <span className="text-xs font-extrabold tracking-[0.2em] text-indigo-900 uppercase">Unit Kegiatan Mahasiswa</span>
+        </div>
+
+        {/* MASSIVE TYPOGRAPHY */}
+        <div className="relative mb-8 md:mb-12 perspective-text">
+          <h1 className="text-5xl sm:text-7xl md:text-9xl font-black text-slate-900 leading-[0.9] tracking-tighter drop-shadow-xl">
+            <span className="block bg-clip-text text-transparent bg-gradient-to-b from-slate-800 to-slate-600 transform hover:scale-105 transition-transform duration-500 cursor-default">
               UKM
             </span>
-            <br />
-            <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient-reverse">
-              Penalaran
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 animate-gradient-x pb-2 md:pb-4 transform hover:scale-105 transition-transform duration-500 cursor-default filter drop-shadow-sm">
+              PENALARAN
             </span>
-            <br />
-            <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 bg-clip-text text-transparent">
-              Udinus
+            <span className="block text-3xl sm:text-5xl md:text-6xl font-extrabold text-slate-400 mt-2 md:mt-4 tracking-normal transform hover:scale-105 transition-transform duration-500 cursor-default">
+              UDINUS
             </span>
           </h1>
+        </div>
 
-          {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto mb-12 leading-relaxed font-medium">
-            Menginspirasi <span className="text-transparent bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text font-bold">kreativitas</span>, 
-            mengembangkan <span className="text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text font-bold">keilmiahan</span>, 
-            dan membangun <span className="text-transparent bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text font-bold">intelektualitas </span> 
-            mahasiswa melalui riset dan penalaran ilmiah yang inovatif
+        {/* Description */}
+        <div className="relative max-w-2xl mx-auto mb-12 p-6 md:p-8 bg-white/30 backdrop-blur-md rounded-3xl border border-white/60 shadow-xl animate-fade-in-up group hover:bg-white/50 transition-all duration-500" style={{animationDelay: '0.3s'}}>
+          <p className="text-base md:text-xl text-slate-700 font-medium leading-relaxed">
+            Menginspirasi kreativitas, mengembangkan keilmiahan, dan membangun intelektualitas mahasiswa UDINUS melalui riset dan penalaran inovatif.
           </p>
+        </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-          <a
-  href="/tentang"
-  className="group relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl font-bold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/25 shadow-lg"
-  style={{ color: '#ffffff' }}
->
-  <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity" />
-  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-  <span className="relative flex items-center gap-2" style={{ color: '#ffffff' }}>
-    Jelajahi Kami
-    <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
-      <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-    </svg>
-  </span>
-</a>
-            
-            <a
-              href="/kontak"
-              className="group px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-slate-200 rounded-2xl font-bold text-slate-700 hover:bg-white hover:border-indigo-300 transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-md"
-            >
-              <span className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-slate-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                </svg>
-                Hubungi Kami
-              </span>
-            </a>
-          </div>
+        {/* Buttons */}
+        {/* pb-20 memberikan ruang agar tombol tidak terlalu mepet dengan lottie bawah di mobile */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6 animate-fade-in-up px-6 pb-20 md:pb-0" style={{animationDelay: '0.5s'}}>
+          <a 
+            href="/tentang" 
+            className="group relative px-8 md:px-12 py-4 md:py-5 rounded-full bg-slate-900 text-white font-bold text-lg shadow-[0_20px_50px_rgba(15,23,42,0.3)] hover:shadow-[0_20px_60px_rgba(79,70,229,0.5)] transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <span className="relative flex items-center justify-center gap-3">
+              Jelajahi Kami
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </span>
+          </a>
+          
+          <a 
+            href="/kontak" 
+            className="group px-8 md:px-12 py-4 md:py-5 rounded-full bg-white/60 backdrop-blur-xl border border-white text-slate-800 font-bold text-lg shadow-lg hover:bg-white hover:shadow-xl hover:border-indigo-200 transition-all duration-300 hover:-translate-y-1"
+          >
+            <span className="flex items-center justify-center gap-2">
+              Hubungi Kami
+            </span>
+          </a>
+        </div>
 
-          {/* Stats/Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      </div>
+
+      {/* --- 4. FEATURE CARDS --- */}
+      <div className="relative z-30 w-full max-w-7xl mx-auto px-6 mt-16 md:mt-24 pb-10">
+        <div className="grid md:grid-cols-3 gap-6">
           {features.map((item, idx) => (
-            <div
+            <div 
               key={idx}
-              className="group p-8 bg-white/60 backdrop-blur-md rounded-3xl border border-white/50 hover:bg-white/80 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-              style={{ animationDelay: `${idx * 0.2}s` }}
+              className="group relative bg-white/40 backdrop-blur-lg rounded-[2rem] p-1 border border-white/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+              style={{ animationDelay: item.delay }}
             >
-             <div className="w-32 h-32 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Lottie animationData={item.lottie} loop={true} />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent rounded-[2rem]"></div>
+              <div className="relative h-full bg-gradient-to-br from-white/90 to-white/40 p-6 rounded-[1.8rem] flex items-center gap-4 overflow-hidden">
+                <div className={`absolute -right-10 -top-10 w-32 h-32 bg-gradient-to-br ${item.gradient} rounded-full blur-[50px] opacity-0 group-hover:opacity-50 transition-opacity duration-500`}></div>
+                
+                <div className="w-16 h-16 bg-white rounded-2xl p-2 shadow-sm border border-slate-100 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <Lottie animationData={item.lottie} loop={true} />
+                </div>
+                <div className="text-left relative z-10">
+                  <h3 className="text-lg font-bold text-slate-800 group-hover:text-indigo-700 transition-colors">{item.title}</h3>
+                  <p className="text-sm text-slate-600 font-medium">{item.desc}</p>
+                </div>
               </div>
-              <h3
-                className={`text-xl font-bold mb-3 text-center bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}
-              >
-                {item.title}
-              </h3>
-              <p className="text-slate-600 text-center font-medium">{item.desc}</p>
             </div>
           ))}
         </div>
       </div>
-    </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-slate-400/60 rounded-full flex justify-center bg-white/40 backdrop-blur-sm">
-          <div className="w-1 h-3 bg-slate-500/70 rounded-full mt-2 animate-pulse" />
-        </div>
-      </div>
 
       <style jsx>{`
-        @keyframes gradient {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        @keyframes gradient-reverse {
-          0%, 100% { background-position: 100% 50%; }
-          50% { background-position: 0% 50%; }
-        }
         @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes bounce-slow {
-          0%, 100% { transform: translateY(0px) rotate(45deg); }
-          50% { transform: translateY(-10px) rotate(45deg); }
-        }
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-gradient {
-          background-size: 200% 200%;
-          animation: gradient 4s ease infinite;
-        }
-        .animate-gradient-reverse {
-          background-size: 200% 200%;
-          animation: gradient-reverse 4s ease infinite;
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotate(360deg); }
         }
         .animate-spin-slow {
           animation: spin-slow 25s linear infinite;
         }
-        .animate-bounce-slow {
-          animation: bounce-slow 4s ease-in-out infinite;
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
         }
-        .animate-fadeInUp {
-          animation: fadeInUp 0.8s ease-out;
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 4s ease infinite;
         }
-        
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-          .animate-gradient {
-            animation-duration: 6s; /* Slower on mobile */
-          }
-          .animate-gradient-reverse {
-            animation-duration: 6s;
-          }
-          .animate-spin-slow {
-            animation-duration: 40s; /* Much slower */
-          }
-          .animate-bounce-slow {
-            animation-duration: 6s;
-          }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(40px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-        
-        /* Respect reduced motion preference */
-        @media (prefers-reduced-motion: reduce) {
-          *, *::before, *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-          }
+        .animate-fade-in-up {
+          animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+          opacity: 0;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-6deg); }
+            50% { transform: translateY(-15px) rotate(-6deg); }
+        }
+        @keyframes float-delayed {
+            0%, 100% { transform: translateY(0px) rotate(6deg); }
+            50% { transform: translateY(-15px) rotate(6deg); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: float-delayed 7s ease-in-out infinite 1s;
         }
       `}</style>
     </section>
