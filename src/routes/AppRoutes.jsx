@@ -9,6 +9,7 @@ import Kuis from '../pages/Kuis';
 import ScrollToTop from '../components/ScrollOnTop'; // pastikan path sesuai
 import DetailNews from '../pages/NewsDetail';
 import AllNews from '../pages/Allnews';
+import EventDetail from '../pages/EventDetail'; // Pastikan file EventDetail.jsx ada di folder pages
 
 
 const AppRoutes = () => {
@@ -19,6 +20,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/tentang" element={<About />} />
         <Route path="/kegiatan" element={<Activities />} />
+        <Route path="/kegiatan/:id" element={<EventDetail />} />
         <Route path="/berita" element={<News />} />
         <Route path="/galeri" element={<Gallery />} />
         <Route path="/kontak" element={<Contact />} />
