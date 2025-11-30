@@ -13,7 +13,7 @@ const EvenCard = ({
       case 'Workshop': return 'from-blue-500 to-indigo-600';
       case 'Diskusi': return 'from-green-500 to-emerald-600';
       case 'Pelatihan': return 'from-purple-500 to-pink-600';
-      case 'Seminar': return 'from-orange-500 to-red-600';
+      case 'Lomba': return 'from-orange-500 to-red-600';
       case 'Kompetisi': return 'from-yellow-500 to-orange-600';
       case 'Pengabdian': return 'from-yellow-800 to-red-500';
       case 'Recruitment': return 'from-cyan-500 to-blue-600';

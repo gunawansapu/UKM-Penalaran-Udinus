@@ -56,12 +56,11 @@ export const activityList = [
     id: 4,
     title: "LKTIN (Lomba Karya Tulis Ilmiah Nasional)",
     date: "24 Januari 2026",
-    description: `Seminar nasional dan kompetisi karya tulis ilmiah tingkat nasional yang menghadirkan inovasi-inovasi terbaik dari mahasiswa seluruh Indonesia.
-
-    Segera lengkapi berkas pendaftaran Anda melalui tautan yang tersedia di bawah ini.`,
-    category: "Seminar",
+    description: `Menginjak tahun ke-4 penyelenggaraan, LKTIN Dinusfest 2026 siap hadir kembali sebagai wadah inovasi dan karya ilmiah siswa-siswi seluruh Indonesia.
+Diselenggarakan oleh UKM Penalaran, kami siap menyambut ide terbaikmu! 🌟`,
+    category: "Lomba",
     time: "07:30 - Selesai",
-    location: "Gedung i Lantai 3",
+    location: "Hybrid",
     image: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/lktin.jpg",
     status: "upcoming",
     registeredCount: 87,
