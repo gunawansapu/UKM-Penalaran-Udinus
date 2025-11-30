@@ -1,4 +1,4 @@
-// aktifitasDetail.js
+// data/aktifitasDetail.js
 
 export const activityList = [
   {
@@ -44,31 +44,37 @@ export const activityList = [
     image: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=1170&auto=format&fit=crop",
     status: "upcoming",
     registeredCount: 12,
-    price:"coming soon",
+    price: "Coming Soon",
     speaker: "Tim PKM Berprestasi",
     requirements: ["Mahasiswa yang ingin mengikuti PKM", "Membawa laptop", "Sudah memiliki ide dasar PKM"],
     customButtons: [
       { text: "Daftar PKM Masterclass", url: "#", type: "primary" }
     ]
   },
-  // --- EVENT LKTIN (LENGKAP) ---
+  // --- EVENT LKTIN (UPDATED HARGA) ---
   {
     id: 4,
     title: "LKTIN (Lomba Karya Tulis Ilmiah Nasional)",
     date: "24 Januari 2026",
     description: `Menginjak tahun ke-4 penyelenggaraan, LKTIN Dinusfest 2026 siap hadir kembali sebagai wadah inovasi dan karya ilmiah siswa-siswi seluruh Indonesia.
-Diselenggarakan oleh UKM Penalaran, kami siap menyambut ide terbaikmu! 🌟`,
+
+Diselenggarakan oleh UKM Penalaran, kami siap menyambut ide terbaikmu! 🌟
+
+💰 Biaya Pendaftaran:
+• Gelombang 1: Rp 60.000
+• Gelombang 2: Rp 75.000`,
     category: "Lomba",
     time: "07:30 - Selesai",
     location: "Hybrid",
     image: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/lktin.jpg",
     status: "upcoming",
     registeredCount: 87,
-    price:"100.000",
+    // UPDATE HARGA DISINI (String Range)
+    price: "Gel 1. 60.000 - Gel 2. 75.000", 
     speaker: "Expert Speaker TBA",
     requirements: ["Terbuka untuk umum", "Siswa/Siswi SMK dan SMA seluruh Indonesia", "Tim terdiri dari 2-3 orang"],
     
-    // DATA TOMBOL FLEKSIBEL (Sesuai Request)
+    // DATA TOMBOL
     customButtons: [
       { text: "Daftar Ulang Peserta", url: "https://l1nk.dev/PendaftaranUlang-LKTIN4", type: "primary" },
       { text: "Pengumpulan Naskah", url: "https://acesse.one/PengumpulanNaskah-KTI", type: "primary" },
@@ -76,10 +82,10 @@ Diselenggarakan oleh UKM Penalaran, kami siap menyambut ide terbaikmu! 🌟`,
       { text: "Pasang Twibbon", url: "https://l1nk.dev/TWIBBON-LKTIN2026", type: "secondary" }
     ],
     
-    // DATA CP (Sesuai Request)
+    // DATA CONTACT PERSON
     contacts: [
-      { name: "Nisa", phone: "6281234567890", url: "https://wa.me/6285695558355" }, 
-      { name: "Arfi", phone: "6281234567890", url: "https://wa.me/6285936712078" } 
+      { name: "Nisa", phone: "6285695558355", url: "https://wa.me/6285695558355" }, 
+      { name: "Arfi", phone: "6285936712078", url: "https://wa.me/6285936712078" } 
     ]
   },
   {

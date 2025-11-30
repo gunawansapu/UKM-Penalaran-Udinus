@@ -128,10 +128,15 @@ const EventDetail = () => {
                       <span className="font-medium text-sm sm:text-base">{event.date}</span>
                     </div>
                   )}
+                  {/* --- UPDATE BAGIAN HARGA DI SINI --- */}
                   {event.price !== undefined && (
                     <div className="flex items-center gap-2 bg-emerald-500/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-lg shadow-emerald-900/20">
                       <span className="font-bold text-sm sm:text-base">
-                        {event.price === 0 || event.price === "-" ? 'GRATIS' : `Rp ${event.price.toLocaleString('id-ID')}`}
+                        {/* Logika Cerdas: Jika Angka, format ke Rp. Jika String, tampilkan apa adanya */}
+                        {typeof event.price === 'number'
+                          ? (event.price === 0 ? 'GRATIS' : `Rp ${event.price.toLocaleString('id-ID')}`)
+                          : event.price
+                        }
                       </span>
                     </div>
                   )}
@@ -242,7 +247,7 @@ const EventDetail = () => {
                           <svg className={`w-4 h-4 transition-transform duration-200 ${isTutorialOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                         </button>
 
-                        {/* --- KONTEN PANDUAN DROP DOWN (DENGAN FOTO) --- */}
+                        {/* --- KONTEN PANDUAN DROP DOWN --- */}
                         {isTutorialOpen && (
                           <div className="mt-3 p-4 bg-white border border-slate-200 rounded-xl text-sm text-slate-600 animate-fadeIn">
                             <p className="mb-3 font-medium">Link akan dialihkan ke halaman perantara. Ikuti langkah ini:</p>
@@ -253,7 +258,7 @@ const EventDetail = () => {
                                 <div className="flex-shrink-0 w-6 h-6 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">1</div>
                                 <div className="space-y-2 w-full">
                                   <p>Tunggu semua tercentang.</p>
-                                  {/* --- FOTO 1 (TIMER) --- */}
+                                  {/* --- FOTO 1 --- */}
                                   <img 
                                     src={foto1} 
                                     alt="Panduan Timer" 
@@ -261,15 +266,15 @@ const EventDetail = () => {
                                   />
                                 </div>
                               </div>
-                              {/* Langkah 2*/}
+                              {/* Langkah 2 */}
                               <div className="flex gap-3">
                                 <div className="flex-shrink-0 w-6 h-6 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">2</div>
                                 <div className="space-y-2 w-full">
-                                  <p>atau setelah tercentang 1 bisa langsung klik tombol skip verification</p>
-                                  {/* --- FOTO 2 (TIMER) --- */}
+                                  <p>Atau setelah tercentang 1 bisa langsung klik tombol <span className="font-bold">Skip Verification</span></p>
+                                  {/* --- FOTO 4 (Baru) --- */}
                                   <img 
                                     src={foto4} 
-                                    alt="Panduan Timer" 
+                                    alt="Skip Verification" 
                                     className="w-full h-auto rounded-lg border border-slate-200 shadow-sm"
                                   />
                                 </div>
@@ -279,11 +284,11 @@ const EventDetail = () => {
                               <div className="flex gap-3">
                                 <div className="flex-shrink-0 w-6 h-6 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">3</div>
                                 <div className="space-y-2 w-full">
-                                  <p>setelah tercentang semua <span className="font-bold text-blue-600">"maka akan menuju ke halaman website tujuan"</span></p>
-                                  {/* --- FOTO 3 (TOMBOL) --- */}
+                                  <p>Setelah tercentang semua <span className="font-bold text-blue-600">"maka akan menuju ke halaman website tujuan"</span></p>
+                                  {/* --- FOTO 2 --- */}
                                   <img 
                                     src={foto2} 
-                                    alt="Panduan Tombol" 
+                                    alt="Menuju Link" 
                                     className="w-full h-auto rounded-lg border border-slate-200 shadow-sm"
                                   />
                                 </div>
@@ -293,10 +298,10 @@ const EventDetail = () => {
                                 <div className="flex-shrink-0 w-6 h-6 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">4</div>
                                 <div className="space-y-2 w-full">
                                   <p>Berhasil</p>
-                                  {/* --- FOTO 4 (TOMBOL) --- */}
+                                  {/* --- FOTO 3 --- */}
                                   <img 
                                     src={foto3} 
-                                    alt="Panduan Tombol" 
+                                    alt="Berhasil" 
                                     className="w-full h-auto rounded-lg border border-slate-200 shadow-sm"
                                   />
                                 </div>
