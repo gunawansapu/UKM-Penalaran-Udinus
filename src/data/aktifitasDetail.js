@@ -78,7 +78,7 @@ Diselenggarakan oleh UKM Penalaran, kami siap menyambut ide terbaikmu! 🌟
     customButtons: [
       { text: "Daftar Ulang Peserta", url: "https://l1nk.dev/PendaftaranUlang-LKTIN4", type: "primary" },
       { text: "Pengumpulan Naskah", url: "https://acesse.one/PengumpulanNaskah-KTI", type: "primary" },
-      { text: "Download Buku Panduan", url: "https://acesse.one/BUKUPANDUAN-LKTIN2026", type: "outline" },
+      { text: "Download Buku Panduan", url: "https://drive.google.com/file/d/10uIbGhbXQVwtEvSRD70po9qIV1fJTfwp/view?usp=drivesdk", type: "outline" },
       { text: "Pasang Twibbon", url: "https://l1nk.dev/TWIBBON-LKTIN2026", type: "secondary" }
     ],
     
