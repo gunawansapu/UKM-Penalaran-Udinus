@@ -128,11 +128,10 @@ const EventDetail = () => {
                       <span className="font-medium text-sm sm:text-base">{event.date}</span>
                     </div>
                   )}
-                  {/* --- UPDATE BAGIAN HARGA DI SINI --- */}
+                  
                   {event.price !== undefined && (
                     <div className="flex items-center gap-2 bg-emerald-500/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-lg shadow-emerald-900/20">
                       <span className="font-bold text-sm sm:text-base">
-                        {/* Logika Cerdas: Jika Angka, format ke Rp. Jika String, tampilkan apa adanya */}
                         {typeof event.price === 'number'
                           ? (event.price === 0 ? 'GRATIS' : `Rp ${event.price.toLocaleString('id-ID')}`)
                           : event.price
@@ -159,6 +158,23 @@ const EventDetail = () => {
                     {event.description}
                   </div>
                 </div>
+
+                {/* --- BAGIAN FLIPBOOK / EMBED --- */}
+                {event.embedHtml && (
+                  <div className="mb-10">
+                    <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2 mb-6">
+                      <span className="w-8 h-8 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                      </span>
+                      Buku Panduan
+                    </h3>
+                    <div 
+                      className="w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200"
+                      dangerouslySetInnerHTML={{ __html: event.embedHtml }} 
+                    />
+                  </div>
+                )}
+                {/* --- END BAGIAN FLIPBOOK --- */}
 
                 {event.requirements && (
                   <div className="bg-amber-50 rounded-2xl p-6 sm:p-8 border border-amber-100">
@@ -258,7 +274,6 @@ const EventDetail = () => {
                                 <div className="flex-shrink-0 w-6 h-6 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">1</div>
                                 <div className="space-y-2 w-full">
                                   <p>Tunggu semua tercentang.</p>
-                                  {/* --- FOTO 1 --- */}
                                   <img 
                                     src={foto1} 
                                     alt="Panduan Timer" 
@@ -271,7 +286,6 @@ const EventDetail = () => {
                                 <div className="flex-shrink-0 w-6 h-6 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">2</div>
                                 <div className="space-y-2 w-full">
                                   <p>Atau setelah tercentang 1 bisa langsung klik tombol <span className="font-bold">Skip Verification</span></p>
-                                  {/* --- FOTO 4 (Baru) --- */}
                                   <img 
                                     src={foto4} 
                                     alt="Skip Verification" 
@@ -285,7 +299,6 @@ const EventDetail = () => {
                                 <div className="flex-shrink-0 w-6 h-6 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">3</div>
                                 <div className="space-y-2 w-full">
                                   <p>Setelah tercentang semua <span className="font-bold text-blue-600">"maka akan menuju ke halaman website tujuan"</span></p>
-                                  {/* --- FOTO 2 --- */}
                                   <img 
                                     src={foto2} 
                                     alt="Menuju Link" 
@@ -298,7 +311,6 @@ const EventDetail = () => {
                                 <div className="flex-shrink-0 w-6 h-6 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">4</div>
                                 <div className="space-y-2 w-full">
                                   <p>Berhasil</p>
-                                  {/* --- FOTO 3 --- */}
                                   <img 
                                     src={foto3} 
                                     alt="Berhasil" 

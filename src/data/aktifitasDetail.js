@@ -1,5 +1,3 @@
-// data/aktifitasDetail.js
-
 export const activityList = [
   {
     id: 1,
@@ -51,7 +49,7 @@ export const activityList = [
       { text: "Daftar PKM Masterclass", url: "#", type: "primary" }
     ]
   },
-  // --- EVENT LKTIN (UPDATED HARGA) ---
+  // --- EVENT LKTIN (UPDATED DENGAN EMBED) ---
   {
     id: 4,
     title: "LKTIN (Lomba Karya Tulis Ilmiah Nasional)",
@@ -69,20 +67,19 @@ Diselenggarakan oleh UKM Penalaran, kami siap menyambut ide terbaikmu! 🌟
     image: "https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/lktin.jpg",
     status: "upcoming",
     registeredCount: 87,
-    // UPDATE HARGA DISINI (String Range)
     price: "Gel 1. 60.000 - Gel 2. 75.000", 
     speaker: "Expert Speaker TBA",
-    requirements: ["Terbuka untuk umum", "Siswa/Siswi SMK dan SMA seluruh Indonesia", "Tim terdiri dari 2-3 orang"],
     
-    // DATA TOMBOL
+    // 👇 DATA EMBED DI SINI 👇
+    embedHtml: `<div style="position:relative; width:100%; height:550px;"><iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" src="https://online.fliphtml5.com/Gcorporation/evtd/"  seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe></div>`,
+    
+    requirements: ["Terbuka untuk umum", "Siswa/Siswi SMK dan SMA seluruh Indonesia", "Tim terdiri dari 2-3 orang"],
     customButtons: [
       { text: "Daftar Ulang Peserta", url: "https://l1nk.dev/PendaftaranUlang-LKTIN4", type: "primary" },
       { text: "Pengumpulan Naskah", url: "https://acesse.one/PengumpulanNaskah-KTI", type: "primary" },
       { text: "Download Buku Panduan", url: "https://drive.google.com/file/d/10uIbGhbXQVwtEvSRD70po9qIV1fJTfwp/view?usp=drivesdk", type: "outline" },
       { text: "Pasang Twibbon", url: "https://l1nk.dev/TWIBBON-LKTIN2026", type: "secondary" }
     ],
-    
-    // DATA CONTACT PERSON
     contacts: [
       { name: "Nisa", phone: "6285695558355", url: "https://wa.me/6285695558355" }, 
       { name: "Arfi", phone: "6285936712078", url: "https://wa.me/6285936712078" } 
