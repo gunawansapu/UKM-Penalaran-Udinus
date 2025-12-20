@@ -38,11 +38,11 @@ export const activityList = [
     description: "Pelatihan intensif bedah proposal Program Kreativitas Mahasiswa (PKM).",
     category: "Pelatihan",
     time: "08:00 - Selesai", 
-    location: "Aula Gedung E",
+    location: "perpustakaan lantai 1",
     image: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=1170&auto=format&fit=crop",
-    status: "upcoming",
+    status: "closed",
     registeredCount: 12,
-    price: "Coming Soon",
+    price: "35.000 (individu), 100.000 (TIM)",
     speaker: "Tim PKM Berprestasi",
     requirements: ["Mahasiswa yang ingin mengikuti PKM", "Membawa laptop", "Sudah memiliki ide dasar PKM"],
     customButtons: [
@@ -78,7 +78,7 @@ Diselenggarakan oleh UKM Penalaran, kami siap menyambut ide terbaikmu! 🌟
       { text: "Daftar Ulang Peserta", url: "https://l1nk.dev/PendaftaranUlang-LKTIN4", type: "primary" },
       { text: "Pengumpulan Naskah", url: "https://acesse.one/PengumpulanNaskah-KTI", type: "primary" },
       { text: "Download Buku Panduan", url: "https://drive.google.com/file/d/10uIbGhbXQVwtEvSRD70po9qIV1fJTfwp/view?usp=drivesdk", type: "outline" },
-      { text: "Pasang Twibbon", url: "https://l1nk.dev/TWIBBON-LKTIN2026", type: "secondary" }
+      { text: "Pasang Twibbon", url: "https://www.canva.com/design/DAG5-v4rITo/8FZD33DN4pnFduBRlJpz4Q/edit?utm_content=DAG5-v4rITo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton", type: "secondary" }
     ],
     contacts: [
       { name: "Nisa", phone: "6285695558355", url: "https://wa.me/6285695558355" }, 

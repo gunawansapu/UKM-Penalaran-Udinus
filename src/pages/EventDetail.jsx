@@ -2,18 +2,12 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { activityList } from '../data/aktifitasDetail';
 
-// --- IMPORT FOTO TUTORIAL ---
-import foto1 from '../assets/images/tutor1.png';
-import foto2 from '../assets/images/tutor2.png';
-import foto3 from '../assets/images/tutor3.png';
-import foto4 from '../assets/images/tutor4.png';
+// --- IMPORT VIDEO TUTORIAL ---
+import videoTutorial from '../assets/images/tutorial.mp4'; 
 
 const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
-  
-  // State untuk toggle tutorial (default tertutup)
-  const [isTutorialOpen, setIsTutorialOpen] = useState(false);
 
   useEffect(() => {
     const found = activityList.find(e => e.id === parseInt(id));
@@ -63,33 +57,23 @@ const EventDetail = () => {
 
   const getButtonStyle = (type) => {
     const baseStyle = "w-full flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-xl font-bold transition-all duration-200 active:scale-95 shadow-sm";
-    
     switch (type) {
-      case 'primary':
-        return `${baseStyle} bg-blue-600 hover:bg-blue-700 !text-white shadow-blue-200 hover:shadow-md border border-transparent`;
-      case 'secondary':
-        return `${baseStyle} bg-white border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50`;
-      case 'outline':
-        return `${baseStyle} bg-transparent border-2 border-slate-200 text-slate-600 hover:border-slate-800 hover:text-slate-800`;
-      case 'whatsapp':
-        return `${baseStyle} bg-[#25D366] hover:bg-[#20bd5a] !text-white shadow-green-200 hover:shadow-md border border-transparent`;
-      default:
-        return `${baseStyle} bg-slate-800 !text-white`;
+      case 'primary': return `${baseStyle} bg-blue-600 hover:bg-blue-700 !text-white shadow-blue-200 hover:shadow-md border border-transparent`;
+      case 'secondary': return `${baseStyle} bg-white border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50`;
+      case 'outline': return `${baseStyle} bg-transparent border-2 border-slate-200 text-slate-600 hover:border-slate-800 hover:text-slate-800`;
+      case 'whatsapp': return `${baseStyle} bg-[#25D366] hover:bg-[#20bd5a] !text-white shadow-green-200 hover:shadow-md border border-transparent`;
+      default: return `${baseStyle} bg-slate-800 !text-white`;
     }
   };
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] relative overflow-hidden font-sans">
-      
       <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-blue-50/50 to-transparent -z-10"></div>
       
       <div className="relative py-8 sm:py-12 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           
-          <Link 
-            to="/kegiatan" 
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-slate-600 hover:text-blue-600 rounded-xl transition-all font-semibold shadow-sm hover:shadow-md border border-slate-200 mb-8 group"
-          >
+          <Link to="/kegiatan" className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-slate-600 hover:text-blue-600 rounded-xl transition-all font-semibold shadow-sm hover:shadow-md border border-slate-200 mb-8 group">
             <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
@@ -98,29 +82,16 @@ const EventDetail = () => {
 
           <div className="bg-white rounded-[2rem] shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100">
             
-            {/* Header Gambar */}
+            {/* --- HEADER GAMBAR --- */}
             <div className="relative h-64 sm:h-[26rem] overflow-hidden group">
-              <img 
-                src={event.image} 
-                alt={event.title} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-              />
+              <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
-              
               <div className="absolute top-6 left-6 right-6 flex flex-wrap justify-between items-start gap-3">
-                <span className="bg-white/95 backdrop-blur-sm text-slate-800 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
-                  {event.category}
-                </span>
-                <span className={`${getStatusColor(event.status)} px-4 py-1.5 rounded-full text-xs font-bold shadow-lg uppercase tracking-wide`}>
-                  {getStatusText(event.status)}
-                </span>
+                <span className="bg-white/95 backdrop-blur-sm text-slate-800 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">{event.category}</span>
+                <span className={`${getStatusColor(event.status)} px-4 py-1.5 rounded-full text-xs font-bold shadow-lg uppercase tracking-wide`}>{getStatusText(event.status)}</span>
               </div>
-
               <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
-                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4 drop-shadow-sm">
-                  {event.title}
-                </h1>
-                
+                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4 drop-shadow-sm">{event.title}</h1>
                 <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-white/90">
                   {event.date && (
                     <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
@@ -128,14 +99,10 @@ const EventDetail = () => {
                       <span className="font-medium text-sm sm:text-base">{event.date}</span>
                     </div>
                   )}
-                  
                   {event.price !== undefined && (
                     <div className="flex items-center gap-2 bg-emerald-500/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-lg shadow-emerald-900/20">
                       <span className="font-bold text-sm sm:text-base">
-                        {typeof event.price === 'number'
-                          ? (event.price === 0 ? 'GRATIS' : `Rp ${event.price.toLocaleString('id-ID')}`)
-                          : event.price
-                        }
+                        {typeof event.price === 'number' ? (event.price === 0 ? 'GRATIS' : `Rp ${event.price.toLocaleString('id-ID')}`) : event.price}
                       </span>
                     </div>
                   )}
@@ -145,9 +112,11 @@ const EventDetail = () => {
 
             <div className="grid lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-100">
               
-              {/* KONTEN UTAMA (Kiri) */}
+              {/* --- KONTEN UTAMA (Kiri) --- */}
               <div className="lg:col-span-2 p-6 sm:p-10">
-                <div className="mb-10">
+                
+                {/* Deskripsi */}
+                <div className="mb-12">
                   <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2 mb-6">
                     <span className="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" /></svg>
@@ -159,23 +128,44 @@ const EventDetail = () => {
                   </div>
                 </div>
 
-                {/* --- BAGIAN FLIPBOOK / EMBED --- */}
+                {/* Buku Panduan (Flipbook) */}
                 {event.embedHtml && (
-                  <div className="mb-10">
+                  <div className="mb-12">
                     <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2 mb-6">
                       <span className="w-8 h-8 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
                       </span>
                       Buku Panduan
                     </h3>
-                    <div 
-                      className="w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200"
-                      dangerouslySetInnerHTML={{ __html: event.embedHtml }} 
-                    />
+                    <div className="w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200" dangerouslySetInnerHTML={{ __html: event.embedHtml }} />
                   </div>
                 )}
-                {/* --- END BAGIAN FLIPBOOK --- */}
 
+                {/* --- VIDEO TUTORIAL BESAR (HANYA UNTUK LKTIN ID 4) --- */}
+                {event.id === 4 && (
+                  <div className="mb-12 bg-slate-900 rounded-[2rem] p-6 sm:p-10 shadow-2xl shadow-blue-900/20 border border-slate-800">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                      <div>
+                        <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-3">
+                          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-white animate-pulse">
+                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/></svg>
+                          </span>
+                          Tutorial Akses Link
+                        </h3>
+                        <p className="text-slate-400 mt-2 text-sm sm:text-base">Bingung cara melewati link? Tonton video panduan ini sampai habis.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="relative w-full rounded-2xl overflow-hidden bg-black aspect-video shadow-2xl ring-4 ring-slate-800">
+                      <video className="w-full h-full" controls playsInline>
+                        <source src={videoTutorial} type="video/mp4" />
+                        Browser Anda tidak mendukung tag video.
+                      </video>
+                    </div>
+                  </div>
+                )}
+
+                {/* Syarat & Ketentuan */}
                 {event.requirements && (
                   <div className="bg-amber-50 rounded-2xl p-6 sm:p-8 border border-amber-100">
                     <h3 className="font-bold text-lg text-amber-900 mb-4 flex items-center gap-2">
@@ -185,9 +175,7 @@ const EventDetail = () => {
                     <ul className="space-y-3">
                       {event.requirements.map((req, i) => (
                         <li key={i} className="flex gap-3 text-amber-800 text-sm sm:text-base">
-                          <span className="flex-shrink-0 w-6 h-6 bg-amber-200 text-amber-800 rounded-full flex items-center justify-center font-bold text-xs mt-0.5">
-                            {i + 1}
-                          </span>
+                          <span className="flex-shrink-0 w-6 h-6 bg-amber-200 text-amber-800 rounded-full flex items-center justify-center font-bold text-xs mt-0.5">{i + 1}</span>
                           <span className="leading-relaxed">{req}</span>
                         </li>
                       ))}
@@ -196,9 +184,8 @@ const EventDetail = () => {
                 )}
               </div>
 
-              {/* SIDEBAR (Kanan) */}
+              {/* --- SIDEBAR (Kanan) --- */}
               <div className="bg-slate-50/50 p-6 sm:p-8 flex flex-col h-full">
-                
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-8 space-y-5">
                   <h3 className="font-bold text-slate-900 mb-4">Detail Pelaksanaan</h3>
                   <div className="flex items-start gap-4">
@@ -232,100 +219,15 @@ const EventDetail = () => {
                   {isRegistrationOpen ? (
                     <>
                       {event.customButtons?.map((btn, idx) => (
-                        <a 
-                          key={idx} 
-                          href={btn.url} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          className={getButtonStyle(btn.type)}
-                        >
+                        <a key={idx} href={btn.url} target="_blank" rel="noreferrer" className={getButtonStyle(btn.type)}>
                           {btn.type === 'primary' && <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>}
                           {btn.type === 'secondary' && <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
-                          
                           <span className={btn.type === 'primary' ? '!text-white' : ''}>{btn.text}</span>
-                          
                           {(btn.type === 'secondary' || btn.type === 'outline') && (
                              <svg className="w-4 h-4 ml-auto text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                           )}
                         </a>
                       ))}
-
-                      {/* --- TOMBOL TOGGLE PANDUAN --- */}
-                      <div className="pt-2">
-                        <button 
-                          onClick={() => setIsTutorialOpen(!isTutorialOpen)}
-                          className="w-full flex items-center justify-between px-4 py-3 bg-yellow-50 text-yellow-700 rounded-xl text-sm font-semibold border border-yellow-200 hover:bg-yellow-100 transition-colors"
-                        >
-                          <span className="flex items-center gap-2">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            Bingung Cara Akses Link?
-                          </span>
-                          <svg className={`w-4 h-4 transition-transform duration-200 ${isTutorialOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                        </button>
-
-                        {/* --- KONTEN PANDUAN DROP DOWN --- */}
-                        {isTutorialOpen && (
-                          <div className="mt-3 p-4 bg-white border border-slate-200 rounded-xl text-sm text-slate-600 animate-fadeIn">
-                            <p className="mb-3 font-medium">Link akan dialihkan ke halaman perantara. Ikuti langkah ini:</p>
-                            
-                            <div className="space-y-4">
-                              {/* Langkah 1 */}
-                              <div className="flex gap-3">
-                                <div className="flex-shrink-0 w-6 h-6 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">1</div>
-                                <div className="space-y-2 w-full">
-                                  <p>Tunggu semua tercentang.</p>
-                                  <img 
-                                    src={foto1} 
-                                    alt="Panduan Timer" 
-                                    className="w-full h-auto rounded-lg border border-slate-200 shadow-sm"
-                                  />
-                                </div>
-                              </div>
-                              {/* Langkah 2 */}
-                              <div className="flex gap-3">
-                                <div className="flex-shrink-0 w-6 h-6 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">2</div>
-                                <div className="space-y-2 w-full">
-                                  <p>Atau setelah tercentang 1 bisa langsung klik tombol <span className="font-bold">Skip Verification</span></p>
-                                  <img 
-                                    src={foto4} 
-                                    alt="Skip Verification" 
-                                    className="w-full h-auto rounded-lg border border-slate-200 shadow-sm"
-                                  />
-                                </div>
-                              </div>
-
-                              {/* Langkah 3 */}
-                              <div className="flex gap-3">
-                                <div className="flex-shrink-0 w-6 h-6 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">3</div>
-                                <div className="space-y-2 w-full">
-                                  <p>Setelah tercentang semua <span className="font-bold text-blue-600">"maka akan menuju ke halaman website tujuan"</span></p>
-                                  <img 
-                                    src={foto2} 
-                                    alt="Menuju Link" 
-                                    className="w-full h-auto rounded-lg border border-slate-200 shadow-sm"
-                                  />
-                                </div>
-                              </div>
-                              {/* Langkah 4 */}
-                              <div className="flex gap-3">
-                                <div className="flex-shrink-0 w-6 h-6 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">4</div>
-                                <div className="space-y-2 w-full">
-                                  <p>Berhasil</p>
-                                  <img 
-                                    src={foto3} 
-                                    alt="Berhasil" 
-                                    className="w-full h-auto rounded-lg border border-slate-200 shadow-sm"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            
-                            <p className="mt-3 text-xs text-slate-400 italic text-center">
-                              *berlaku untuk semua link.
-                            </p>
-                          </div>
-                        )}
-                      </div>
                     </>
                   ) : (
                     <div className="w-full py-4 px-6 bg-slate-100 text-slate-500 rounded-xl text-center font-bold border-2 border-slate-200 cursor-not-allowed">
@@ -334,18 +236,13 @@ const EventDetail = () => {
                   )}
                 </div>
 
+                {/* Contact Person */}
                 {event.contacts && event.contacts.length > 0 && (
                   <div className="mt-8 pt-6 border-t border-slate-200">
                     <h4 className="font-bold text-slate-800 mb-4 text-center text-sm uppercase tracking-wider">Contact Person</h4>
                     <div className="space-y-3">
                       {event.contacts.map((contact, idx) => (
-                        <a 
-                          key={idx}
-                          href={contact.url}
-                          target="_blank" 
-                          rel="noreferrer" 
-                          className={getButtonStyle('whatsapp')}
-                        >
+                        <a key={idx} href={contact.url} target="_blank" rel="noreferrer" className={getButtonStyle('whatsapp')}>
                            <svg className="w-5 h-5 flex-shrink-0 !text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 18c-1.55 0-3.07-.39-4.44-1.12l-.32-.17-3.3.87.88-3.21-.19-.31c-.8-1.28-1.22-2.77-1.22-4.29 0-4.47 3.63-8.1 8.1-8.1s8.1 3.63 8.1 8.1-3.63 8.1-7.61 8.23z"/>
                             <path d="M15.54 13.91c-.19-.1-1.14-.56-1.31-.63-.18-.06-.31-.1-.44.1-.13.19-.5.63-.61.76-.11.12-.23.14-.42.04-.19-.1-.81-.3-1.54-.95-.57-.51-.95-1.14-1.06-1.34-.11-.19-.01-.29.08-.38.09-.09.19-.23.29-.35.09-.11.12-.19.18-.32.06-.13.03-.24-.01-.34-.05-.1-.44-1.05-.6-1.44-.16-.38-.32-.33-.44-.33h-.38c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.64s.71 1.91.81 2.05c.09.13 1.39 2.13 3.37 2.99.47.2.84.32 1.13.41.48.15.91.13 1.25.08.38-.06 1.14-.47 1.3-0.92.16-.45.16-.84.11-.92-.05-.07-.18-.11-.38-.21z"/>
