@@ -16,7 +16,7 @@ const pengmasGroupImg = defaultProfileImg;
 const medkrefGroupImg = defaultProfileImg;
 
 // --- BPH: KETUA ---
-import ketuaImg from '../assets/images/ketua_formal.jpg';
+import ketuaImg from '../assets/images/ketua_formal.JPG';
 import ketuaImgexecutif from '../assets/images/ketua_executf.JPG'; 
 import ketuaImgbebas from '../assets/images/ketua_bebas.jpg'; 
 import ketuaImgfreestyle from '../assets/images/ketua_freestyle.JPG'; 
