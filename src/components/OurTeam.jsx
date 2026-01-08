@@ -18,33 +18,33 @@ const medkrefGroupImg = defaultProfileImg;
 // --- BPH: KETUA ---
 import ketuaImg from '../assets/images/ketua_formal.JPG';
 import ketuaImgexecutif from '../assets/images/ketua_executf.JPG'; 
-import ketuaImgbebas from '../assets/images/ketua_bebas.jpg'; 
+import ketuaImgbebas from '../assets/images/ketua_bebas.JPG'; 
 import ketuaImgfreestyle from '../assets/images/ketua_freestyle.JPG'; 
 
 // --- BPH: WAKIL ---
 import wakilImg from '../assets/images/wakil_official.JPG';
-import wakilImgexecutif from '../assets/images/wakil_executif.jpg';
-import wakilImgsignature from '../assets/images/wakil_signature.jpg';
-import wakilImgfreestyle from '../assets/images/wakil_freestyle.jpg';
+import wakilImgexecutif from '../assets/images/wakil_executif.JPG';
+import wakilImgsignature from '../assets/images/wakil_signature.JPG';
+import wakilImgfreestyle from '../assets/images/wakil_freestyle.JPG';
 
 // --- BPH: SEKRETARIS ---
-import sekretarisImg from '../assets/images/sekre_official.jpg';
-import sekretarisImgexecutif from '../assets/images/sekre_executif.jpg';
-import sekretarisImgsignature from '../assets/images/sekre_signature.jpg';
-import sekretarisImgfreestyle from '../assets/images/sekre_freestyle.jpg';
+import sekretarisImg from '../assets/images/sekre_official.JPG';
+import sekretarisImgexecutif from '../assets/images/sekre_executif.JPG';
+import sekretarisImgsignature from '../assets/images/sekre_signature.JPG';
+import sekretarisImgfreestyle from '../assets/images/sekre_freestyle.JPG';
 
-import sekre2Imgofficial from '../assets/images/auliya_official.jpg';
-import sekre2Imgexecutif from '../assets/images/auliya_executif.jpg';
-import sekre2Imgsignature from '../assets/images/auliya_signature.jpg';
-import sekre2Imgfreestyle from '../assets/images/auliya_freestyle.jpg';
+import sekre2Imgofficial from '../assets/images/auliya_official.JPG';
+import sekre2Imgexecutif from '../assets/images/auliya_executif.JPG';
+import sekre2Imgsignature from '../assets/images/auliya_signature.JPG';
+import sekre2Imgfreestyle from '../assets/images/auliya_freestyle.JPG';
 
 // --- BPH: BENDAHARA ---
-import bendaharaImg from '../assets/images/benda_official.jpg';
-import bendaharaImgexecutif from '../assets/images/benda_executif.jpg';
-import bendaharaImgsignature from '../assets/images/benda_signature.jpg';
-import bendaharaImgfreestyle from '../assets/images/benda_freestyle.jpg';
+import bendaharaImg from '../assets/images/benda_official.JPG';
+import bendaharaImgexecutif from '../assets/images/benda_executif.JPG';
+import bendaharaImgsignature from '../assets/images/benda_signature.JPG';
+import bendaharaImgfreestyle from '../assets/images/benda_freestyle.JPG';
 
-import bendahara2Imgofficial from '../assets/images/benda2_official.jpg';
+import bendahara2Imgofficial from '../assets/images/benda2_official.JPG';
 import bendahara2Imgexecutif from '../assets/images/benda2_executif.JPG';
 import bendahara2Imgsiganture from '../assets/images/benda2_signature.JPG';
 import bendahara2Imgfreestyle from '../assets/images/benda2_freestyle.JPG';
@@ -71,79 +71,79 @@ import arfizanImgexecutif from '../assets/images/arfi_executif.JPG';
 import arfizanImgsignature from '../assets/images/arfi_signature.JPG';
 import arfizanImgfreestyle from '../assets/images/arfi_freestyle.JPG';
 
-import aqilImgofficial from '../assets/images/aqil_official.jpg';
-import aqilImgexecutif from '../assets/images/aqil_executif.jpg';
-import aqilImgsignature from '../assets/images/aqil_signature.jpg';
-import aqilImgfreestyle from '../assets/images/aqil_freestyle.jpg';
+import aqilImgofficial from '../assets/images/aqil_official.JPG';
+import aqilImgexecutif from '../assets/images/aqil_executif.JPG';
+import aqilImgsignature from '../assets/images/aqil_signature.JPG';
+import aqilImgfreestyle from '../assets/images/aqil_freestyle.JPG';
 
-import hanifaImgofficial from '../assets/images/hanifa_official.jpg';
-import hanifaImgexecutif from '../assets/images/hanifa_executif.jpg';
+import hanifaImgofficial from '../assets/images/hanifa_official.JPG';
+import hanifaImgexecutif from '../assets/images/hanifa_executif.JPG';
 import hanifaImgsignature from '../assets/images/hanifa_signature.JPG';
-import hanifaImgfreestyle from '../assets/images/hanifa_freestyle.jpg';
+import hanifaImgfreestyle from '../assets/images/hanifa_freestyle.JPG';
 
-import nauvaImgofficial from '../assets/images/nauva_official.jpg';
-import nauvaImgexecutif from '../assets/images/nauva_executif.jpg';
+import nauvaImgofficial from '../assets/images/nauva_official.JPG';
+import nauvaImgexecutif from '../assets/images/nauva_executif.JPG';
 import nauvaImgsignature from '../assets/images/nauva_signature.jpg';
 
-import febiImgofficial from '../assets/images/febi_official.jpg';
-import febiImgexecutif from '../assets/images/febi_executif.jpg';
-import febiImgsiganture from '../assets/images/febi_signature.jpg';
-import febiImgfreestyle from '../assets/images/febi_freestyle.jpg';
+import febiImgofficial from '../assets/images/febi_official.JPG';
+import febiImgexecutif from '../assets/images/febi_executif.JPG';
+import febiImgsiganture from '../assets/images/febi_signature.JPG';
+import febiImgfreestyle from '../assets/images/febi_freestyle.JPG';
 
 import ameliaImg from '../assets/images/amelia.JPG';
 import israImg from '../assets/images/isra.JPG';
 import ibnuImg from '../assets/images/ibnu_official.jpeg';
 
 // --- DIVISI PENGMAS ----
-import iviankaImgofficial from '../assets/images/ivianka_official.jpg';
-import iviankaImgexecutif from '../assets/images/ivianka_executif.jpg';
-import iviankaImgsignature from '../assets/images/ivianka_signature.jpg';
-import iviankaImgfreestyle from '../assets/images/ivianka_freestyle.jpg';
+import iviankaImgofficial from '../assets/images/ivianka_official.JPG';
+import iviankaImgexecutif from '../assets/images/ivianka_executif.JPG';
+import iviankaImgsignature from '../assets/images/ivianka_signature.JPG';
+import iviankaImgfreestyle from '../assets/images/ivianka_freestyle.JPG';
 
 import kharidaImgofficial from '../assets/images/kharida_official.jpg';
-import kharidaImgexecutif from '../assets/images/kharida_executif.jpg';
+import kharidaImgexecutif from '../assets/images/kharida_executif.JPG';
 import kharidaImgsignature from '../assets/images/kharida_signature.JPG';
 import kharidaImgfreestyle from '../assets/images/kharida_freestyle.JPG';
 
-import halimaImg from '../assets/images/halima_official.jpg';
-import halimaImgexecutif from '../assets/images/halima_executif.jpg';
-import halimaImgsignature from '../assets/images/halima_signature.jpg';
-import halimaImgfreestyle from '../assets/images/halima_freestyle.jpg';
+import halimaImg from '../assets/images/halima_official.JPG';
+import halimaImgexecutif from '../assets/images/halima_executif.JPG';
+import halimaImgsignature from '../assets/images/halima_signature.JPG';
+import halimaImgfreestyle from '../assets/images/halima_freestyle.JPG';
 
-import najwaImgofficial from '../assets/images/najwa_official.jpg';
-import najwaImgexecutif from '../assets/images/najwa_executif.jpg';
-import najwaImgsignature from '../assets/images/najwa_signature.jpg';
-import najwaImgfreestyle from '../assets/images/najwa_freestyle.jpg';
+import najwaImgofficial from '../assets/images/najwa_official.JPG';
+import najwaImgexecutif from '../assets/images/najwa_executif.JPG';
+import najwaImgsignature from '../assets/images/najwa_signature.JPG';
+import najwaImgfreestyle from '../assets/images/najwa_freestyle.JPG';
 
-import rindiImgofficial from '../assets/images/rindi_official.jpg';
-import rindiImgexecutif from '../assets/images/rindi_executif.jpg';
-import rindiImgsignature from '../assets/images/rindi_signature.jpg';
-import rindiImgfreestyle from '../assets/images/rindi_freestyle.jpg';
+import rindiImgofficial from '../assets/images/rindi_official.JPG';
+import rindiImgexecutif from '../assets/images/rindi_executif.JPG';
+import rindiImgsignature from '../assets/images/rindi_signature.JPG';
+import rindiImgfreestyle from '../assets/images/rindi_freestyle.JPG';
 
-import alfiImgofficial from '../assets/images/alfi_official.jpg';
-import alfiImgexecutif from '../assets/images/alfi_executif.jpg';
-import alfiImgsignature from '../assets/images/alfi_signature.jpg';
-import alfiImgfreestyle from '../assets/images/alfi_freestyle.jpg';
+import alfiImgofficial from '../assets/images/alfi_official.JPG';
+import alfiImgexecutif from '../assets/images/alfi_executif.JPG';
+import alfiImgsignature from '../assets/images/alfi_signature.JPG';
+import alfiImgfreestyle from '../assets/images/alfi_freestyle.JPG';
 
-import wafiqImgofficial from '../assets/images/wafiq_official.jpg';
-import wafiqImgexecutif from '../assets/images/wafiq_executif.jpg';
-import wafiqImgsignature from '../assets/images/wafiq_signature.jpg';
-import wafiqImgfreestyle from '../assets/images/wafiq_freestyle.jpg';
+import wafiqImgofficial from '../assets/images/wafiq_official.JPG';
+import wafiqImgexecutif from '../assets/images/wafiq_executif.JPG';
+import wafiqImgsignature from '../assets/images/wafiq_signature.JPG';
+import wafiqImgfreestyle from '../assets/images/wafiq_freestyle.JPG';
 
-import nadiapengmasImgofficial from '../assets/images/nadiapengmas_official.jpg';
-import nadiapengmasImgexecutif from '../assets/images/nadiapengmas_executif.jpg';
-import nadiapengmasImgsignature from '../assets/images/nadiapengmas_signature.jpg';
-import nadiapengmasImgfreestyle from '../assets/images/nadiapengmas_freestyle.jpg';
+import nadiapengmasImgofficial from '../assets/images/nadiapengmas_official.JPG';
+import nadiapengmasImgexecutif from '../assets/images/nadiapengmas_executif.JPG';
+import nadiapengmasImgsignature from '../assets/images/nadiapengmas_signature.JPG';
+import nadiapengmasImgfreestyle from '../assets/images/nadiapengmas_freestyle.JPG';
 
-import jeniferImgofficial from '../assets/images/jenifer_official.jpg';
-import jeniferImgecxecutif from '../assets/images/jenifer_executif.jpg';
-import jeniferImgsignature from '../assets/images/jenifer_signature.jpg';
-import jeniferImgfreestyle from '../assets/images/jenifer_freestyle.jpg';
+import jeniferImgofficial from '../assets/images/jenifer_official.JPG';
+import jeniferImgecxecutif from '../assets/images/jenifer_executif.JPG';
+import jeniferImgsignature from '../assets/images/jenifer_signature.JPG';
+import jeniferImgfreestyle from '../assets/images/jenifer_freestyle.JPG';
 
-import caterineImgofficial from '../assets/images/caterine_official.jpg';
-import caterineImgexecutif from '../assets/images/caterine_executif.jpg';
-import caterineImgsignature from '../assets/images/caterine_signature.jpg';
-import caterineImgfreestyle from '../assets/images/caterine_freestyle.jpg';
+import caterineImgofficial from '../assets/images/caterine_official.JPG';
+import caterineImgexecutif from '../assets/images/caterine_executif.JPG';
+import caterineImgsignature from '../assets/images/caterine_signature.JPG';
+import caterineImgfreestyle from '../assets/images/caterine_freestyle.JPG';
 
 // --- MEDKREF ---
 import medkrefKadivImg from '../assets/images/maul_official.JPG'; 
@@ -161,34 +161,34 @@ import dwikyImgexecutif from '../assets/images/dwiky_executif.JPG';
 import dwikyImgsignature from '../assets/images/dwiky_signature.JPG';
 import dwikyImgfreestyle from '../assets/images/dwiky_freestyle.JPG';
 
-import faridImgofficial from '../assets/images/farid_official.jpg';
-import faridImgexecutif from '../assets/images/farid_executif.jpg';
-import faridImgsignature from '../assets/images/farid_signature.jpg';
-import faridImgfreestyle from '../assets/images/farid_freestyle.jpg';
+import faridImgofficial from '../assets/images/farid_official.JPG';
+import faridImgexecutif from '../assets/images/farid_executif.JPG';
+import faridImgsignature from '../assets/images/farid_signature.JPG';
+import faridImgfreestyle from '../assets/images/farid_freestyle.JPG';
 
-import gheitsaimgofficial from '../assets/images/gheitsa_official.jpg';
-import gheitsaimgexecutif from '../assets/images/gheitsa_executif.jpg';
-import gheitsaimgsignature from '../assets/images/gheitsa_signature.jpg';
-import gheitsaimgfreestyle from '../assets/images/gheitsa_freestyle.jpg';
+import gheitsaimgofficial from '../assets/images/gheitsa_official.JPG';
+import gheitsaimgexecutif from '../assets/images/gheitsa_executif.JPG';
+import gheitsaimgsignature from '../assets/images/gheitsa_signature.JPG';
+import gheitsaimgfreestyle from '../assets/images/gheitsa_freestyle.JPG';
 
-import adindaImgofficial from '../assets/images/adinda_official.jpg';
-import adindaImgexecutif from '../assets/images/adinda_executif.jpg';
+import adindaImgofficial from '../assets/images/adinda_official.JPG';
+import adindaImgexecutif from '../assets/images/adinda_executif.JPG';
 import adindaImgsignature from '../assets/images/adinda_signature.jpg';
-import adindaImgfreestyle from '../assets/images/adinda_freestyle.jpg';
+import adindaImgfreestyle from '../assets/images/adinda_freestyle.JPG';
 
-import novaImgofficial from '../assets/images/nova_official.jpg';
-import novaImgexecutif from '../assets/images/nova_executif.jpg';
-import novaImgsignature from '../assets/images/nova_signature.jpg';
-import novaImgfreestyle from '../assets/images/nova_freestyle.jpg';
+import novaImgofficial from '../assets/images/nova_official.JPG';
+import novaImgexecutif from '../assets/images/nova_executif.JPG';
+import novaImgsignature from '../assets/images/nova_signature.JPG';
+import novaImgfreestyle from '../assets/images/nova_freestyle.JPG';
 
 // --- GRUP IMAGE ---
-import grupketuwaImg from '../assets/images/grup_ketuwa.jpg';
-import grupsekre from '../assets/images/grupsekre.jpg'
-import grupbenda from '../assets/images/grupbenda.jpg'
-import gruphumas from '../assets/images/gruphumas.jpg'
-import grupristek from '../assets/images/grupristek.jpg'
-import gruppengmas from '../assets/images/gruppengmas.jpg'
-import grupmedkref from '../assets/images/grupmedkref.jpg'
+import grupketuwaImg from '../assets/images/grup_ketuwa.JPG';
+import grupsekre from '../assets/images/grupsekre.JPG'
+import grupbenda from '../assets/images/grupbenda.JPG'
+import gruphumas from '../assets/images/gruphumas.JPG'
+import grupristek from '../assets/images/grupristek.JPG'
+import gruppengmas from '../assets/images/gruppengmas.JPG'
+import grupmedkref from '../assets/images/grupmedkref.JPG'
 
 
 const OurTeam = () => {
