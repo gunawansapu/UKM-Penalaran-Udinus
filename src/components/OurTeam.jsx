@@ -100,7 +100,7 @@ import iviankaImgexecutif from '../assets/images/ivianka_executif.JPG';
 import iviankaImgsignature from '../assets/images/ivianka_signature.JPG';
 import iviankaImgfreestyle from '../assets/images/ivianka_freestyle.JPG';
 
-import kharidaImgofficial from '../assets/images/kharida_official.jpg';
+import kharidaImgofficial from '../assets/images/kharida_official.JPG';
 import kharidaImgexecutif from '../assets/images/kharida_executif.JPG';
 import kharidaImgsignature from '../assets/images/kharida_signature.JPG';
 import kharidaImgfreestyle from '../assets/images/kharida_freestyle.JPG';
@@ -173,7 +173,7 @@ import gheitsaimgfreestyle from '../assets/images/gheitsa_freestyle.JPG';
 
 import adindaImgofficial from '../assets/images/adinda_official.JPG';
 import adindaImgexecutif from '../assets/images/adinda_executif.JPG';
-import adindaImgsignature from '../assets/images/adinda_signature.jpg';
+import adindaImgsignature from '../assets/images/adinda_signature.JPG';
 import adindaImgfreestyle from '../assets/images/adinda_freestyle.JPG';
 
 import novaImgofficial from '../assets/images/nova_official.JPG';
