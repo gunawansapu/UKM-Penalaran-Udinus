@@ -31,7 +31,7 @@ const About = () => {
   return (
     <div className="min-h-screen bg-slate-50 overflow-x-hidden relative font-sans">
       {/* Global Styles for Animations */}
-      <style jsx>{`
+      <style>{`
         [data-aos] { opacity: 0; transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         [data-aos="fade-up"] { transform: translateY(50px); }
         [data-aos="fade-down"] { transform: translateY(-50px); }
@@ -100,9 +100,8 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right: Image Composition (Sekarang Tampil di Mobile!) */}
+          {/* Right: Image Composition */}
           <div className="relative order-1 lg:order-2 block" data-aos="fade-left">
-            {/* Container Height Responsif: Kecil di HP, Besar di Laptop */}
             <div className="relative w-full h-[350px] sm:h-[450px] lg:h-[500px]">
               
               {/* Main Image */}
@@ -216,17 +215,17 @@ const About = () => {
         </div>
       </section>
 
-      {/* --- TEAM SECTION --- */}
-      <section className="py-20 px-6 relative z-10 bg-gradient-to-b from-slate-50 to-white">
-        <div className="max-w-7xl mx-auto">
-          
-          {/* Component Team */}
-          <div data-aos="fade-up">
-            <OurTeam />
-          </div>
+      {/* --- TEAM SECTION (FULL WIDTH FIX) --- */}
+      {/* KITA KELUARKAN DARI CONTAINER max-w-7xl AGAR FULL WIDTH */}
+      <div data-aos="fade-up" className="relative z-10 w-full">
+        <OurTeam />
+      </div>
 
+      {/* --- STATS SECTION (Terpisah) --- */}
+      <section className="pb-20 px-6 relative z-10 bg-gradient-to-b from-white to-slate-50">
+        <div className="max-w-7xl mx-auto">
           {/* Stats Floating Cards */}
-          <div className="mt-20 relative">
+          <div className="mt-10 relative">
             <div className="absolute inset-0 bg-indigo-500/5 rounded-3xl transform -rotate-1"></div>
             <div 
               data-aos="zoom-in"
@@ -252,7 +251,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* --- FOOTER CTA (KEMBALI KE DESAIN AWAL) --- */}
+      {/* --- FOOTER CTA --- */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 relative z-10">
         <QuotesSlider/>
       </section>
