@@ -154,7 +154,7 @@ import medkrefKadivImgfreestyle from '../assets/images/maul_freestyle.JPG';
 import miftahulImg from '../assets/images/miftah_official.JPG';
 import miftahulImgexecutif from '../assets/images/miftah_executif.JPG';
 import miftahulImgsignature from '../assets/images/miftah_signature.JPG';
-import miftahulImgfreestyle from '../assets/images/miftah_freestyle.jpg';
+import miftahulImgfreestyle from '../assets/images/miftah_freestyle.JPG';
 
 import dwikyImg from '../assets/images/dwiky_official.JPG';
 import dwikyImgexecutif from '../assets/images/dwiky_executif.JPG';
