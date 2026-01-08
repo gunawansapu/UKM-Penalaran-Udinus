@@ -83,7 +83,7 @@ import hanifaImgfreestyle from '../assets/images/hanifa_freestyle.JPG';
 
 import nauvaImgofficial from '../assets/images/nauva_official.JPG';
 import nauvaImgexecutif from '../assets/images/nauva_executif.JPG';
-import nauvaImgsignature from '../assets/images/nauva_signature.jpg';
+import nauvaImgsignature from '../assets/images/nauva_signature.JPG';
 
 import febiImgofficial from '../assets/images/febi_official.JPG';
 import febiImgexecutif from '../assets/images/febi_executif.JPG';
