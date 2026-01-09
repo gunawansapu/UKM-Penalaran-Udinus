@@ -1,19 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import html2canvas from 'html2canvas';
 
 // =========================================
 // 1. IMPORT GAMBAR (ASSETS)
 // =========================================
 import defaultProfileImg from '../assets/images/default_profile.png';
-
-// --- Placeholder Foto Group ---
-// Ganti dengan import foto asli jika sudah ada
-const ketuaWakilGroupImg = defaultProfileImg; 
-const sekretarisGroupImg = defaultProfileImg;
-const bendaharaGroupImg = defaultProfileImg;
-const humasGroupImg = defaultProfileImg;
-const ristekGroupImg = defaultProfileImg;
-const pengmasGroupImg = defaultProfileImg;
-const medkrefGroupImg = defaultProfileImg;
 
 // --- BPH: KETUA ---
 import ketuaImg from '../assets/images/ketua_formal.JPG';
@@ -154,7 +145,7 @@ import medkrefKadivImgfreestyle from '../assets/images/maul_freestyle.JPG';
 import miftahulImg from '../assets/images/miftah_official.JPG';
 import miftahulImgexecutif from '../assets/images/miftah_executif.JPG';
 import miftahulImgsignature from '../assets/images/miftah_signature.JPG';
-import miftahulImgfreestyle from '../assets/images/miftah_freestyle.JPG';
+import miftahulImgfreestyle from '../assets/images/miftah_freestyle.jpg';
 
 import dwikyImg from '../assets/images/dwiky_official.JPG';
 import dwikyImgexecutif from '../assets/images/dwiky_executif.JPG';
@@ -164,47 +155,46 @@ import dwikyImgfreestyle from '../assets/images/dwiky_freestyle.JPG';
 import faridImgofficial from '../assets/images/farid_official.JPG';
 import faridImgexecutif from '../assets/images/farid_executif.JPG';
 import faridImgsignature from '../assets/images/farid_signature.JPG';
-import faridImgfreestyle from '../assets/images/farid_freestyle.JPG';
+import faridImgfreestyle from '../assets/images/farid_freestyle.jpg';
 
 import gheitsaimgofficial from '../assets/images/gheitsa_official.JPG';
 import gheitsaimgexecutif from '../assets/images/gheitsa_executif.JPG';
 import gheitsaimgsignature from '../assets/images/gheitsa_signature.JPG';
-import gheitsaimgfreestyle from '../assets/images/gheitsa_freestyle.JPG';
+import gheitsaimgfreestyle from '../assets/images/gheitsa_freestyle.jpg';
 
 import adindaImgofficial from '../assets/images/adinda_official.JPG';
 import adindaImgexecutif from '../assets/images/adinda_executif.JPG';
 import adindaImgsignature from '../assets/images/adinda_signature.JPG';
-import adindaImgfreestyle from '../assets/images/adinda_freestyle.JPG';
+import adindaImgfreestyle from '../assets/images/adinda_freestyle.jpg';
 
 import novaImgofficial from '../assets/images/nova_official.JPG';
 import novaImgexecutif from '../assets/images/nova_executif.JPG';
 import novaImgsignature from '../assets/images/nova_signature.JPG';
-import novaImgfreestyle from '../assets/images/nova_freestyle.JPG';
+import novaImgfreestyle from '../assets/images/nova_freestyle.jpg';
 
 // --- GRUP IMAGE ---
 import grupketuwaImg from '../assets/images/grup_ketuwa.JPG';
-import grupsekre from '../assets/images/grupsekre.JPG'
-import grupbenda from '../assets/images/grupbenda.JPG'
-import gruphumas from '../assets/images/gruphumas.JPG'
-import grupristek from '../assets/images/grupristek.JPG'
-import gruppengmas from '../assets/images/gruppengmas.JPG'
-import grupmedkref from '../assets/images/grupmedkref.JPG'
+import grupsekre from '../assets/images/grupsekre.JPG';
+import grupbenda from '../assets/images/grupbenda.JPG';
+import gruphumas from '../assets/images/gruphumas.JPG';
+import grupristek from '../assets/images/grupristek.JPG';
+import gruppengmas from '../assets/images/gruppengmas.JPG';
+import grupmedkref from '../assets/images/grupmedkref.JPG';
 
 
 const OurTeam = () => {
   const [activeTab, setActiveTab] = useState('ketua'); 
   const [activeMemberIndex, setActiveMemberIndex] = useState(0);
   const [photoMode, setPhotoMode] = useState(0); 
+  const [isGeneratingStory, setIsGeneratingStory] = useState(false);
 
-  // Reset saat ganti Tab
+  // Ref untuk Story Card
+  const storyCardRef = useRef(null);
+
   useEffect(() => {
     setActiveMemberIndex(0);
     setPhotoMode(0);
   }, [activeTab]);
-
-  // =================================================================
-  // DEFINISI VARIABLE PENTING (Harus di dalam komponen)
-  // =================================================================
 
   const photoModes = [
     { id: 0, label: 'Official', key: 'image1' },    
@@ -224,22 +214,49 @@ const OurTeam = () => {
     { id: 'medkref', label: 'Medkref' }
   ];
 
-  // 2. SISTEM POSISI CERDAS
-  const getSmartPosition = (member, modeId) => {
+  // 2. SISTEM POSISI CERDAS (CSS VALUES, BUKAN TAILWIND CLASS)
+  const getSmartPositionCSS = (member, modeId) => {
+    // Override manual jika ada
     if (member.customPos && member.customPos[modeId]) {
-      return member.customPos[modeId];
+      // Pastikan formatnya CSS standard, jika user input class tailwind, kita convert manual
+      // (Asumsi data masih pake format lama, kita mapping kasar)
+      const val = member.customPos[modeId];
+      if(val.includes('object-top')) return '50% 0%';
+      if(val.includes('object-center')) return '50% 50%';
+      // Extract percentage from 'object-[x_y]'
+      const match = val.match(/object-\[(.*?)\]/);
+      if (match) return match[1].replace('_', ' ');
+      return '50% 50%';
     }
+
     const frameType = member.frameType || 'standard';
     
     switch (frameType) {
-        case 'closeup': return 'object-top'; 
+        case 'closeup': return '50% 0%'; // Top
         case 'standard':
         default:
             switch (modeId) {
-                case 0: return 'object-top'; 
-                case 1: return 'object-[50%_25%]'; 
-                case 2: return 'object-top'; 
-                case 3: return 'object-top'; // FIX FREESTYLE
+                case 0: return '50% 0%'; // Top
+                case 1: return '50% 25%'; // Agak turun
+                case 2: return '50% 0%'; // Top
+                case 3: return '50% 20%'; // FIX FREESTYLE (Agak turun dikit biar wajah dapet)
+                default: return '50% 50%';
+            }
+    }
+  };
+
+  // Helper untuk tampilan di Web (Tailwind Classes)
+  const getSmartPositionClass = (member, modeId) => {
+    if (member.customPos && member.customPos[modeId]) return member.customPos[modeId];
+    const frameType = member.frameType || 'standard';
+    switch (frameType) {
+        case 'closeup': return 'object-top';
+        default:
+            switch (modeId) {
+                case 0: return 'object-top';
+                case 1: return 'object-[50%_25%]';
+                case 2: return 'object-top';
+                case 3: return 'object-[50%_20%]'; // FIX FREESTYLE CLASS
                 default: return 'object-center';
             }
     }
@@ -416,9 +433,7 @@ const OurTeam = () => {
     }
   };
 
-  // LOGIKA PENGAMANAN (Safety Check untuk mencegah delay/crash)
   const currentGroup = teamData[activeTab]?.members || [];
-  // Pastikan currentMember ada, jika index diluar jangkauan, ambil yang ke-0
   const currentMember = currentGroup[activeMemberIndex] || currentGroup[0];
   const showThumbnails = currentGroup.length > 1;
 
@@ -427,7 +442,37 @@ const OurTeam = () => {
     desc: teamData[activeTab]?.groupDesc || ''
   };
 
-  // Jika data belum siap (saat transisi tab cepat), tampilkan loading atau null
+  // FUNGSI SHARE IG STORY
+  const handleShareToIG = async () => {
+    if (!storyCardRef.current || isGeneratingStory) return;
+    
+    setIsGeneratingStory(true);
+    try {
+      await new Promise(resolve => setTimeout(resolve, 800)); 
+
+      const canvas = await html2canvas(storyCardRef.current, {
+        scale: 2, 
+        backgroundColor: '#0B0F19', 
+        useCORS: true,
+        allowTaint: true,
+        logging: false, // Matikan log biar bersih
+      });
+
+      const image = canvas.toDataURL("image/png");
+      
+      const link = document.createElement('a');
+      link.href = image;
+      link.download = `Story-${currentMember.name.replace(/\s+/g, '-')}.png`;
+      link.click();
+
+    } catch (err) {
+      console.error("Error creating story:", err);
+      alert("Gagal membuat story. Coba lagi.");
+    } finally {
+      setIsGeneratingStory(false);
+    }
+  };
+
   if (!currentMember) return null; 
 
   return (
@@ -477,18 +522,38 @@ const OurTeam = () => {
             {/* KIRI: FOTO BESAR */}
             <div className="lg:w-1/2 relative bg-gradient-to-br from-slate-800 to-slate-900 group min-h-[400px] lg:h-auto overflow-hidden">
                 
+                {/* SHARE BUTTON */}
+                <button 
+                  onClick={handleShareToIG}
+                  disabled={isGeneratingStory}
+                  style={{
+                      // PAKAI STYLE MANUAL AGAR WARNA BENAR (OVERRIDE CSS GLOBAL)
+                      backgroundColor: 'rgba(0,0,0,0.4)', 
+                      borderColor: 'rgba(255,255,255,0.2)',
+                      color: '#ffffff'
+                  }}
+                  className="absolute top-4 right-4 z-50 p-3 rounded-full border transition-all duration-300 shadow-lg cursor-pointer hover:bg-purple-600"
+                  title="Download for IG Story"
+                >
+                   {isGeneratingStory ? (
+                     <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24" style={{ color: '#fff' }}><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                   ) : (
+                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#fff' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                   )}
+                </button>
+
                 {/* LOOPING 4 FOTO */}
                 {photoModes.map((mode) => (
                     <img 
                         key={mode.id}
                         src={currentMember[mode.key] || defaultProfileImg} 
                         alt={`${currentMember.name} ${mode.label}`}
-                        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out ${getSmartPosition(currentMember, mode.id)} 
+                        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out ${getSmartPositionClass(currentMember, mode.id)} 
                         ${photoMode === mode.id ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}
                     />
                 ))}
                 
-                {/* FIX REDUP: Gradient hanya di bawah untuk teks, wajah tetap bening */}
+                {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-90 lg:opacity-80 z-20 pointer-events-none"></div>
 
                 {/* 2. TOMBOL 4 MODE */}
@@ -514,7 +579,6 @@ const OurTeam = () => {
 
             {/* KANAN: INFO */}
             <div className="lg:w-1/2 p-8 md:p-12 flex flex-col justify-center relative !bg-slate-900/50">
-                {/* Tambahkan Key di div ini agar animasi ulang saat ganti orang */}
                 <div key={currentMember.name} className="animate-fadeInRight space-y-6">
                     <div>
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full !bg-purple-500/10 border border-purple-500/20 mb-4">
@@ -580,11 +644,10 @@ const OurTeam = () => {
                                 <img 
                                     src={member.image1} 
                                     alt={member.name} 
-                                    className={`w-full h-full object-cover transform transition-transform duration-500 ${getSmartPosition(member, 0)} ${
+                                    className={`w-full h-full object-cover transform transition-transform duration-500 ${getSmartPositionClass(member, 0)} ${
                                         activeMemberIndex === index ? 'scale-110' : 'scale-100 group-hover:scale-110'
                                     }`}
                                 />
-                                {/* FIX REDUP: Overlay lebih tipis (opacity 40), hilang saat hover */}
                                 {activeMemberIndex !== index && (
                                     <div className="absolute inset-0 !bg-slate-900/40 group-hover:!bg-transparent transition-colors"></div>
                                 )}
@@ -624,6 +687,116 @@ const OurTeam = () => {
             </div>
         </div>
 
+      </div>
+
+      {/* =================================================================
+          HIDDEN STORY CARD (PURE HTML/CSS - NO TAILWIND CLASS)
+          Warna manual HEX untuk menghindari error oklch
+          Z-Index -10 agar dirender di belakang layar
+      ================================================================= */}
+      <div 
+        ref={storyCardRef}
+        style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '1080px',
+            height: '1920px',
+            zIndex: -10, // Sembunyikan di belakang
+            background: '#0B0F19', // Hex Only
+            backgroundImage: 'linear-gradient(180deg, #0B0F19 0%, #1a1f2e 100%)',
+            fontFamily: 'sans-serif',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column',
+            color: '#ffffff' // Force white text
+        }}
+      >
+        {/* Background Accent */}
+        <div style={{ position: 'absolute', top: '-10%', left: '-20%', width: '1200px', height: '1200px', background: 'radial-gradient(circle, #8b5cf6 0%, transparent 70%)', opacity: 0.15, filter: 'blur(80px)' }}></div>
+        <div style={{ position: 'absolute', bottom: '-10%', right: '-20%', width: '1000px', height: '1000px', background: 'radial-gradient(circle, #3b82f6 0%, transparent 70%)', opacity: 0.15, filter: 'blur(80px)' }}></div>
+
+        {/* Content Wrapper */}
+        <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', padding: '80px', boxSizing: 'border-box' }}>
+            
+            {/* Top Badge */}
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '60px' }}>
+                <div style={{ 
+                    padding: '12px 32px', 
+                    borderRadius: '50px', 
+                    background: 'rgba(255,255,255,0.1)', 
+                    border: '2px solid rgba(255,255,255,0.2)',
+                    color: '#ffffff',
+                    fontSize: '28px',
+                    fontWeight: 'bold',
+                    letterSpacing: '2px',
+                    textTransform: 'uppercase'
+                }}>
+                    UKM Penalaran Team
+                </div>
+            </div>
+
+            {/* Photo Container */}
+            <div style={{ 
+                flex: 1, 
+                position: 'relative', 
+                borderRadius: '60px', 
+                overflow: 'hidden', 
+                boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
+                border: '4px solid rgba(255,255,255,0.1)',
+                backgroundColor: '#1e293b'
+            }}>
+                <img 
+                    src={currentMember[photoModes[photoMode].key] || defaultProfileImg}
+                    alt="Story"
+                    style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'cover',
+                        objectPosition: getSmartPositionCSS(currentMember, photoMode) // Gunakan CSS value
+                    }}
+                />
+                
+                {/* Overlay Text inside Photo */}
+                <div style={{ 
+                    position: 'absolute', 
+                    bottom: 0, 
+                    left: 0, 
+                    right: 0, 
+                    background: 'linear-gradient(to top, #0f172a 0%, transparent 100%)', // Hex gradient
+                    padding: '60px',
+                    paddingTop: '150px'
+                }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '20px' }}>
+                        <span style={{ height: '6px', width: '60px', background: '#A855F7', borderRadius: '10px' }}></span>
+                        <span style={{ color: '#D8B4FE', fontSize: '32px', fontWeight: '600', letterSpacing: '2px', textTransform: 'uppercase' }}>
+                            {teamData[activeTab].label}
+                        </span>
+                    </div>
+                    
+                    <h1 style={{ color: '#ffffff', fontSize: '80px', fontWeight: '900', lineHeight: '1.1', marginBottom: '20px', textShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+                        {currentMember.name}
+                    </h1>
+                    
+                    <p style={{ color: '#94A3B8', fontSize: '40px', fontWeight: '500' }}>
+                        {currentMember.role}
+                    </p>
+                </div>
+            </div>
+
+            {/* Bottom Quote area */}
+            <div style={{ marginTop: '60px', padding: '40px', background: 'rgba(255,255,255,0.05)', borderRadius: '40px', borderLeft: '10px solid #3B82F6' }}>
+                <p style={{ color: '#E2E8F0', fontSize: '36px', fontStyle: 'italic', lineHeight: '1.5' }}>
+                    "{currentMember.desc || 'Berkomitmen untuk kemajuan organisasi.'}"
+                </p>
+            </div>
+
+            {/* Footer */}
+            <div style={{ marginTop: '60px', textAlign: 'center', color: '#64748B', fontSize: '24px', fontWeight: '600', letterSpacing: '4px' }}>
+                https://penalaranudinus.netlify.app
+            </div>
+
+        </div>
       </div>
 
       <style>{`
