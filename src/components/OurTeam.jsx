@@ -145,7 +145,7 @@ import medkrefKadivImgfreestyle from '../assets/images/maul_freestyle.JPG';
 import miftahulImg from '../assets/images/miftah_official.JPG';
 import miftahulImgexecutif from '../assets/images/miftah_executif.JPG';
 import miftahulImgsignature from '../assets/images/miftah_signature.JPG';
-import miftahulImgfreestyle from '../assets/images/miftah_freestyle.jpg';
+import miftahulImgfreestyle from '../assets/images/miftah_freestyle.JPG';
 
 import dwikyImg from '../assets/images/dwiky_official.JPG';
 import dwikyImgexecutif from '../assets/images/dwiky_executif.JPG';
@@ -155,22 +155,22 @@ import dwikyImgfreestyle from '../assets/images/dwiky_freestyle.JPG';
 import faridImgofficial from '../assets/images/farid_official.JPG';
 import faridImgexecutif from '../assets/images/farid_executif.JPG';
 import faridImgsignature from '../assets/images/farid_signature.JPG';
-import faridImgfreestyle from '../assets/images/farid_freestyle.jpg';
+import faridImgfreestyle from '../assets/images/farid_freestyle.JPG';
 
 import gheitsaimgofficial from '../assets/images/gheitsa_official.JPG';
 import gheitsaimgexecutif from '../assets/images/gheitsa_executif.JPG';
 import gheitsaimgsignature from '../assets/images/gheitsa_signature.JPG';
-import gheitsaimgfreestyle from '../assets/images/gheitsa_freestyle.jpg';
+import gheitsaimgfreestyle from '../assets/images/gheitsa_freestyle.JPG';
 
 import adindaImgofficial from '../assets/images/adinda_official.JPG';
 import adindaImgexecutif from '../assets/images/adinda_executif.JPG';
 import adindaImgsignature from '../assets/images/adinda_signature.JPG';
-import adindaImgfreestyle from '../assets/images/adinda_freestyle.jpg';
+import adindaImgfreestyle from '../assets/images/adinda_freestyle.JPG';
 
 import novaImgofficial from '../assets/images/nova_official.JPG';
 import novaImgexecutif from '../assets/images/nova_executif.JPG';
 import novaImgsignature from '../assets/images/nova_signature.JPG';
-import novaImgfreestyle from '../assets/images/nova_freestyle.jpg';
+import novaImgfreestyle from '../assets/images/nova_freestyle.JPG';
 
 // --- GRUP IMAGE ---
 import grupketuwaImg from '../assets/images/grup_ketuwa.JPG';
