@@ -186,11 +186,7 @@ const OurTeam = () => {
   const [activeTab, setActiveTab] = useState('ketua'); 
   const [activeMemberIndex, setActiveMemberIndex] = useState(0);
   const [photoMode, setPhotoMode] = useState(0); 
-  
-  // State untuk proses generate image
   const [isGeneratingStory, setIsGeneratingStory] = useState(false);
-  const [resultImage, setResultImage] = useState(null); // Menyimpan hasil gambar
-  const [showResultModal, setShowResultModal] = useState(false); // Menampilkan Modal
 
   // Ref untuk Story Card
   const storyCardRef = useRef(null);
@@ -218,32 +214,38 @@ const OurTeam = () => {
     { id: 'medkref', label: 'Medkref' }
   ];
 
-  // 2. SISTEM POSISI CERDAS (CSS VALUES)
+  // 2. SISTEM POSISI CERDAS (CSS VALUES, BUKAN TAILWIND CLASS)
   const getSmartPositionCSS = (member, modeId) => {
+    // Override manual jika ada
     if (member.customPos && member.customPos[modeId]) {
+      // Pastikan formatnya CSS standard, jika user input class tailwind, kita convert manual
+      // (Asumsi data masih pake format lama, kita mapping kasar)
       const val = member.customPos[modeId];
       if(val.includes('object-top')) return '50% 0%';
       if(val.includes('object-center')) return '50% 50%';
+      // Extract percentage from 'object-[x_y]'
       const match = val.match(/object-\[(.*?)\]/);
       if (match) return match[1].replace('_', ' ');
       return '50% 50%';
     }
 
     const frameType = member.frameType || 'standard';
+    
     switch (frameType) {
-        case 'closeup': return '50% 0%'; 
+        case 'closeup': return '50% 0%'; // Top
         case 'standard':
         default:
             switch (modeId) {
-                case 0: return '50% 0%'; 
-                case 1: return '50% 25%'; 
-                case 2: return '50% 0%'; 
-                case 3: return '50% 20%'; 
+                case 0: return '50% 0%'; // Top
+                case 1: return '50% 25%'; // Agak turun
+                case 2: return '50% 0%'; // Top
+                case 3: return '50% 20%'; // FIX FREESTYLE (Agak turun dikit biar wajah dapet)
                 default: return '50% 50%';
             }
     }
   };
 
+  // Helper untuk tampilan di Web (Tailwind Classes)
   const getSmartPositionClass = (member, modeId) => {
     if (member.customPos && member.customPos[modeId]) return member.customPos[modeId];
     const frameType = member.frameType || 'standard';
@@ -254,7 +256,7 @@ const OurTeam = () => {
                 case 0: return 'object-top';
                 case 1: return 'object-[50%_25%]';
                 case 2: return 'object-top';
-                case 3: return 'object-[50%_20%]'; 
+                case 3: return 'object-[50%_20%]'; // FIX FREESTYLE CLASS
                 default: return 'object-center';
             }
     }
@@ -440,49 +442,32 @@ const OurTeam = () => {
     desc: teamData[activeTab]?.groupDesc || ''
   };
 
-  // =========================================
-  // FUNGSI UTAMA: SHARE / GENERATE IMAGE
-  // =========================================
+  // FUNGSI SHARE IG STORY
   const handleShareToIG = async () => {
     if (!storyCardRef.current || isGeneratingStory) return;
     
     setIsGeneratingStory(true);
-    setResultImage(null); // Reset image lama jika ada
-
     try {
-      // 1. Tunggu sebentar agar render DOM stabil (terutama gambar)
       await new Promise(resolve => setTimeout(resolve, 800)); 
 
-      // 2. Generate Canvas -> PNG Data URL
-      // PENTING: useCORS true agar gambar dari luar (jika ada) bisa dirender.
-      // PENTING: allowTaint false (default) agar toDataURL tidak diblokir.
       const canvas = await html2canvas(storyCardRef.current, {
-        scale: 2, // Resolusi tinggi (Retina)
+        scale: 2, 
         backgroundColor: '#0B0F19', 
         useCORS: true,
-        logging: false,
+        allowTaint: true,
+        logging: false, // Matikan log biar bersih
       });
 
-      const imgData = canvas.toDataURL("image/png");
-      setResultImage(imgData); // Simpan ke state untuk ditampilkan di Modal
-      setShowResultModal(true); // Buka Modal
-
-      // 3. Coba Download Otomatis (Hanya berhasil di Desktop/Chrome Android biasa)
-      // Di IG Browser, ini sering gagal, makanya kita butuh Modal sebagai fallback.
-      try {
-        const link = document.createElement('a');
-        link.href = imgData;
-        link.download = `Story-${currentMember.name.replace(/\s+/g, '-')}.png`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } catch (e) {
-        console.log("Auto-download blocked by browser, user needs to save manually.");
-      }
+      const image = canvas.toDataURL("image/png");
+      
+      const link = document.createElement('a');
+      link.href = image;
+      link.download = `Story-${currentMember.name.replace(/\s+/g, '-')}.png`;
+      link.click();
 
     } catch (err) {
       console.error("Error creating story:", err);
-      alert("Gagal membuat gambar. Silakan coba lagi.");
+      alert("Gagal membuat story. Coba lagi.");
     } finally {
       setIsGeneratingStory(false);
     }
@@ -663,7 +648,6 @@ const OurTeam = () => {
                                         activeMemberIndex === index ? 'scale-110' : 'scale-100 group-hover:scale-110'
                                     }`}
                                 />
-                                {/* FIX REDUP: Overlay lebih tipis (opacity 40), hilang saat hover */}
                                 {activeMemberIndex !== index && (
                                     <div className="absolute inset-0 !bg-slate-900/40 group-hover:!bg-transparent transition-colors"></div>
                                 )}
@@ -714,18 +698,21 @@ const OurTeam = () => {
         ref={storyCardRef}
         style={{
             position: 'fixed',
-            left: '-9999px', // Sembunyikan dari layar
             top: 0,
+            left: 0,
             width: '1080px',
             height: '1920px',
+            zIndex: -10, // Sembunyikan di belakang
             background: '#0B0F19', // Hex Only
             backgroundImage: 'linear-gradient(180deg, #0B0F19 0%, #1a1f2e 100%)',
             fontFamily: 'sans-serif',
             overflow: 'hidden',
-            zIndex: -10 // Pastikan di belakang agar tidak menutupi
+            display: 'flex',
+            flexDirection: 'column',
+            color: '#ffffff' // Force white text
         }}
       >
-        {/* Background Accent - Pakai style manual */}
+        {/* Background Accent */}
         <div style={{ position: 'absolute', top: '-10%', left: '-20%', width: '1200px', height: '1200px', background: 'radial-gradient(circle, #8b5cf6 0%, transparent 70%)', opacity: 0.15, filter: 'blur(80px)' }}></div>
         <div style={{ position: 'absolute', bottom: '-10%', right: '-20%', width: '1000px', height: '1000px', background: 'radial-gradient(circle, #3b82f6 0%, transparent 70%)', opacity: 0.15, filter: 'blur(80px)' }}></div>
 
@@ -749,13 +736,13 @@ const OurTeam = () => {
                 </div>
             </div>
 
-            {/* Photo Container - FIX BORDER RADIUS & SHADOW */}
+            {/* Photo Container */}
             <div style={{ 
                 flex: 1, 
                 position: 'relative', 
                 borderRadius: '60px', 
                 overflow: 'hidden', 
-                boxShadow: '0 40px 100px -20px rgba(0,0,0,0.5)',
+                boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
                 border: '4px solid rgba(255,255,255,0.1)',
                 backgroundColor: '#1e293b'
             }}>
@@ -811,62 +798,6 @@ const OurTeam = () => {
 
         </div>
       </div>
-
-      {/* =================================================================
-          RESULT MODAL (POPUP HASIL GAMBAR)
-          Ditambahkan agar user di IG Browser bisa save manual
-      ================================================================= */}
-      {showResultModal && resultImage && (
-        <div 
-            style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                zIndex: 9999,
-                backgroundColor: 'rgba(0,0,0,0.9)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '20px'
-            }}
-            onClick={() => setShowResultModal(false)}
-        >
-            <div style={{ color: 'white', marginBottom: '15px', textAlign: 'center', fontWeight: 'bold' }}>
-                Tekan lama gambar untuk menyimpan
-            </div>
-            
-            <img 
-                src={resultImage} 
-                alt="Generated Story" 
-                style={{ 
-                    maxHeight: '80vh', 
-                    maxWidth: '100%', 
-                    borderRadius: '15px', 
-                    boxShadow: '0 0 20px rgba(255,255,255,0.1)' 
-                }} 
-                onClick={(e) => e.stopPropagation()} // Supaya klik gambar tidak nutup modal
-            />
-
-            <button 
-                onClick={() => setShowResultModal(false)}
-                style={{
-                    marginTop: '20px',
-                    padding: '10px 20px',
-                    backgroundColor: 'white',
-                    color: 'black',
-                    border: 'none',
-                    borderRadius: '50px',
-                    fontWeight: 'bold',
-                    cursor: 'pointer'
-                }}
-            >
-                Tutup
-            </button>
-        </div>
-      )}
 
       <style>{`
         @keyframes fadeInRight {
