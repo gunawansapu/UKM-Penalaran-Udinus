@@ -1,363 +1,108 @@
-import { Calendar, ArrowRight, Search, Filter } from 'lucide-react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import Lottie from "lottie-react";
-import bookAnim from "../assets/Books.json"; // Ganti dengan animasi kamu
+import { Calendar, ArrowRight, Search, Zap, Newspaper, BookOpen } from 'lucide-react';
+import bookAnim from "../assets/Books.json";
+import { activityList } from '../data/aktifitasDetail'; // Pastikan path benar
 
 const newsList = [
-  {
-  id: 7,
-  title: 'Coaching Clinic x Dinus Lib 2025 Hari Pertama: Belajar Tanda Baca & EYD ✍️',
-  date: '4 Oktober 2025',
-  description: 'Hari pertama Coaching Clinic x Dinus Lib 2025 resmi dimulai! Peserta antusias mengikuti sesi pembelajaran tentang penggunaan tanda baca dan kaidah EYD yang baik dan benar sebagai dasar penulisan ilmiah yang berkualitas. Kegiatan berlangsung interaktif dan penuh semangat bersama pemateri dari UKM Penalaran. 📚',
-  image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/DSC00058.JPG',
-  category: 'Kegiatan'
-},
-    {
-    id: 1,
-    title: 'Amelia Calista dan Tim berhasil raih Gold Medal ISPC 2025.🏆',
-    date: '16 September 2025',
-    description: '"Selamat kepada Amelia Calista Salah satu anggota penalaran dan tim karena telah mendapat Gold Medal dari International Science Project Competition (ISPC) 2025 offline competition by IYSA x Udinus 💛! Semoga prestasi ini menginspirasi seluruh mahasiswa UDINUS untuk terus berinovasi dan meraih prestasi. Proud of them 🎊",',
-    image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/Screenshot%202025-09-16%20at%2018-18-39%20(3)%20Instagram.png',
-    category: 'Prestasi'
-  },
-  {
-    id: 2,
-    title: ' Juara 2 🏆 krenova kategori mahasiswa tahun 2025 ',
-    date: '8 September 2025',
-    description: 'Kayla Assifa Rizqi Utami, mahasiswa teknik biomedis berhasil meraih Juara 2 Krenova 2025 Kategori Mahasiswa melalui karya inovatif yang mencerminkan kreativitas sekaligus solusi nyata bagi masyarakat. Prestasi ini menjadi bukti semangat generasi muda dalam menghadirkan inovasi yang bermanfaat dan berdaya guna.',
-    image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/2.jpg',
-    category: 'Prestasi'
-  },
-  {
-    id: 3,
-    title: 'PENALARAN BERPRESTASI',
-    date: '16 November 2022',
-    description: 'Anggota UKM Penalaran kembali lagi mengukir prestasi👏Selamat dan sukses kepada Afinzaki Amiral atas lolosnya pendanaan riset melalui LPDP dalam program Garuda Research and Academic of Excellence (Garuda ACE) 2022 serta mendapatkan Letter of Experience (LoA) dari profesor USA.Semoga kedepannya bisa terus berkarya serta dapat memberikan semangat dan motivasi kepada seluruh mahasiswa/i Universitas Dian Nuswantoro untuk selalu meningkatkan inovasi dan prestasi. #UKMPenalaran #Penalaran #PenalaranUdinus',
-    image: 'https://raw.githubusercontent.com/gunawansapu/avatar/main/Screenshot%202025-08-28%20at%2018-51-16%20(3)%20Instagram.png',
-    category: 'Prestasi'
-  },
-  {
-    id: 4,
-    title: 'UKM Penalaran X DinusLib : Eksplorasi Ide Inovatif untuk Penelitian',
-    date: '18 Juli 2025',
-    description: 'Eksplorasi ide inovatif untuk penelitian',
-    image: 'https://dinus.ac.id/wp-content/uploads/2025/06/Coaching-Clinic-Dinuslib-1-scaled.jpg',
-    category: 'Diskusi'
-  },
-  {
-    id: 5,
-    title: 'Wisudawan Terbaik Universitas Dian Nuswantoro🤩',
-    date: '31 Agustus 2022',
-    description: 'Selamat kepada senior UKM Penalaran Usamah Bienladen (@ladenoesami )NIM E11.2018.00933. Telah terpilih sebagai wisudawan terbaik berprestasi angkatan ke-75. .Semoga gelar dan prestasi yang diperoleh dapat bermanfaat bagi diri sendiri dan masyarakat. Serta dapat menjadi motivasi bagi teman-teman UKM Penalaran dan mahasiswa UDINUS. ✨. Ayo join UKM Penalaran, menggapai prestasi bersama!',
-    image: 'https://raw.githubusercontent.com/gunawansapu/avatar/main/Screenshot%202025-08-28%20at%2018-56-46%20(3)%20Instagram.png',
-    category: 'Prestasi'
-  },
-  {
-    id: 6,
-    title: 'Di Danai Proposal KBMI💰',
-    date: '5 Agustus 2020',
-    description: 'Selamat dan sukses kepada Team yang lolos KBMI 2020 semoga dapat memberikan semangat dan motivasi kepada seluruh mahasiswa/i UDINUS untuk mampu terus meningkatkan inovasi dan prestasi. Semoga tahun depan bisa semakin banyak lagi yang akan mendapatkan pendanaan proposal baik KBMI maupun lainya dari Kemendikbud. Aamiin.... Congratulation 🎊 Proud of them💕',
-    image: 'https://raw.githubusercontent.com/gunawansapu/avatar/main/Screenshot%202025-08-30%20at%2020-50-35%20(3)%20Instagram.png',
-    category: 'Prestasi'
-  },
-
+  { id: 7, title: 'Coaching Clinic x Dinus Lib 2025 Hari Pertama: Belajar Tanda Baca & EYD ✍️', date: '4 Oktober 2025', description: 'Hari pertama Coaching Clinic x Dinus Lib 2025 resmi dimulai! Peserta antusias mengikuti sesi pembelajaran tentang penggunaan tanda baca dan kaidah EYD yang baik dan benar sebagai dasar penulisan ilmiah yang berkualitas.', image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/DSC00058.JPG', category: 'Workshop' },
+  { id: 1, title: 'Amelia Calista dan Tim berhasil raih Gold Medal ISPC 2025.🏆', date: '16 September 2025', description: 'Selamat kepada Amelia Calista dan tim karena telah mendapat Gold Medal dari International Science Project Competition (ISPC) 2025!', image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/Screenshot%202025-09-16%20at%2018-18-39%20(3)%20Instagram.png', category: 'Prestasi' },
+  { id: 2, title: 'Juara 2 Krenova Kategori Mahasiswa 2025', date: '8 September 2025', description: 'Kayla Assifa Rizqi Utami berhasil meraih Juara 2 Krenova 2025 melalui karya inovatif yang mencerminkan kreativitas.', image: 'https://raw.githubusercontent.com/gunawansapu/dokumentasi-penalaran/main/2.jpg', category: 'Prestasi' },
+  { id: 3, title: 'PENALARAN BERPRESTASI', date: '16 November 2022', description: 'Anggota UKM Penalaran kembali mengukir prestasi melalui pendanaan riset LPDP.', image: 'https://raw.githubusercontent.com/gunawansapu/avatar/main/Screenshot%202025-08-28%20at%2018-51-16%20(3)%20Instagram.png', category: 'Prestasi' },
+  { id: 4, title: 'UKM Penalaran X DinusLib', date: '18 Juli 2025', description: 'Eksplorasi ide inovatif untuk penelitian bersama DinusLib.', image: 'https://dinus.ac.id/wp-content/uploads/2025/06/Coaching-Clinic-Dinuslib-1-scaled.jpg', category: 'Diskusi' },
+  { id: 5, title: 'Wisudawan Terbaik Universitas Dian Nuswantoro🤩', date: '31 Agustus 2022', description: 'Selamat kepada senior UKM Penalaran Usamah Bienladen terpilih sebagai wisudawan terbaik.', image: 'https://raw.githubusercontent.com/gunawansapu/avatar/main/Screenshot%202025-08-28%20at%2018-56-46%20(3)%20Instagram.png', category: 'Prestasi' },
 ];
 
-const categories = ['Semua', 'Prestasi', 'Diskusi', 'Workshop'];
-
-// Tambahkan prop onNewsClick untuk navigasi (akan dihandle oleh React Router)
 const News = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [searchTerm, setSearchTerm] = useState('');
-  const [showSearch, setShowSearch] = useState(false);
-  const [likedNews, setLikedNews] = useState(new Set());
-  const [bookmarkedNews, setBookmarkedNews] = useState(new Set());
 
   const filteredNews = newsList.filter(news => {
     const matchesCategory = selectedCategory === 'Semua' || news.category === selectedCategory;
     const matchesSearch = news.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         news.description.toLowerCase().includes(searchTerm.toLowerCase());
+                          news.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
-  const toggleLike = (newsId) => {
-    const newLiked = new Set(likedNews);
-    if (newLiked.has(newsId)) {
-      newLiked.delete(newsId);
-    } else {
-      newLiked.add(newsId);
-    }
-    setLikedNews(newLiked);
-  };
-
-  const toggleBookmark = (newsId) => {
-    const newBookmarked = new Set(bookmarkedNews);
-    if (newBookmarked.has(newsId)) {
-      newBookmarked.delete(newsId);
-    } else {
-      newBookmarked.add(newsId);
-    }
-    setBookmarkedNews(newBookmarked);
-  };
-
-  // Handler untuk navigasi ke detail menggunakan React Router
-  const handleNewsClick = (newsId) => {
-    navigate(`/news/${newsId}`);
-  };
-
   return (
-    <section className="min-h-screen py-8 sm:py-16 px-4 sm:px-6 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50" style={{colorScheme: 'light'}}>
-      <div className="max-w-7xl mx-auto">
-        {/* Header Section - Mobile Optimized */}
-        <div className="text-center mb-8 sm:mb-16">
-          <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-xs sm:text-sm font-medium mb-4 border border-blue-200" style={{colorScheme: 'light'}}>
-            📰 Berita Terkini
+    <section className="min-h-screen bg-[#f8fafc] py-24 px-6 relative overflow-hidden">
+      {/* Ambient Background */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-200/30 rounded-full blur-[120px] pointer-events-none"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-2 bg-indigo-50 text-indigo-600 rounded-full text-sm font-bold mb-4 border border-indigo-100 shadow-sm">
+            <Newspaper size={16} className="mr-2" /> Berita Terkini
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4 sm:mb-6">
-            Informasi Terbaru
+          <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">
+            Pusat <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Informasi</span>
           </h1>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed px-2">
-            Ikuti perkembangan terbaru seputar kegiatan dan pencapaian 
-            <span className="font-semibold text-indigo-600"> UKM Penalaran UDINUS</span>
-          </p>
         </div>
 
-        {/* Search and Filter Section - Mobile First */}
-        <div className="mb-6 sm:mb-8">
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-between">
-            {/* Search Bar */}
-            <div className="relative flex-1 order-2 sm:order-1">
-              <div className={`flex items-center bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm transition-all duration-300 ${showSearch ? 'ring-2 ring-indigo-500' : ''}`}>
-                <Search className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 ml-3" />
-                <input
-                  type="text"
-                  placeholder="Cari berita..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  onFocus={() => setShowSearch(true)}
-                  onBlur={() => setShowSearch(false)}
-                  className="flex-1 px-3 py-2 sm:py-3 bg-transparent text-gray-800 placeholder-gray-500 focus:outline-none text-sm sm:text-base"
-                  style={{colorScheme: 'light'}}
+        {/* Filter & Search Bento Bar */}
+        <div className="bg-white/70 backdrop-blur-xl rounded-[2rem] p-4 shadow-lg border border-white mb-12 flex flex-col md:flex-row gap-4 items-center">
+            <div className="relative w-full md:flex-1">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+                <input 
+                    className="w-full pl-12 pr-4 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:ring-4 focus:ring-indigo-500/20 focus:outline-none font-medium"
+                    placeholder="Cari judul berita..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                {searchTerm && (
-                  <button
-                    onClick={() => setSearchTerm('')}
-                    className="mr-3 text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    ✕
-                  </button>
-                )}
-              </div>
             </div>
-
-            {/* Category Filter - Mobile Scrollable */}
-            <div className="order-1 sm:order-2">
-              <div className="flex gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-hide">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`flex-shrink-0 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
-                      selectedCategory === category
-                        ? 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-md'
-                        : 'bg-white/60 text-gray-700 hover:bg-white/80'
-                    }`}
-                    style={{colorScheme: 'light'}}
-                  >
-                    {category}
-                  </button>
+            <div className="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+                {['Semua', 'Prestasi', 'Diskusi', 'Workshop'].map(cat => (
+                    <button 
+                        key={cat}
+                        onClick={() => setSelectedCategory(cat)}
+                        className={`px-6 py-4 rounded-2xl font-bold whitespace-nowrap transition-all ${selectedCategory === cat ? '!bg-slate-900 !text-white shadow-lg' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                    >
+                        {cat}
+                    </button>
                 ))}
-              </div>
             </div>
-          </div>
         </div>
 
-        {/* Results Count */}
-        {(searchTerm || selectedCategory !== 'Semua') && (
-          <div className="mb-4 text-sm text-gray-600">
-            Menampilkan {filteredNews.length} berita
-            {searchTerm && ` untuk "${searchTerm}"`}
-            {selectedCategory !== 'Semua' && ` dalam kategori "${selectedCategory}"`}
-          </div>
-        )}
-
-        {/* News Grid - Responsive */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {filteredNews.map((news) => (
-            <article
-              key={news.id}
-              className="group bg-white/70 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 border border-white/50 overflow-hidden cursor-pointer"
-              style={{colorScheme: 'light'}}
-              onClick={() => handleNewsClick(news.id)}
-            >
-              {/* Image Container */}
-              <div className="relative overflow-hidden">
-                <img
-                  src={news.image}
-                  alt={news.title}
-                  className="w-full h-40 sm:h-48 lg:h-56 object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                {/* Category Badge */}
-                <div className="absolute top-3 left-3">
-                  <span className="inline-flex items-center px-2 sm:px-3 py-1 bg-white/90 backdrop-blur-sm text-indigo-600 text-xs font-semibold rounded-full border border-white/50">
-                    {news.category}
-                  </span>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent card click
-                      toggleLike(news.id);
-                    }}
-                    className={`w-8 h-8 rounded-full backdrop-blur-sm border border-white/50 flex items-center justify-center transition-all duration-300 ${
-                      likedNews.has(news.id)
-                        ? 'bg-red-500 text-white'
-                        : 'bg-white/90 text-gray-600 hover:bg-red-500 hover:text-white'
-                    }`}
-                  >
-                    ❤️
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent card click
-                      toggleBookmark(news.id);
-                    }}
-                    className={`w-8 h-8 rounded-full backdrop-blur-sm border border-white/50 flex items-center justify-center transition-all duration-300 ${
-                      bookmarkedNews.has(news.id)
-                        ? 'bg-yellow-500 text-white'
-                        : 'bg-white/90 text-gray-600 hover:bg-yellow-500 hover:text-white'
-                    }`}
-                  >
-                    🔖
-                  </button>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-4 sm:p-6">
-                <div className="flex items-center text-gray-500 text-xs sm:text-sm mb-2 sm:mb-3">
-                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                  {news.date}
-                </div>
-                
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3 leading-tight group-hover:text-indigo-600 transition-colors duration-300 line-clamp-2">
-                  {news.title}
-                </h3>
-                
-                <p className="text-gray-600 text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-3">
-                  {news.description}
-                </p>
-                
-                {/* Enhanced button */}
-                <button 
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent double trigger
-                    handleNewsClick(news.id);
-                  }}
-                  className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 sm:py-2.5 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-medium text-sm rounded-lg shadow-md hover:shadow-lg group/btn transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:scale-[0.98]"
-                  style={{colorScheme: 'light'}}
-                >
-                  Selengkapnya
-                  <ArrowRight className="w-4 h-4 ml-2 transform group-hover/btn:translate-x-1 transition-transform duration-300" />
-                </button>
-              </div>
-            </article>
-          ))}
+        {/* Bento News Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredNews.map((news) => (
+                <article key={news.id} className="group bento-card bg-white rounded-[2rem] p-3 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div className="relative h-64 rounded-[1.5rem] overflow-hidden mb-6">
+                        <img src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold text-indigo-600 border border-white">{news.category}</div>
+                    </div>
+                    <div className="px-3 pb-3">
+                        <div className="flex items-center text-slate-400 text-sm mb-3">
+                            <Calendar size={14} className="mr-2" /> {news.date}
+                        </div>
+                        <h3 className="text-xl font-black text-slate-900 mb-3 leading-snug group-hover:text-indigo-600 transition-colors">{news.title}</h3>
+                        <p className="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-3">{news.description}</p>
+                        
+                        <button 
+                            onClick={() => navigate(`/news/${news.id}`)}
+                            className="group/btn w-full flex items-center justify-center gap-2 px-5 py-4 rounded-2xl !bg-slate-50 hover:!bg-indigo-600 transition-all duration-300"
+                        >
+                            <span className="font-bold !text-indigo-600 group-hover/btn:!text-white transition-colors duration-300">Detail Berita</span>
+                            <ArrowRight className="!text-indigo-600 group-hover/btn:!text-white transition-colors" size={18} />
+                        </button>
+                    </div>
+                </article>
+            ))}
         </div>
 
-        {/* No Results Message */}
-        {filteredNews.length === 0 && (
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Tidak ada berita ditemukan</h3>
-            <p className="text-gray-600 mb-4">Coba ubah kata kunci atau filter kategori</p>
-            <button
-              onClick={() => {
-                setSearchTerm('');
-                setSelectedCategory('Semua');
-              }}
-              className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
-            >
-              Reset Filter
-            </button>
-          </div>
-        )}
-
-        {/* Bottom CTA - Mobile Optimized */}
-      <div className="text-center mt-12 sm:mt-16">
-      <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-4 sm:mb-6 shadow-lg">
-        <Lottie 
-          animationData={bookAnim} 
-          loop={true} 
-         className="w-14 h-14 sm:w-16 sm:h-16" // Sesuaikan ukuran di sini
-        />
-      </div>
-
-      <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
-        Ingin Tahu Lebih Banyak?
-      </h3>
-      <p className="text-gray-600 mb-6 sm:mb-8 max-w-md mx-auto px-4">
-        Jangan lewatkan update terbaru dari kegiatan UKM Penalaran
-      </p>
-
-      <button 
-        onClick={() => navigate('/semua-berita')}
-        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-[0.98]"
-        style={{ colorScheme: 'light' }}
-      >
-        Lihat Semua Berita
-      </button>
-    </div>
-
-        {/* Quick Stats - Mobile Friendly */}
-        <div className="mt-12 sm:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="text-center p-4 bg-white/40 backdrop-blur-sm rounded-xl border border-white/50">
-            <div className="text-2xl font-bold text-indigo-600 mb-1">{newsList.length}</div>
-            <div className="text-xs sm:text-sm text-gray-600">Total Berita</div>
-          </div>
-          <div className="text-center p-4 bg-white/40 backdrop-blur-sm rounded-xl border border-white/50">
-            <div className="text-2xl font-bold text-blue-600 mb-1">{likedNews.size}</div>
-            <div className="text-xs sm:text-sm text-gray-600">Disukai</div>
-          </div>
-          <div className="text-center p-4 bg-white/40 backdrop-blur-sm rounded-xl border border-white/50">
-            <div className="text-2xl font-bold text-green-600 mb-1">{bookmarkedNews.size}</div>
-            <div className="text-xs sm:text-sm text-gray-600">Disimpan</div>
-          </div>
-          <div className="text-center p-4 bg-white/40 backdrop-blur-sm rounded-xl border border-white/50">
-            <div className="text-2xl font-bold text-purple-600 mb-1">{categories.length - 1}</div>
-            <div className="text-xs sm:text-sm text-gray-600">Kategori</div>
-          </div>
+        {/* Bottom CTA */}
+        <div className="mt-24 text-center">
+             <div className="w-20 h-20 mx-auto bg-indigo-100 rounded-3xl flex items-center justify-center mb-6">
+                <Lottie animationData={bookAnim} className="w-12 h-12" />
+             </div>
+             <h3 className="text-3xl font-black text-slate-900 mb-4">Ingin tahu lebih banyak?</h3>
+             <button className="px-8 py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-all">Lihat Semua Berita</button>
         </div>
       </div>
-
-      {/* Custom CSS for line clamp and scrollbar hide */}
-      <style jsx>{`
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </section>
   );
 };

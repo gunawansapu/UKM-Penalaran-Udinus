@@ -117,20 +117,20 @@ const Hero = () => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
           </span>
-          <span className="text-xs font-extrabold tracking-[0.2em] text-indigo-900 uppercase">Unit Kegiatan Mahasiswa</span>
+          <span className="text-xs font-extrabold tracking-[0.2em] text-indigo-900 uppercase">𝒰𝒩𝐼𝒯 𝒦𝐸𝒢𝐼𝒜𝒯𝒜𝒩 𝑀𝒜𝐻𝒜𝒮𝐼𝒮𝒲𝒜</span>
         </div>
 
         {/* MASSIVE TYPOGRAPHY */}
         <div className="relative mb-8 md:mb-12 perspective-text">
           <h1 className="text-5xl sm:text-7xl md:text-9xl font-black text-slate-900 leading-[0.9] tracking-tighter drop-shadow-xl">
             <span className="block bg-clip-text text-transparent bg-gradient-to-b from-slate-800 to-slate-600 transform hover:scale-105 transition-transform duration-500 cursor-default">
-              UKM
+              𝒰𝒦𝑀
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 animate-gradient-x pb-2 md:pb-4 transform hover:scale-105 transition-transform duration-500 cursor-default filter drop-shadow-sm">
-              PENALARAN
+              𝒫𝑒𝓃𝒶𝓁𝒶𝓇𝒶𝓃
             </span>
             <span className="block text-3xl sm:text-5xl md:text-6xl font-extrabold text-slate-400 mt-2 md:mt-4 tracking-normal transform hover:scale-105 transition-transform duration-500 cursor-default">
-              UDINUS
+              𝒰𝒹𝒾𝓃𝓊𝓈
             </span>
           </h1>
         </div>
@@ -138,7 +138,8 @@ const Hero = () => {
         {/* Description */}
         <div className="relative max-w-2xl mx-auto mb-12 p-6 md:p-8 bg-white/30 backdrop-blur-md rounded-3xl border border-white/60 shadow-xl animate-fade-in-up group hover:bg-white/50 transition-all duration-500" style={{animationDelay: '0.3s'}}>
           <p className="text-base md:text-xl text-slate-700 font-medium leading-relaxed">
-            Menginspirasi kreativitas, mengembangkan keilmiahan, dan membangun intelektualitas mahasiswa UDINUS melalui riset dan penalaran inovatif.
+            𝙈𝙚𝙣𝙜𝙞𝙣𝙨𝙥𝙞𝙧𝙖𝙨𝙞 𝙠𝙧𝙚𝙖𝙩𝙞𝙫𝙞𝙩𝙖𝙨, 𝙢𝙚𝙣𝙜𝙚𝙢𝙗𝙖𝙣𝙜𝙠𝙖𝙣 𝙠𝙚𝙞𝙡𝙢𝙞𝙖𝙝𝙖𝙣, 𝙙𝙖𝙣 𝙢𝙚𝙢𝙗𝙖𝙣𝙜𝙪𝙣 𝙞𝙣𝙩𝙚𝙡𝙚𝙠𝙩𝙪𝙖𝙡𝙞𝙩𝙖𝙨 𝙢𝙖𝙝𝙖𝙨𝙞𝙨𝙬𝙖 𝙐𝘿𝙄𝙉𝙐𝙎 𝙢𝙚𝙡𝙖𝙡𝙪𝙞 𝙧𝙞𝙨𝙚𝙩 𝙙𝙖𝙣 𝙥𝙚𝙣𝙖𝙡𝙖𝙧𝙖𝙣 𝙞𝙣𝙤𝙫𝙖𝙩𝙞𝙛.
+
           </p>
         </div>
 

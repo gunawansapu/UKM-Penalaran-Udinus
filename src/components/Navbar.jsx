@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Brain, Lightbulb, Users,  Newspaper, Phone, GalleryVerticalEnd, HelpCircle } from 'lucide-react';
+import { Menu, X, Brain, Lightbulb, Users, Newspaper, Phone, GalleryVerticalEnd, HelpCircle } from 'lucide-react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
@@ -15,178 +15,175 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Menutup menu mobile jika rute berubah
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
   const navItems = [
     { label: 'Beranda', to: '/', icon: <Users size={16} /> },
     { label: 'Tentang', to: '/tentang', icon: <Brain size={16} /> },
     { label: 'Kegiatan', to: '/kegiatan', icon: <Lightbulb size={16} /> },
-    { label: 'Berita', to: '/berita', icon:<Newspaper size={16} />},
-    { label: 'Galeri', to: '/galeri', icon:<GalleryVerticalEnd size={16} /> },
-    { label: 'Kontak', to: '/kontak', icon:<Phone size={16} />},
-    { label: 'Kuis', to: '/kuis',  icon:<HelpCircle size={16} /> },
+    { label: 'Berita', to: '/berita', icon: <Newspaper size={16} /> },
+    { label: 'Galeri', to: '/galeri', icon: <GalleryVerticalEnd size={16} /> },
+    { label: 'Kontak', to: '/kontak', icon: <Phone size={16} /> },
+    { label: 'Kuis', to: '/kuis', icon: <HelpCircle size={16} /> },
   ];
 
-  const handleMobileNavClick = () => {
-    setOpen(false);
-  };
-
   return (
-    <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'shadow-lg border-b' 
-          : 'shadow-md'
-      }`}
-      style={{
-        backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.90)',
-        backdropFilter: scrolled ? 'blur(12px)' : 'blur(4px)',
-        borderBottomColor: scrolled ? '#f3f4f6' : 'transparent'
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+    <header className="fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+      {/* Wrapper utama - pointer-events-auto agar bisa diklik */}
+      <div className="w-full max-w-5xl relative pointer-events-auto">
+        
+        {/* Floating Capsule Main Navbar */}
+        <nav 
+          className={`relative flex items-center justify-between px-3 py-2 !rounded-full transition-all duration-500 ease-out border ${
+            scrolled 
+              ? '!bg-white/80 backdrop-blur-xl border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.12)] translate-y-0' 
+              : '!bg-white/60 backdrop-blur-md border-white/30 shadow-[0_4px_20px_rgb(0,0,0,0.05)] translate-y-1'
+          }`}
+        >
+          {/* Logo Section */}
           <Link 
             to="/"
-            className="flex items-center space-x-3 group transition-transform duration-300 hover:scale-105"
+            className="flex items-center space-x-3 px-2 group transition-transform duration-300 hover:scale-105"
           >
-            <div className="relative">
-             <div className="w-10 h-10 rounded-xl flex items-center justify-center">
-  <img
-    src="https://raw.githubusercontent.com/gunawansapu/avatar/main/penalaran.png"
-    alt="Logo Brain"
-    className="w-full h-full object-contain"
-  />
-</div>
-
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
+            <div className="relative flex-shrink-0">
+              {/* Container Logo Dibundarkan Penuh */}
+              <div className="w-10 h-10 !rounded-full bg-white flex items-center justify-center shadow-md border-2 border-indigo-50 overflow-hidden">
+                <img
+                  src="https://raw.githubusercontent.com/gunawansapu/avatar/main/penalaran.png"
+                  alt="Logo"
+                  className="w-full h-full object-cover !rounded-full"
+                />
+              </div>
+              <div className="absolute top-0 -right-1 w-3 h-3 bg-green-400 border-2 border-white !rounded-full animate-pulse z-10"></div>
             </div>
-            <div className="block">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-700 to-purple-700 bg-clip-text text-transparent">
-                 Penalaran
+            
+            {/* Teks dengan Special Character yang kamu mau */}
+            <div className="flex flex-col justify-center">
+              <h1 
+                className="text-[1.5rem] sm:text-[1.7rem] bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent leading-none drop-shadow-sm pb-1"
+                aria-label="Penalaran"
+              >
+                𝓟𝓮𝓷𝓪𝓵𝓪𝓻𝓪𝓷
               </h1>
-              <p className="text-xs font-medium" style={{ color: '#374151' }}>UDINUS</p>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Navigation (Pill layout) */}
+          <div className="hidden lg:flex items-center p-1 space-x-1 !bg-white/40 border border-gray-200/50 !rounded-full">
             {navItems.map(({ label, to, icon }) => (
               <NavLink
                 key={to}
                 to={to}
+                // Memaksa warna text-white saat active dan menghilangkan style bentrok
+                style={({ isActive }) => ({ color: isActive ? '#ffffff' : '' })}
                 className={({ isActive }) => 
-                  `relative flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 group ${
+                  `relative flex items-center space-x-1.5 px-4 py-2 !rounded-full text-sm font-semibold transition-all duration-300 group ${
                     isActive 
-                      ? 'text-white bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg' 
-                      : 'hover:text-white hover:bg-gradient-to-r hover:from-indigo-600 hover:to-purple-600 hover:shadow-lg'
+                      ? '!bg-gradient-to-r !from-indigo-600 !to-purple-600 !text-white shadow-md' 
+                      : '!text-gray-600 hover:!text-indigo-600 hover:!bg-white/80'
                   }`
                 }
-                style={({ isActive }) => ({
-                  color: isActive ? '#ffffff' : '#1f2937'
-                })}
               >
                 {({ isActive }) => (
-                  <>
+                  <div className="relative z-10 flex items-center space-x-1.5">
                     {icon && (
-                      <span 
-                        className={`transition-all duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}
-                        style={{ color: isActive ? '#ffffff' : '#1f2937' }}
-                      >
+                      <span className={`transition-transform duration-300 ${isActive ? 'scale-100 !text-white' : 'group-hover:scale-110 !text-gray-400 group-hover:!text-indigo-500'}`}>
                         {icon}
                       </span>
                     )}
-                    <span 
-                      className="font-semibold transition-colors duration-300"
-                      style={{ color: isActive ? '#ffffff' : '#1f2937' }}
-                    >
-                      {label}
-                    </span>
-                  </>
+                    <span className={isActive ? '!text-white' : ''}>{label}</span>
+                  </div>
                 )}
               </NavLink>
             ))}
-          </nav>
+          </div>
 
-          {/* Mobile Menu Button - Fixed untuk tidak terpengaruh dark mode */}
+          {/* Mobile Menu Toggle Button (Override Total Warna Cyan) */}
           <button
-            className="lg:hidden relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-1 border"
+            type="button"
+            className={`lg:hidden relative w-10 h-10 !rounded-full flex items-center justify-center transition-all duration-300 shadow-sm !border !outline-none ${
+              open 
+                ? '!bg-indigo-50 !border-indigo-200 !text-indigo-600 rotate-90' 
+                : '!bg-white !border-gray-200 !text-gray-700 hover:!bg-gray-50'
+            }`}
             onClick={() => setOpen(!open)}
-            style={{ 
-              backgroundColor: open ? '#e0e7ff' : '#eef2ff',
-              borderColor: '#c7d2fe',
-              focusRingColor: '#4338ca'
-            }}
+            aria-label="Toggle Menu"
           >
             <div className="relative w-5 h-5 flex items-center justify-center">
               <Menu 
-                size={18} 
-                className={`absolute transition-all duration-300 ${
-                  open ? 'opacity-0 rotate-180 scale-75' : 'opacity-100 rotate-0 scale-100'
-                }`}
-                style={{ color: '#4338ca' }}
+                size={22} 
+                strokeWidth={2.5}
+                className={`absolute transition-all duration-300 ${open ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}
               />
               <X 
-                size={18} 
-                className={`absolute transition-all duration-300 ${
-                  open ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-180 scale-75'
-                }`}
-                style={{ color: '#4338ca' }}
+                size={22} 
+                strokeWidth={2.5}
+                className={`absolute transition-all duration-300 ${open ? 'opacity-100 scale-100 -rotate-90' : 'opacity-0 scale-50 rotate-90'}`}
               />
             </div>
           </button>
+        </nav>
+
+        {/* Mobile Navigation Dropdown (Floating Card) */}
+        <div 
+          className={`lg:hidden absolute top-[calc(100%+1rem)] left-0 w-full transition-all duration-400 ease-out origin-top ${
+            open ? 'opacity-100 translate-y-0 scale-100 visible' : 'opacity-0 -translate-y-4 scale-95 invisible'
+          }`}
+        >
+          <div className="!bg-white/95 backdrop-blur-xl border border-white/80 shadow-[0_20px_40px_rgb(0,0,0,0.1)] !rounded-3xl p-3 overflow-hidden">
+            <nav className="flex flex-col space-y-1">
+              {navItems.map(({ label, to, icon }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  className={({ isActive }) =>
+                    `relative flex items-center px-4 py-3.5 !rounded-2xl text-sm font-semibold transition-all duration-300 ${
+                      isActive 
+                        ? '!bg-gradient-to-r !from-indigo-50 !to-purple-50 !text-indigo-600' 
+                        : '!text-gray-600 hover:!bg-gray-50 hover:!text-indigo-600'
+                    }`
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      {/* Active Indicator Line */}
+                      <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 !rounded-r-full bg-gradient-to-b from-indigo-500 to-purple-500 transition-all duration-300 ${isActive ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`}></div>
+                      
+                      <div className="flex items-center space-x-3 ml-2">
+                        <span className={`p-1.5 !rounded-xl transition-colors duration-300 ${isActive ? '!bg-white shadow-sm !text-indigo-500' : '!bg-gray-100 !text-gray-500'}`}>
+                          {icon}
+                        </span>
+                        <span>{label}</span>
+                      </div>
+                    </>
+                  )}
+                </NavLink>
+              ))}
+            </nav>
+            
+            {/* Quick Action Mobile Footer */}
+            <div className="mt-3 p-4 bg-gradient-to-br from-indigo-600 to-purple-600 !rounded-2xl flex items-center justify-between !text-white shadow-lg">
+              <div>
+                <h4 className="font-semibold text-sm !text-white">Punya Pertanyaan?</h4>
+                <p className="text-xs !text-white/80 mt-0.5">Hubungi tim kami sekarang</p>
+              </div>
+              <Link to="/kontak" onClick={() => setOpen(false)} className="px-5 py-2 !bg-white !text-indigo-600 !rounded-xl text-xs font-bold hover:shadow-md transition-all duration-300 active:scale-95">
+                Chat
+              </Link>
+            </div>
+          </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <div className={`lg:hidden transition-all duration-300 ease-in-out ${
-          open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        } overflow-hidden`}>
-          <nav className="py-4 space-y-2">
-            {navItems.map(({ label, to, icon }) => (
-              <NavLink
-                key={to}
-                to={to}
-                onClick={handleMobileNavClick}
-                className={({ isActive }) =>
-                  `relative w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 group ${
-                    isActive 
-                      ? 'bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg transform scale-105' 
-                      : 'bg-gradient-to-r from-gray-700 to-gray-800 hover:from-indigo-600 hover:to-purple-600 hover:transform hover:scale-105 hover:shadow-md'
-                  }`
-                }
-                style={{ color: '#ffffff' }}
-              >
-                {({ isActive }) => (
-                  <>
-                    {icon && (
-                      <span className="flex-shrink-0" style={{ color: '#ffffff' }}>
-                        {icon}
-                      </span>
-                    )}
-                    <span className="text-left" style={{ color: '#ffffff' }}>
-                      {label}
-                    </span>
-                    <div className="flex-1"></div>
-                    <div 
-                      className={`w-2 h-2 rounded-full transition-colors duration-300`}
-                      style={{ 
-                        backgroundColor: '#ffffff', 
-                        opacity: isActive ? 0.7 : 0.4 
-                      }}
-                    ></div>
-                  </>
-                )}
-              </NavLink>
-            ))}
-          </nav>
-        </div>
       </div>
 
-      {/* Mobile Overlay */}
+      {/* Background Overlay for Mobile Menu */}
       {open && (
         <div 
-          className="lg:hidden fixed inset-0 backdrop-blur-sm z-[-1]"
+          className="lg:hidden fixed inset-0 z-[-1] !bg-slate-900/10 backdrop-blur-sm transition-opacity duration-300"
           onClick={() => setOpen(false)}
-          style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
         ></div>
       )}
     </header>

@@ -38,7 +38,7 @@ const Gallery = () => {
             </svg>
           </div>
           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent mb-4">
-            Galeri Kegiatan
+           𝓖𝓪𝓵𝓮𝓻𝓲 𝓚𝓮𝓰𝓲𝓪𝓽𝓪𝓷
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Dokumentasi kegiatan UKM Penalaran UDINUS yang membangun semangat berpikir kritis dan kolaboratif
