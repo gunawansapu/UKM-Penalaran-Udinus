@@ -117,7 +117,7 @@ const Hero = () => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
           </span>
-          <span className="text-xs font-extrabold tracking-[0.2em] text-indigo-900 uppercase">𝒰𝒩𝐼𝒯 𝒦𝐸𝒢𝐼𝒜𝒯𝒜𝒩 𝑀𝒜𝐻𝒜𝒮𝐼𝒮𝒲𝒜</span>
+          <span className="text-xs font-extrabold tracking-[0.2em] text-indigo-900 uppercase">UNIT KEGIATAN MAHASISWA</span>
         </div>
 
         {/* MASSIVE TYPOGRAPHY */}
