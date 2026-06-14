@@ -312,10 +312,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Scroll to Top Button */}
+      {/* --- Scroll to Top Button (Apple Glassmorphism Style) --- */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 w-14 h-14 bg-slate-900 text-white rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.2)] flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 active:scale-95 z-50 border border-white/10 ${showScrollTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'}`}
+        className={`fixed bottom-6 right-6 w-14 h-14 !bg-white/60 backdrop-blur-xl !border !border-white/60 !text-slate-800 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center justify-center transition-all duration-500 ease-out hover:!bg-white/90 hover:scale-110 hover:shadow-[0_12px_40px_rgb(0,0,0,0.15)] active:scale-95 z-50 outline-none ${showScrollTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-8 pointer-events-none'}`}
         aria-label="Scroll to top"
       >
         <ArrowUpRight size={24} className="-rotate-45" />

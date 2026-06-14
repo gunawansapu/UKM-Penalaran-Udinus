@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Brain, Lightbulb, Users, Newspaper, Phone, GalleryVerticalEnd, HelpCircle } from 'lucide-react';
+import { Menu, X, Brain, Lightbulb, Users, Newspaper, Phone, GalleryVerticalEnd } from 'lucide-react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
@@ -27,7 +27,6 @@ const Navbar = () => {
     { label: 'Berita', to: '/berita', icon: <Newspaper size={16} /> },
     { label: 'Galeri', to: '/galeri', icon: <GalleryVerticalEnd size={16} /> },
     { label: 'Kontak', to: '/kontak', icon: <Phone size={16} /> },
-    { label: 'Kuis', to: '/kuis', icon: <HelpCircle size={16} /> },
   ];
 
   return (
@@ -57,7 +56,6 @@ const Navbar = () => {
                   className="w-full h-full object-cover !rounded-full"
                 />
               </div>
-              <div className="absolute top-0 -right-1 w-3 h-3 bg-green-400 border-2 border-white !rounded-full animate-pulse z-10"></div>
             </div>
             
             {/* Teks dengan Special Character yang kamu mau */}
