@@ -7,6 +7,11 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
+  // JIKA BERADA DI HALAMAN ADMIN, SEMBUNYIKAN NAVBAR SEPENUHNYA
+  if (location.pathname.startsWith('/admin')) {
+    return null;
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);

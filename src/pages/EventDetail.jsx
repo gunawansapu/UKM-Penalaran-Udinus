@@ -1,177 +1,136 @@
+// src/pages/EventDetail.jsx
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { activityList } from '../data/aktifitasDetail';
-
-// --- IMPORT VIDEO TUTORIAL ---
-import videoTutorial from '../assets/images/tutorial.mp4'; 
+import { db } from '../config/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const found = activityList.find(e => e.id === parseInt(id));
-    setEvent(found);
-    window.scrollTo(0, 0);
+    const fetchEventDetail = async () => {
+      try {
+        const docRef = doc(db, "events", id);
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+          setEvent({ id: docSnap.id, ...docSnap.data() });
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching event: ", error);
+      } finally {
+        setLoading(false);
+        window.scrollTo(0, 0);
+      }
+    };
+
+    fetchEventDetail();
   }, [id]);
+
+  if (loading) {
+      return <div className="min-h-screen flex items-center justify-center bg-slate-50 animate-pulse text-lg text-slate-500">Memuat detail kegiatan...</div>;
+  }
 
   if (!event) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <div className="text-center p-8 bg-white rounded-3xl shadow-xl border border-slate-100 max-w-sm w-full mx-4">
-          <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
           <h3 className="text-lg font-bold text-slate-900">Kegiatan tidak ditemukan</h3>
-          <Link to="/kegiatan" className="text-blue-600 font-semibold mt-4 block hover:underline">
-            Kembali ke Daftar
-          </Link>
+          <Link to="/kegiatan" className="text-blue-600 font-semibold mt-4 block hover:underline">Kembali ke Daftar</Link>
         </div>
       </div>
     );
   }
 
-  const isRegistrationOpen = event.status === 'upcoming' || event.status === 'ongoing';
+  // --- LOGIKA UTAMA ---
+  // Pendaftaran HANYA BUKA jika statusnya benar-benar 'upcoming' (Akan Datang)
+  const isRegistrationOpen = event.status === 'upcoming';
 
   const getStatusColor = (status) => {
-    switch (status) {
-      case 'upcoming': return 'bg-emerald-500 text-white shadow-emerald-200';
-      case 'ongoing': return 'bg-blue-600 text-white shadow-blue-200';
-      case 'closed': return 'bg-rose-500 text-white shadow-rose-200';
-      case 'completed': return 'bg-slate-500 text-white shadow-slate-200';
-      default: return 'bg-gray-500 text-white';
-    }
+    if (status === 'closed' || status === 'Ditutup') return 'bg-rose-500 text-white';
+    return 'bg-emerald-500 text-white'; // Untuk ongoing atau upcoming
   };
 
   const getStatusText = (status) => {
-    switch (status) {
-      case 'upcoming': return '🎯 Akan Datang';
-      case 'ongoing': return '⚡ Berlangsung';
-      case 'closed': return '🔒 Ditutup';
-      case 'completed': return '✅ Selesai';
-      default: return 'Status';
-    }
-  };
-
-  const getButtonStyle = (type) => {
-    const baseStyle = "w-full flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-xl font-bold transition-all duration-200 active:scale-95 shadow-sm";
-    switch (type) {
-      case 'primary': return `${baseStyle} bg-blue-600 hover:bg-blue-700 !text-white shadow-blue-200 hover:shadow-md border border-transparent`;
-      case 'secondary': return `${baseStyle} bg-white border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50`;
-      case 'outline': return `${baseStyle} bg-transparent border-2 border-slate-200 text-slate-600 hover:border-slate-800 hover:text-slate-800`;
-      case 'whatsapp': return `${baseStyle} bg-[#25D366] hover:bg-[#20bd5a] !text-white shadow-green-200 hover:shadow-md border border-transparent`;
-      default: return `${baseStyle} bg-slate-800 !text-white`;
-    }
+    if (status === 'closed' || status === 'Ditutup') return '🔒 Ditutup';
+    if (status === 'ongoing' || status === 'Sedang Berlangsung') return '🟢 Sedang Berlangsung';
+    return '🎯 Akan Datang';
   };
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] relative overflow-hidden font-sans">
-      <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-blue-50/50 to-transparent -z-10"></div>
-      
-      <div className="relative py-8 sm:py-12 px-4 sm:px-6">
+      <div className="relative py-8 sm:py-12 px-4 sm:px-6 mt-16">
         <div className="max-w-6xl mx-auto">
           
-          <Link to="/kegiatan" className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-slate-600 hover:text-blue-600 rounded-xl transition-all font-semibold shadow-sm hover:shadow-md border border-slate-200 mb-8 group">
-            <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
+          <Link to="/kegiatan" className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-slate-600 hover:text-blue-600 rounded-xl transition-all font-semibold shadow-sm border border-slate-200 mb-8">
             Kembali
           </Link>
 
-          <div className="bg-white rounded-[2rem] shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100">
-            
-            {/* --- HEADER GAMBAR --- */}
+          <div className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-slate-100">
+            {/* Header Gambar */}
             <div className="relative h-64 sm:h-[26rem] overflow-hidden group">
-              <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
               <div className="absolute top-6 left-6 right-6 flex flex-wrap justify-between items-start gap-3">
-                <span className="bg-white/95 backdrop-blur-sm text-slate-800 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">{event.category}</span>
-                <span className={`${getStatusColor(event.status)} px-4 py-1.5 rounded-full text-xs font-bold shadow-lg uppercase tracking-wide`}>{getStatusText(event.status)}</span>
+                <span className="bg-white/95 text-slate-800 px-4 py-1.5 rounded-full text-xs font-bold uppercase">{event.category}</span>
+                <span className={`${getStatusColor(event.status)} px-4 py-1.5 rounded-full text-xs font-bold uppercase shadow-md`}>{getStatusText(event.status)}</span>
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
-                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4 drop-shadow-sm">{event.title}</h1>
-                <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-white/90">
-                  {event.date && (
-                    <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                      <span className="font-medium text-sm sm:text-base">{event.date}</span>
-                    </div>
-                  )}
-                  {event.price !== undefined && (
-                    <div className="flex items-center gap-2 bg-emerald-500/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-lg shadow-emerald-900/20">
-                      <span className="font-bold text-sm sm:text-base">
-                        {typeof event.price === 'number' ? (event.price === 0 ? 'GRATIS' : `Rp ${event.price.toLocaleString('id-ID')}`) : event.price}
-                      </span>
-                    </div>
-                  )}
+                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4">{event.title}</h1>
+                <div className="flex flex-wrap items-center gap-3 text-white/90">
+                  <div className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">
+                    <span className="font-medium text-sm sm:text-base">{event.date}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="grid lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-100">
-              
-              {/* --- KONTEN UTAMA (Kiri) --- */}
-              <div className="lg:col-span-2 p-6 sm:p-10">
-                
-                {/* Deskripsi */}
-                <div className="mb-12">
-                  <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2 mb-6">
-                    <span className="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" /></svg>
-                    </span>
-                    Deskripsi
-                  </h2>
+              {/* KONTEN UTAMA */}
+              <div className="lg:col-span-2 p-6 sm:p-10 space-y-10">
+                <div>
+                  <h2 className="text-xl font-bold text-slate-900 mb-6">Deskripsi Kegiatan</h2>
                   <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed text-justify whitespace-pre-line">
                     {event.description}
                   </div>
                 </div>
-
-                {/* Buku Panduan (Flipbook) */}
-                {event.embedHtml && (
-                  <div className="mb-12">
-                    <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2 mb-6">
-                      <span className="w-8 h-8 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                      </span>
-                      Buku Panduan
+                
+                {/* TUTORIAL PENDAFTARAN */}
+                {(event.tutorialText || event.tutorialImage || event.tutorialVideo) && (
+                  <div className="bg-indigo-50/60 rounded-3xl p-6 sm:p-8 border border-indigo-100 space-y-6">
+                    <h3 className="text-xl font-bold text-indigo-950 flex items-center gap-2">
+                      📖 Panduan & Tutorial Pendaftaran
                     </h3>
-                    <div className="w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200" dangerouslySetInnerHTML={{ __html: event.embedHtml }} />
-                  </div>
-                )}
-
-                {/* --- VIDEO TUTORIAL BESAR (HANYA UNTUK LKTIN ID 4) --- */}
-                {event.id === 4 && (
-                  <div className="mb-12 bg-slate-900 rounded-[2rem] p-6 sm:p-10 shadow-2xl shadow-blue-900/20 border border-slate-800">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-                      <div>
-                        <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-3">
-                          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-white animate-pulse">
-                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/></svg>
-                          </span>
-                          Tutorial Akses Link
-                        </h3>
-                        <p className="text-slate-400 mt-2 text-sm sm:text-base">Bingung cara melewati link? Tonton video panduan ini sampai habis.</p>
+                    {event.tutorialText && (
+                      <div className="text-slate-700 whitespace-pre-line leading-relaxed bg-white p-5 rounded-2xl shadow-sm border border-indigo-50 font-medium">
+                        {event.tutorialText}
                       </div>
-                    </div>
-                    
-                    <div className="relative w-full rounded-2xl overflow-hidden bg-black aspect-video shadow-2xl ring-4 ring-slate-800">
-                      <video className="w-full h-full" controls playsInline>
-                        <source src={videoTutorial} type="video/mp4" />
-                        Browser Anda tidak mendukung tag video.
-                      </video>
-                    </div>
+                    )}
+                    {event.tutorialImage && (
+                      <div className="space-y-2">
+                        <p className="text-xs font-bold text-indigo-900 uppercase tracking-wider">Infografis Alur Pendaftaran:</p>
+                        <img src={event.tutorialImage} alt="Tutorial Pendaftaran" className="rounded-2xl max-h-[400px] w-full object-contain bg-white p-2 border border-indigo-100 shadow-sm" />
+                      </div>
+                    )}
+                    {event.tutorialVideo && (
+                      <div className="space-y-2">
+                        <p className="text-xs font-bold text-indigo-900 uppercase tracking-wider">Video Panduan:</p>
+                        <div className="relative aspect-video rounded-2xl overflow-hidden shadow-sm border border-indigo-100 bg-black">
+                          <iframe src={event.tutorialVideo} title="Video Tutorial" className="w-full h-full" allowFullScreen></iframe>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
 
                 {/* Syarat & Ketentuan */}
-                {event.requirements && (
-                  <div className="bg-amber-50 rounded-2xl p-6 sm:p-8 border border-amber-100">
-                    <h3 className="font-bold text-lg text-amber-900 mb-4 flex items-center gap-2">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
-                      Syarat & Ketentuan
-                    </h3>
+                {event.requirements && event.requirements.length > 0 && (
+                  <div className="bg-amber-50 rounded-3xl p-6 sm:p-8 border border-amber-100">
+                    <h3 className="font-bold text-lg text-amber-900 mb-4">Syarat & Ketentuan</h3>
                     <ul className="space-y-3">
                       {event.requirements.map((req, i) => (
                         <li key={i} className="flex gap-3 text-amber-800 text-sm sm:text-base">
@@ -184,32 +143,41 @@ const EventDetail = () => {
                 )}
               </div>
 
-              {/* --- SIDEBAR (Kanan) --- */}
+              {/* SIDEBAR */}
               <div className="bg-slate-50/50 p-6 sm:p-8 flex flex-col h-full">
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-8 space-y-5">
                   <h3 className="font-bold text-slate-900 mb-4">Detail Pelaksanaan</h3>
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">📅</div>
+                    <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">📅</div>
                     <div>
-                      <div className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Tanggal</div>
+                      <div className="text-xs text-slate-500 font-bold uppercase mb-0.5">Tanggal</div>
                       <div className="font-semibold text-slate-800">{event.date}</div>
                     </div>
                   </div>
                   {event.time && (
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">⏰</div>
+                      <div className="w-10 h-10 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center">⏰</div>
                       <div>
-                        <div className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Waktu</div>
+                        <div className="text-xs text-slate-500 font-bold uppercase mb-0.5">Waktu</div>
                         <div className="font-semibold text-slate-800">{event.time}</div>
                       </div>
                     </div>
                   )}
                   {event.location && (
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-green-50 text-green-600 rounded-xl flex items-center justify-center flex-shrink-0">📍</div>
+                      <div className="w-10 h-10 bg-green-50 text-green-600 rounded-xl flex items-center justify-center">📍</div>
                       <div>
-                        <div className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Lokasi</div>
-                        <div className="font-semibold text-slate-800 leading-snug">{event.location}</div>
+                        <div className="text-xs text-slate-500 font-bold uppercase mb-0.5">Lokasi</div>
+                        <div className="font-semibold text-slate-800">{event.location}</div>
+                      </div>
+                    </div>
+                  )}
+                  {event.price && (
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center">💰</div>
+                      <div>
+                        <div className="text-xs text-slate-500 font-bold uppercase mb-0.5">Harga Tiket</div>
+                        <div className="font-semibold text-emerald-600">{event.price}</div>
                       </div>
                     </div>
                   )}
@@ -217,43 +185,28 @@ const EventDetail = () => {
 
                 <div className="space-y-3 mt-auto">
                   {isRegistrationOpen ? (
-                    <>
-                      {event.customButtons?.map((btn, idx) => (
-                        <a key={idx} href={btn.url} target="_blank" rel="noreferrer" className={getButtonStyle(btn.type)}>
-                          {btn.type === 'primary' && <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>}
-                          {btn.type === 'secondary' && <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
-                          <span className={btn.type === 'primary' ? '!text-white' : ''}>{btn.text}</span>
-                          {(btn.type === 'secondary' || btn.type === 'outline') && (
-                             <svg className="w-4 h-4 ml-auto text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                          )}
-                        </a>
-                      ))}
-                    </>
+                    event.registrationUrl ? (
+                      <a 
+                        href={event.registrationUrl} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="w-full flex justify-center py-3.5 px-6 rounded-xl !font-bold !bg-blue-600 hover:!bg-blue-700 !text-white shadow-sm border-0"
+                      >
+                        Daftar Sekarang
+                      </a>
+                    ) : (
+                      <div className="w-full py-4 px-6 bg-slate-100 text-slate-500 rounded-xl text-center font-bold border-2 border-slate-200">
+                        Link Belum Tersedia
+                      </div>
+                    )
                   ) : (
                     <div className="w-full py-4 px-6 bg-slate-100 text-slate-500 rounded-xl text-center font-bold border-2 border-slate-200 cursor-not-allowed">
                       🔒 Pendaftaran Ditutup
                     </div>
                   )}
                 </div>
-
-                {/* Contact Person */}
-                {event.contacts && event.contacts.length > 0 && (
-                  <div className="mt-8 pt-6 border-t border-slate-200">
-                    <h4 className="font-bold text-slate-800 mb-4 text-center text-sm uppercase tracking-wider">Contact Person</h4>
-                    <div className="space-y-3">
-                      {event.contacts.map((contact, idx) => (
-                        <a key={idx} href={contact.url} target="_blank" rel="noreferrer" className={getButtonStyle('whatsapp')}>
-                           <svg className="w-5 h-5 flex-shrink-0 !text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 18c-1.55 0-3.07-.39-4.44-1.12l-.32-.17-3.3.87.88-3.21-.19-.31c-.8-1.28-1.22-2.77-1.22-4.29 0-4.47 3.63-8.1 8.1-8.1s8.1 3.63 8.1 8.1-3.63 8.1-7.61 8.23z"/>
-                            <path d="M15.54 13.91c-.19-.1-1.14-.56-1.31-.63-.18-.06-.31-.1-.44.1-.13.19-.5.63-.61.76-.11.12-.23.14-.42.04-.19-.1-.81-.3-1.54-.95-.57-.51-.95-1.14-1.06-1.34-.11-.19-.01-.29.08-.38.09-.09.19-.23.29-.35.09-.11.12-.19.18-.32.06-.13.03-.24-.01-.34-.05-.1-.44-1.05-.6-1.44-.16-.38-.32-.33-.44-.33h-.38c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.64s.71 1.91.81 2.05c.09.13 1.39 2.13 3.37 2.99.47.2.84.32 1.13.41.48.15.91.13 1.25.08.38-.06 1.14-.47 1.3-0.92.16-.45.16-.84.11-.92-.05-.07-.18-.11-.38-.21z"/>
-                          </svg>
-                          <span className="!text-white">Hubungi {contact.name}</span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
+
             </div>
           </div>
         </div>

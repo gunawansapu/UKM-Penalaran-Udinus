@@ -1,8 +1,14 @@
-// import { Link } from 'react-router-dom'; // Note: Use this import in your actual React app
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
   const [hoveredSocial, setHoveredSocial] = useState(null);
+  const location = useLocation();
+
+  // JIKA BERADA DI HALAMAN ADMIN, SEMBUNYIKAN FOOTER SEPENUHNYA
+  if (location.pathname.startsWith('/admin')) {
+    return null;
+  }
 
   const socialLinks = [
     { 
@@ -45,7 +51,7 @@ const Footer = () => {
     { name: 'Tentang Kami', href: '/tentang' },
     { name: 'Kegiatan', href: '/kegiatan' },
     { name: 'Berita', href: '/berita' },
-    {name: 'Galeri', href:'/galeri'},
+    { name: 'Galeri', href: '/galeri' },
     { name: 'Kontak', href: '/kontak' }
   ];
 

@@ -1,0 +1,1120 @@
+{
+  "name": "ukm-penalaran-website",
+  "path": "c:\\Users\\NANRC\\ukm-penalaran-website",
+  "type": "directory",
+  "children": [
+    {
+      "name": "public",
+      "type": "folder",
+      "icon": "📁",
+      "children": [
+        {
+          "name": "_redirects",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "vite.svg",
+          "type": "file",
+          "icon": "🖼️"
+        }
+      ]
+    },
+    {
+      "name": "src",
+      "type": "folder",
+      "icon": "📁",
+      "children": [
+        {
+          "name": "assets",
+          "type": "folder",
+          "icon": "📁",
+          "children": [
+            {
+              "name": "images",
+              "type": "folder",
+              "icon": "📁",
+              "children": [
+                {
+                  "name": "adinda_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "adinda_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "adinda_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "adinda_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "alfi_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "alfi_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "alfi_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "alfi_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "alif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "amelia.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "aqil_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "aqil_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "aqil_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "aqil_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "arfi.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "arfi_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "arfi_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "arfi_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "arfi_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "auliya_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "auliya_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "auliya_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "auliya_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "benda2_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "benda2_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "benda2_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "benda2_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "benda_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "benda_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "benda_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "benda_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "bendahara.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "borobudur.jpg",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "caterine_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "caterine_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "caterine_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "caterine_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "default_profile.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "dwiky.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "dwiky_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "dwiky_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "dwiky_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "dwiky_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "farid_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "farid_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "farid_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "farid_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "febi_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "febi_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "febi_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "febi_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "gheitsa_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "gheitsa_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "gheitsa_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "gheitsa_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "grup_ketuwa.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "grup_ketuwa2.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "grupbenda.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "gruphumas.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "grupmedkref.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "gruppengmas.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "grupristek.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "grupsekre.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "halima.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "halima_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "halima_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "halima_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "halima_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "hanifa_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "hanifa_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "hanifa_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "hanifa_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "humas.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "humas2_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "humas2_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "humas2_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "humas2_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "humas_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "humas_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "humas_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "humas_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "humas_signature1.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "ibnu_official.jpeg",
+                  "type": "file",
+                  "icon": "📄"
+                },
+                {
+                  "name": "indo.jpg",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "isra.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "ivianka_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "ivianka_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "ivianka_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "ivianka_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "jenifer_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "jenifer_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "jenifer_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "jenifer_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "kadiv_medkref.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "kadiv_pengmas.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "kadiv_ristek.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "kadivris_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "kadivris_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "kadivris_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "kadivris_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "ketua_bebas.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "ketua_executf.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "ketua_formal.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "ketua_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "kharida_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "kharida_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "kharida_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "kharida_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "lktin.jpg",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "maul_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "maul_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "maul_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "maul_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "miftah.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "miftah_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "miftah_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "miftah_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "miftah_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "nadia_humas.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "nadiapengmas_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "nadiapengmas_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "nadiapengmas_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "nadiapengmas_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "najwa_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "najwa_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "najwa_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "najwa_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "nauva_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "nauva_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "nauva_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "nova_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "nova_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "nova_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "nova_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "rindi_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "rindi_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "rindi_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "rindi_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "sekre_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "sekre_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "sekre_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "sekre_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "sekretaris.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "tutor1.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "tutor2.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "tutor3.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "tutor4.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "tutorial.mp4",
+                  "type": "file",
+                  "icon": "📄"
+                },
+                {
+                  "name": "wafiq_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "wafiq_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "wafiq_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "wafiq_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "wakil.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "wakil_executif.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "wakil_freestyle.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "wakil_official.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "wakil_signature.JPG",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "wayang.jpg",
+                  "type": "file",
+                  "icon": "🖼️"
+                }
+              ]
+            },
+            {
+              "name": "Books.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "Business meeting in office.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "Champion(1).json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "Champion.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "Girl tapping phone.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "Man Standing at Destination Point.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "STUDENT.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "Scientist.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "Super Woman.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "a women holding megaphone whit a blue dress.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "business-team.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "girl-setting-favorite-button-in-website.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "market-research.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "react.svg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "website design.json",
+              "type": "file",
+              "icon": "⚙️"
+            }
+          ]
+        },
+        {
+          "name": "components",
+          "type": "folder",
+          "icon": "📁",
+          "children": [
+            {
+              "name": "EvenCard.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "Footer.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "Hero.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "Navbar.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "OurTeam.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "RecruitmentButton.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "ScrollOnTop.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "SliderQuotes.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            }
+          ]
+        },
+        {
+          "name": "data",
+          "type": "folder",
+          "icon": "📁",
+          "children": [
+            {
+              "name": "activities.json",
+              "type": "file",
+              "icon": "⚙️"
+            },
+            {
+              "name": "aktifitasDetail.js",
+              "type": "file",
+              "icon": "📜"
+            },
+            {
+              "name": "eventsData.js",
+              "type": "file",
+              "icon": "📜"
+            },
+            {
+              "name": "newsdata.js",
+              "type": "file",
+              "icon": "📜"
+            }
+          ]
+        },
+        {
+          "name": "pages",
+          "type": "folder",
+          "icon": "📁",
+          "children": [
+            {
+              "name": "About.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "Activities.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "Allnews.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "Contact.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "EventDetail.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "Gallery.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "Home.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "Kuis.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "News.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            },
+            {
+              "name": "NewsDetail.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            }
+          ]
+        },
+        {
+          "name": "routes",
+          "type": "folder",
+          "icon": "📁",
+          "children": [
+            {
+              "name": "AppRoutes.jsx",
+              "type": "file",
+              "icon": "⚛️"
+            }
+          ]
+        },
+        {
+          "name": "App.css",
+          "type": "file",
+          "icon": "🎨"
+        },
+        {
+          "name": "App.jsx",
+          "type": "file",
+          "icon": "⚛️"
+        },
+        {
+          "name": "index.css",
+          "type": "file",
+          "icon": "🎨"
+        },
+        {
+          "name": "main.jsx",
+          "type": "file",
+          "icon": "⚛️"
+        }
+      ]
+    },
+    {
+      "name": ".gitignore",
+      "type": "file",
+      "icon": "📁"
+    },
+    {
+      "name": "README.md",
+      "type": "file",
+      "icon": "📝"
+    },
+    {
+      "name": "eslint.config.js",
+      "type": "file",
+      "icon": "📜"
+    },
+    {
+      "name": "index.html",
+      "type": "file",
+      "icon": "🌐"
+    },
+    {
+      "name": "package-lock.json",
+      "type": "file",
+      "icon": "⚙️"
+    },
+    {
+      "name": "package.json",
+      "type": "file",
+      "icon": "📦"
+    },
+    {
+      "name": "structure-code.txt",
+      "type": "file",
+      "icon": "📄"
+    },
+    {
+      "name": "vite.config.js",
+      "type": "file",
+      "icon": "📜"
+    }
+  ],
+  "metadata": {
+    "generated": "2026-06-14T14:53:44.702Z",
+    "generator": "FileTree Pro Extension",
+    "version": "0.2.0",
+    "showIcons": true,
+    "maxDepth": 10
+  }
+}

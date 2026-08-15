@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { 
@@ -9,20 +9,47 @@ import RecruitmentButton from '../components/RecruitmentButton';
 import Hero from '../components/Hero';
 import EventCard from '../components/EvenCard';
 import OurTeam from '../components/OurTeam';
-import { eventsData } from '../data/eventsData'; 
+
+// IMPORT FIREBASE
+import { db } from '../config/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 const Home = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  
+  // STATE FIREBASE UNTUK KEGIATAN TERBARU
+  const [latestEvents, setLatestEvents] = useState([]);
+  const [loadingEvents, setLoadingEvents] = useState(true);
 
-  // --- LOGIC MENGAMBIL 3 EVENT TERATAS ---
-  const latestEvents = [...eventsData]
-    .sort((a, b) => {
-      const statusPriority = { 'ongoing': 1, 'upcoming': 2, 'closed': 3, 'completed': 4 };
-      const priorityA = statusPriority[a.status] || 99;
-      const priorityB = statusPriority[b.status] || 99;
-      return priorityA - priorityB;
-    })
-    .slice(0, 3); 
+  // FETCH 3 EVENT TERATAS DARI FIREBASE
+  useEffect(() => {
+    const fetchLatestEvents = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "events"));
+        const dataList = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        
+        // Urutkan berdasarkan prioritas status
+        dataList.sort((a, b) => {
+          const statusPriority = { 'upcoming': 1, 'ongoing': 2, 'closed': 3, 'completed': 4 };
+          const priorityA = statusPriority[a.status] || 99;
+          const priorityB = statusPriority[b.status] || 99;
+          return priorityA - priorityB;
+        });
+
+        // Ambil 3 teratas
+        setLatestEvents(dataList.slice(0, 3));
+      } catch (error) {
+        console.error("Error fetching latest events: ", error);
+      } finally {
+        setLoadingEvents(false);
+      }
+    };
+
+    fetchLatestEvents();
+  }, []);
 
   // Setup AOS & Scroll to Top
   useEffect(() => {
@@ -156,14 +183,19 @@ const Home = () => {
             </h2>
           </div>
 
-          {/* Grid EventCards */}
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
-            {latestEvents.map((event, index) => (
-              <div key={index} data-aos="zoom-in" data-aos-delay={index * 100} className="transform hover:scale-[1.02] transition-all duration-300">
-                <EventCard {...event} />
-              </div>
-            ))}
-          </div>
+          {/* Grid EventCards DARI FIREBASE */}
+          {loadingEvents ? (
+            <div className="text-center py-10 text-slate-500 animate-pulse">Memuat kegiatan terbaru...</div>
+          ) : (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
+              {latestEvents.map((event, index) => (
+                <div key={event.id} data-aos="zoom-in" data-aos-delay={index * 100} className="transform hover:scale-[1.02] transition-all duration-300 h-full">
+                  <EventCard {...event} />
+                </div>
+              ))}
+            </div>
+          )}
+
           <div className="text-center md:text-right mb-24" data-aos="fade-up">
             <a href="/kegiatan" className="inline-flex items-center text-indigo-600 font-bold hover:text-indigo-800 transition-colors group">
               Lihat semua kegiatan <ArrowUpRight className="ml-1 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
