@@ -1,7 +1,8 @@
 // src/pages/admin/ManageTeam.jsx
 import React, { useEffect, useState } from 'react';
 import { db } from '../../config/firebase';
-import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+// 👇 Tambahkan addDoc dan serverTimestamp di import ini
+import { collection, getDocs, deleteDoc, doc, addDoc, serverTimestamp } from 'firebase/firestore';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { Link } from 'react-router-dom';
 import { Trash2, Edit, ExternalLink, Plus, Loader2, UserCircle, Users } from 'lucide-react';
@@ -36,7 +37,22 @@ export default function ManageTeam() {
     if (!confirmDelete) return;
 
     try {
+      // Cari nama anggota yang mau dihapus untuk dicatat di log
+      const memberToDelete = teamList.find(item => item.id === id);
+      const memberName = memberToDelete ? memberToDelete.name : 'Tidak diketahui';
+
       await deleteDoc(doc(db, "team", id));
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'hapus', 
+        module: 'Tim',
+        description: `menghapus anggota tim "${memberName}"`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
+
       alert("Anggota berhasil dihapus!");
       setTeamList(teamList.filter(item => item.id !== id));
     } catch (error) {

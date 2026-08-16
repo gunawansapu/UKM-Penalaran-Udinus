@@ -24,8 +24,23 @@ const News = () => {
           category: doc.data().category && doc.data().category.trim() !== '' ? doc.data().category.trim() : 'Informasi'
         }));
         
-        // Urutkan berdasarkan tanggal terbaru
-        dataList.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+        // 👇 PERBAIKAN LOGIKA SORTING (URUTAN TERBARU KE TERLAMA)
+        dataList.sort((a, b) => {
+          // Fungsi membaca format waktu (Mendukung Firestore Timestamp & String Biasa)
+          const getTime = (val) => {
+            if (!val) return 0;
+            if (val.toDate) return val.toDate().getTime(); // Jika dari Firestore
+            const parsed = new Date(val).getTime(); // Jika dari String biasa
+            return isNaN(parsed) ? 0 : parsed;
+          };
+          
+          const timeA = getTime(a.createdAt || a.date);
+          const timeB = getTime(b.createdAt || b.date);
+          
+          // B dikurangi A agar yang paling besar (paling baru) ada di depan / kiri
+          return timeB - timeA; 
+        });
+
         setNewsList(dataList);
 
         // OTOMATIS MENGAMBIL SEMUA KATEGORI UNIK DARI DATABASE
@@ -97,18 +112,19 @@ const News = () => {
   });
 
   return (
-    <section className="min-h-screen bg-[#f8fafc] py-24 px-6 relative overflow-hidden" style={{colorScheme: 'light'}}>
+    // 👇 SPASI ATAS DIPERKETAT: pt-20 (mobile) & sm:pt-24 md:pt-32 (desktop) agar tidak ada jarak kosong besar
+    <section className="min-h-screen bg-[#f8fafc] pt-20 pb-16 sm:py-24 px-6 relative overflow-hidden" style={{colorScheme: 'light'}}>
       {/* Ambient Background */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-200/30 rounded-full blur-[120px] pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center px-4 py-2 !bg-indigo-50 !text-indigo-600 rounded-full text-sm font-bold mb-4 border !border-indigo-100 shadow-sm">
             <Newspaper size={16} className="mr-2" /> Berita Terkini
           </div>
-          <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 mb-4 sm:mb-6 tracking-tight">
             Pusat <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Informasi</span>
           </h1>
         </div>

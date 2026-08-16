@@ -1,7 +1,8 @@
 // src/pages/admin/ManageGallery.jsx
 import React, { useEffect, useState } from 'react';
 import { db } from '../../config/firebase';
-import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+// 👇 Tambahkan addDoc dan serverTimestamp di import ini
+import { collection, getDocs, deleteDoc, doc, addDoc, serverTimestamp } from 'firebase/firestore';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { Link } from 'react-router-dom';
 import { Trash2, Edit, ExternalLink, Plus, Loader2, ImageOff, Inbox } from 'lucide-react';
@@ -36,7 +37,22 @@ export default function ManageGallery() {
     if (!confirmDelete) return;
 
     try {
+      // Cari tau keterangan gambar (alt) sebelum di-delete
+      const itemToDelete = galleryList.find(item => item.id === id);
+      const itemAlt = itemToDelete && itemToDelete.alt ? itemToDelete.alt : 'Tanpa Keterangan';
+
       await deleteDoc(doc(db, "gallery", id));
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'hapus', 
+        module: 'Galeri',
+        description: `menghapus foto galeri "${itemAlt}"`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
+
       alert("Foto berhasil dihapus!");
       setGalleryList(galleryList.filter(item => item.id !== id));
     } catch (error) {

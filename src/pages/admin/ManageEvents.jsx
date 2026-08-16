@@ -1,8 +1,8 @@
-// src/pages/admin/ManageEvents.jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../../config/firebase';
-import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+// 👇 Tambahkan addDoc dan serverTimestamp di import ini
+import { collection, getDocs, deleteDoc, doc, addDoc, serverTimestamp } from 'firebase/firestore';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { Trash2, Edit, ExternalLink, Plus, Loader2, ImageOff, Inbox, CalendarDays } from 'lucide-react';
 
@@ -33,7 +33,22 @@ export default function ManageEvents() {
   const handleDelete = async (id) => {
     if (window.confirm("Apakah kamu yakin ingin menghapus event ini?")) {
       try {
+        // Cari tau judul event yang mau dihapus sebelum di-delete
+        const eventToDelete = events.find(event => event.id === id);
+        const eventTitle = eventToDelete ? eventToDelete.title : 'Tidak diketahui';
+
         await deleteDoc(doc(db, "events", id));
+        
+        // 👇 CCTV: CATAT KE AUDIT LOG
+        await addDoc(collection(db, 'activity_logs'), {
+          action: 'hapus', 
+          module: 'Event',
+          description: `menghapus event berjudul "${eventTitle}"`, 
+          user: 'Admin', 
+          timestamp: serverTimestamp()
+        });
+        // 👆 SELESAI
+
         setEvents(events.filter(event => event.id !== id));
         alert("Event berhasil dihapus!");
       } catch (error) {

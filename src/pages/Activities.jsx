@@ -122,13 +122,14 @@ const Activities = () => {
 
   return (
     <section className="min-h-screen bg-[#f8fafc] relative overflow-hidden font-sans pb-20">
-      <div className="relative pt-32 pb-16 z-10">
+      {/* 👇 SPASI ATAS DIPERKETAT: Menggunakan pt-20 di HP dan md:pt-32 di layar besar */}
+      <div className="relative pt-20 sm:pt-24 md:pt-32 pb-12 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/70 backdrop-blur-md border border-white/80 rounded-full shadow-sm mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/70 backdrop-blur-md border border-white/80 rounded-full shadow-sm mb-4">
             <Rocket size={16} className="text-indigo-500" />
-            <span className="text-sm font-bold text-indigo-700 tracking-wide uppercase">Agenda Terbaru</span>
+            <span className="text-xs sm:text-sm font-bold text-indigo-700 tracking-wide uppercase">Agenda Terbaru</span>
           </div>
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-slate-900 mb-6 tracking-tight">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-900 mb-4 tracking-tight">
             Kegiatan <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Penalaran</span>
           </h1>
         </div>
@@ -156,7 +157,7 @@ const Activities = () => {
                  </select>
               </div>
               <div className="md:w-auto">
-                 <button onClick={() => {setFilterStatus('all'); setFilterCategory('all')}} className="w-full md:w-auto px-6 py-3.5 !bg-slate-900 hover:!bg-slate-800 rounded-2xl font-bold !text-white flex gap-2"><RefreshCcw size={18} /> Reset</button>
+                 <button onClick={() => {setFilterStatus('all'); setFilterCategory('all')}} className="w-full md:w-auto px-6 py-3.5 !bg-slate-900 hover:!bg-slate-800 rounded-2xl font-bold !text-white flex gap-2 justify-center"><RefreshCcw size={18} /> Reset</button>
               </div>
            </div>
         </div>

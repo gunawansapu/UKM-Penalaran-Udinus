@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { db } from '../../config/firebase'; 
-import { collection, addDoc } from 'firebase/firestore';
+// 👇 Tambahkan serverTimestamp di import ini
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { 
@@ -38,9 +39,9 @@ export default function AddEvent() {
     speaker: '',
     requirements: '', 
     imageUrl: '', 
-    tutorialText: '',   // <-- Tambahan panduan teks
-    tutorialImage: '',  // <-- Tambahan link foto panduan
-    tutorialVideo: '',  // <-- Tambahan link video panduan (YouTube/Drive)
+    tutorialText: '', 
+    tutorialImage: '', 
+    tutorialVideo: '', 
   });
 
   const handleChange = (e) => {
@@ -76,12 +77,22 @@ export default function AddEvent() {
         speaker: formData.speaker || "-",
         requirements: reqArray,
         image: formData.imageUrl, 
-        tutorialText: formData.tutorialText || null,     // Simpan teks tutorial
-        tutorialImage: formData.tutorialImage || null,   // Simpan link gambar tutorial
-        tutorialVideo: formData.tutorialVideo || null,   // Simpan link video tutorial
+        tutorialText: formData.tutorialText || null,     
+        tutorialImage: formData.tutorialImage || null,   
+        tutorialVideo: formData.tutorialVideo || null,   
         registeredCount: 0,
         createdAt: new Date().toISOString()
       });
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'tambah', 
+        module: 'Event',
+        description: `menambahkan event baru berjudul "${formData.title}"`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
 
       alert("Event/Kegiatan berhasil ditambahkan ke Firebase!");
       navigate('/admin/manage-events'); 

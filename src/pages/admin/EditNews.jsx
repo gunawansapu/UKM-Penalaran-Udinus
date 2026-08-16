@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { db } from '../../config/firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+// 👇 Tambahkan collection, addDoc, dan serverTimestamp di import ini
+import { doc, getDoc, updateDoc, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { 
   Save, 
@@ -74,6 +75,16 @@ export default function EditNews() {
         imageUrl,
         updatedAt: new Date().toISOString()
       });
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'edit', 
+        module: 'Berita',
+        description: `memperbarui data berita "${title}"`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
 
       alert('Berita berhasil diperbarui!');
       navigate('/admin/manage-news');

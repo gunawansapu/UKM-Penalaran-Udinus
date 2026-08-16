@@ -1,7 +1,8 @@
 // src/pages/admin/AddTeam.jsx
 import React, { useState } from 'react';
 import { db } from '../../config/firebase';
-import { collection, addDoc } from 'firebase/firestore';
+// 👇 Tambahkan serverTimestamp di import ini
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { Save, Loader2, User, Image as ImageIcon } from 'lucide-react';
@@ -46,6 +47,16 @@ export default function AddTeam() {
         createdAt: new Date().toISOString()
       });
 
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'tambah', 
+        module: 'Tim',
+        description: `menambahkan anggota tim "${formData.name}"`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
+
       alert("Anggota tim berhasil ditambahkan!");
       navigate('/admin/manage-team');
     } catch (error) {
@@ -60,7 +71,7 @@ export default function AddTeam() {
     <SidebarAdmin>
       <div className="max-w-5xl mx-auto pb-12 animate-fade-in-up">
         
-        {/* Header Section (Tanpa tombol kembali kotak biru yang aneh) */}
+        {/* Header Section */}
         <div className="mb-10">
           <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Tambah Anggota Tim</h1>
           <p className="text-slate-500 font-medium mt-2 text-base">Masukkan data pengurus UKM Penalaran ke dalam database.</p>

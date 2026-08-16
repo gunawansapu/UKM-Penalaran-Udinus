@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { db } from '../../config/firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+// 👇 Tambahkan collection, addDoc, dan serverTimestamp di import ini
+import { doc, getDoc, updateDoc, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { 
   Image as ImageIcon, 
@@ -71,6 +72,16 @@ export default function EditGallery() {
         alt: formData.altText,
         updatedAt: new Date().toISOString()
       });
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'edit', 
+        module: 'Galeri',
+        description: `memperbarui foto galeri "${formData.altText}"`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
 
       alert('Foto berhasil diperbarui!');
       navigate('/admin/manage-gallery'); 

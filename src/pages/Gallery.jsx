@@ -1,3 +1,4 @@
+// src/pages/Gallery.jsx
 import { useState, useEffect } from 'react';
 import { db } from '../config/firebase';
 import { collection, getDocs } from 'firebase/firestore';
@@ -34,7 +35,8 @@ const Gallery = () => {
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-purple-200/30 to-pink-200/30 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 mt-16">
+      {/* 👇 SPASI ATAS DIPERKETAT: pt-20 di HP dan md:pt-32 di layar besar */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 sm:pt-24 md:pt-32 pb-16">
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-6 shadow-lg shadow-blue-500/30">
@@ -43,10 +45,10 @@ const Gallery = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent mb-4 leading-normal py-2">
             Galeri Kegiatan
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Dokumentasi kegiatan UKM Penalaran UDINUS yang membangun semangat berpikir kritis dan kolaboratif
           </p>
         </div>
@@ -147,8 +149,8 @@ const Gallery = () => {
                 className="absolute -top-12 right-0 sm:top-4 sm:-right-16 !w-12 !h-12 !p-0 !m-0 !bg-white/10 hover:!bg-white/25 !border !border-white/20 backdrop-blur-lg !rounded-full !flex !items-center !justify-center !text-white transition-all duration-300 z-[150] shadow-xl hover:scale-110 !outline-none"
                 title="Tutup"
                 style={{ 
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)', // Paksa Glassmorphism
-                  borderRadius: '50%', // Paksa Bulat Penuh
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)', 
+                  borderRadius: '50%', 
                   boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                   appearance: 'none',
                   borderWidth: '1px'

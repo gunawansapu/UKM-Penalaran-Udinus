@@ -1,7 +1,8 @@
 // src/pages/admin/EditTeam.jsx
 import React, { useState, useEffect } from 'react';
 import { db } from '../../config/firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+// 👇 Tambahkan collection, addDoc, dan serverTimestamp di import ini
+import { doc, getDoc, updateDoc, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useNavigate, useParams } from 'react-router-dom';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { Save, Loader2, User, Image as ImageIcon, Users } from 'lucide-react';
@@ -58,6 +59,17 @@ export default function EditTeam() {
         ...formData,
         updatedAt: new Date().toISOString()
       });
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'edit', 
+        module: 'Tim',
+        description: `memperbarui profil anggota tim "${formData.name}"`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
+
       alert('Berhasil diperbarui!');
       navigate('/admin/manage-team');
     } catch (error) {
@@ -83,7 +95,7 @@ export default function EditTeam() {
     <SidebarAdmin>
       <div className="max-w-5xl mx-auto pb-12 animate-fade-in-up">
         
-        {/* Header Section (Bersih tanpa tombol kembali) */}
+        {/* Header Section */}
         <div className="mb-10 flex items-center gap-4 mt-4 md:mt-0">
           <div className="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center shadow-inner">
             <Users className="!w-7 !h-7 !text-amber-600 !bg-transparent" style={{ fill: 'none', stroke: 'currentColor' }} />

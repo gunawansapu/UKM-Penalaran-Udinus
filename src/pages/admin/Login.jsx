@@ -19,7 +19,8 @@ export default function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/admin/manage-news'); 
+      // 👇 SUDAH DIPERBAIKI: Langsung diarahkan ke Analitik setelah login sukses
+      navigate('/admin/analytics'); 
     } catch (err) {
       setError('Akses ditolak. Periksa kembali email dan kata sandi Anda.');
       console.error(err);

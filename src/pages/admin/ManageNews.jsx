@@ -1,7 +1,8 @@
 // src/pages/admin/ManageNews.jsx
 import React, { useEffect, useState } from 'react';
 import { db } from '../../config/firebase';
-import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+// 👇 Tambahkan addDoc dan serverTimestamp di import ini
+import { collection, getDocs, deleteDoc, doc, addDoc, serverTimestamp } from 'firebase/firestore';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { Link } from 'react-router-dom';
 import { Edit, Trash2, ExternalLink, Plus, Loader2, ImageOff, Inbox, FileText } from 'lucide-react';
@@ -42,7 +43,22 @@ export default function ManageNews() {
     if (!confirmDelete) return;
 
     try {
+      // Cari tau judul berita sebelum dihapus
+      const newsToDelete = newsList.find(news => news.id === id);
+      const newsTitle = newsToDelete ? newsToDelete.title : 'Tidak diketahui';
+
       await deleteDoc(doc(db, "news", id));
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'hapus', 
+        module: 'Berita',
+        description: `menghapus berita berjudul "${newsTitle}"`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
+
       alert("Berita berhasil dihapus!"); 
       setNewsList(newsList.filter(item => item.id !== id));
     } catch (error) {

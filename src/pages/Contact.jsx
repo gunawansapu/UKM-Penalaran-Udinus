@@ -202,19 +202,20 @@ const Contact = () => {
       <Toast message={toast.message} type={toast.type} isVisible={toast.isVisible} onClose={hideToast} />
 
       <section className="min-h-screen bg-[#fbfbfd] font-sans antialiased text-[#1d1d1f] selection:bg-[#8b5cf6] selection:text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 mt-10">
+        {/* 👇 SPASI ATAS DIPERKETAT: Menggunakan pt-20 di HP dan sm:pt-24 md:pt-32 di layar besar */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-16 sm:py-24">
           
           {/* Header Section */}
           <div 
-            className={`text-center mb-16 sm:mb-24 transition-all duration-1000 ease-out transform ${
+            className={`text-center mb-12 sm:mb-24 transition-all duration-1000 ease-out transform ${
               isVisible('header') ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}
             data-animate-id="header"
           >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tighter mb-6">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tighter mb-4 sm:mb-6">
               Hubungi Kami.
             </h1>
-            <p className="text-lg sm:text-xl text-[#86868b] max-w-2xl mx-auto leading-relaxed font-medium">
+            <p className="text-base sm:text-xl text-[#86868b] max-w-2xl mx-auto leading-relaxed font-medium">
               Punya pertanyaan, saran, atau ingin mengajukan kerja sama Media Partner? Kami siap mendengarkan.
             </p>
           </div>

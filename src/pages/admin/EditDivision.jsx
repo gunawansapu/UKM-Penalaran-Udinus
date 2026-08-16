@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { db } from '../../config/firebase';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+// 👇 Tambahkan collection, addDoc, dan serverTimestamp di import ini
+import { doc, getDoc, setDoc, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { Save, Loader2, Image as ImageIcon, FileText, ArrowLeft, Layout } from 'lucide-react';
 
@@ -41,6 +42,17 @@ export default function EditDivision() {
     setSaving(true);
     try {
       await setDoc(doc(db, 'division_settings', id), formData);
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'edit', 
+        module: 'Divisi',
+        description: `memperbarui foto/deskripsi untuk "${divisionNames[id] || id}"`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
+
       alert('Pengaturan divisi berhasil diperbarui!');
       navigate('/admin/manage-divisions');
     } catch (error) {

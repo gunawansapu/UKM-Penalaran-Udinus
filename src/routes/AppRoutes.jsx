@@ -17,6 +17,9 @@ import { AuthProvider } from '../context/AuthContext';
 import ProtectedRoute from '../components/admin/ProtectedRoute';
 import Login from '../pages/admin/Login';
 
+// === IMPORT HALAMAN ANALITIK (BARU) ===
+import Analytics from '../pages/admin/Analytics';
+
 import AddNews from '../pages/admin/AddNews';
 import AddEvent from '../pages/admin/AddEvent';
 import ManageNews from '../pages/admin/ManageNews'; 
@@ -37,7 +40,7 @@ import EditTeam from '../pages/admin/EditTeam';
 import ManageDivisions from '../pages/admin/ManageDivisions';
 import EditDivision from '../pages/admin/EditDivision'; 
 
-// === IMPORT HALAMAN KELOLA PENDAFTARAN & BARCODE (BARU) ===
+// === IMPORT HALAMAN KELOLA PENDAFTARAN & BARCODE ===
 import ManageRecruitment from '../pages/admin/ManageRecruitment';
 
 const AppRoutes = () => {
@@ -60,6 +63,16 @@ const AppRoutes = () => {
 
         {/* === RUTE ADMIN CMS === */}
         <Route path="/admin/login" element={<Login />} />
+
+        {/* === RUTE ANALITIK (BARU) === */}
+        <Route 
+          path="/admin/analytics" 
+          element={
+            <ProtectedRoute>
+              <Analytics />
+            </ProtectedRoute>
+          } 
+        />
 
         <Route 
           path="/admin/add-news" 
@@ -198,7 +211,7 @@ const AppRoutes = () => {
           } 
         />
 
-        {/* === RUTE KELOLA PENDAFTARAN & BARCODE (BARU) === */}
+        {/* === RUTE KELOLA PENDAFTARAN & BARCODE === */}
         <Route 
           path="/admin/manage-recruitment" 
           element={

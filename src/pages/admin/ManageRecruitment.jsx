@@ -1,7 +1,8 @@
 // src/pages/admin/ManageRecruitment.jsx
 import React, { useState, useEffect } from 'react';
 import { db } from '../../config/firebase';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+// 👇 Tambahkan collection, addDoc, dan serverTimestamp di import ini
+import { doc, getDoc, setDoc, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { Save, Loader2, QrCode, ToggleRight, Link as LinkIcon } from 'lucide-react';
 
@@ -36,6 +37,17 @@ export default function ManageRecruitment() {
     setSaving(true);
     try {
       await setDoc(doc(db, 'settings', 'recruitment'), formData);
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'edit', 
+        module: 'Sistem',
+        description: `memperbarui pengaturan Pendaftaran & Barcode (Status: ${formData.isOpen ? 'BUKA' : 'TUTUP'})`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
+
       alert('Pengaturan pendaftaran berhasil diperbarui!');
     } catch (error) {
       console.error("Error saving settings:", error);
@@ -135,11 +147,11 @@ export default function ManageRecruitment() {
             </div>
           </div>
 
-          {/* URL Google Form / Link Pendaftaran (Tanpa required, boleh kosong) */}
+          {/* URL Google Form / Link Pendaftaran */}
           <div className="space-y-2">
             <label className="text-sm font-bold text-slate-700 ml-1 flex items-center gap-2">
               <LinkIcon className="!w-4 !h-4 !text-indigo-500 !bg-transparent" style={{ fill: 'none', stroke: 'currentColor' }} />
-              Link Google Form Pendaftaran <span className="text-xs text-slate-400 font-normal">(Opsional / Boleh Kosong)</span>
+              Link Google Form Pendaftaran <span className="text-xs text-slate-400 font-normal">(Wajib)</span>
             </label>
             <input 
               type="url" 
@@ -150,7 +162,7 @@ export default function ManageRecruitment() {
             />
           </div>
 
-          {/* URL Barcode Image (Tanpa required, boleh kosong) */}
+          {/* URL Barcode Image */}
           <div className="space-y-2">
             <label className="text-sm font-bold text-slate-700 ml-1 flex items-center gap-2">
               <QrCode className="!w-4 !h-4 !text-indigo-500 !bg-transparent" style={{ fill: 'none', stroke: 'currentColor' }} />

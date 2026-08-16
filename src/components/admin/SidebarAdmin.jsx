@@ -15,7 +15,8 @@ import {
   Users,          
   UserPlus,
   Layout,
-  QrCode          // ⬅️ Ikon untuk Kelola Pendaftaran & Barcode
+  QrCode,          
+  BarChart3 // ⬅️ Ikon untuk Analitik
 } from 'lucide-react';
 
 export default function SidebarAdmin({ children }) {
@@ -100,6 +101,25 @@ export default function SidebarAdmin({ children }) {
           {/* Navigation Links */}
           <nav className="flex-1 overflow-y-auto px-4 py-2 space-y-6 scrollbar-hide pb-6">
             
+            {/* Group 0: Dashboard (BARU) */}
+            <div>
+              <p className="px-3 text-xs font-bold !text-slate-500 uppercase tracking-wider mb-3">Dashboard</p>
+              <div className="space-y-1">
+                <Link 
+                  to="/admin/analytics" 
+                  onClick={() => setIsSidebarOpen(false)} 
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium border-0 ${
+                    isActive('/admin/analytics') 
+                      ? '!bg-indigo-600 !text-white shadow-md shadow-indigo-500/20' 
+                      : '!text-slate-300 hover:!bg-slate-800 hover:!text-white'
+                  }`}
+                >
+                  <BarChart3 className="w-5 h-5" />
+                  Analitik & Statistik
+                </Link>
+              </div>
+            </div>
+
             {/* Group 1: Buat Baru */}
             <div>
               <p className="px-3 text-xs font-bold !text-slate-500 uppercase tracking-wider mb-3">Buat Baru</p>
@@ -239,7 +259,6 @@ export default function SidebarAdmin({ children }) {
                   Kontak Info
                 </Link>
 
-                {/* --- MENU BARU: KELOLA PENDAFTARAN & BARCODE --- */}
                 <Link 
                   to="/admin/manage-recruitment" 
                   onClick={() => setIsSidebarOpen(false)}

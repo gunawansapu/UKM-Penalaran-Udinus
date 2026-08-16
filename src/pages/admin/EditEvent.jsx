@@ -1,8 +1,8 @@
-// src/pages/admin/EditEvent.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { db } from '../../config/firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+// 👇 Tambahkan collection, addDoc, dan serverTimestamp di import ini
+import { doc, getDoc, updateDoc, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { 
   CalendarDays, 
@@ -120,6 +120,16 @@ export default function EditEvent() {
         tutorialVideo: formData.tutorialVideo || null,
         updatedAt: new Date().toISOString()
       });
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'edit', 
+        module: 'Event',
+        description: `memperbarui data event "${formData.title}"`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
 
       alert('Event berhasil diperbarui!');
       navigate('/admin/manage-events');

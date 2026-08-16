@@ -1,7 +1,8 @@
 // src/pages/admin/AddGallery.jsx
 import React, { useState } from 'react';
 import { db } from '../../config/firebase'; 
-import { collection, addDoc } from 'firebase/firestore';
+// 👇 Tambahkan serverTimestamp di import ini
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { 
@@ -40,6 +41,16 @@ export default function AddGallery() {
         alt: formData.altText,
         createdAt: new Date().toISOString()
       });
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'tambah', 
+        module: 'Galeri',
+        description: `menambahkan foto galeri "${formData.altText}"`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
 
       alert("Foto berhasil ditambahkan ke Galeri!");
       navigate('/admin/manage-gallery'); 

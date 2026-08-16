@@ -1,7 +1,8 @@
 // src/pages/admin/ManageContact.jsx
 import React, { useState, useEffect } from 'react';
 import { db } from '../../config/firebase';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+// 👇 Tambahkan collection, addDoc, dan serverTimestamp di import ini
+import { doc, getDoc, setDoc, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { 
   Save, 
@@ -54,6 +55,17 @@ export default function ManageContact() {
     try {
       // setDoc akan menimpa data yang lama dengan yang baru di ID 'contact_info'
       await setDoc(doc(db, "settings", "contact_info"), formData);
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'edit', 
+        module: 'Sistem', // Dikategorikan ke modul Sistem karena ini pengaturan inti
+        description: `memperbarui nomor Kontak dan Link Medpart`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
+
       alert("Pengaturan kontak berhasil diperbarui!");
     } catch (error) {
       console.error("Error updating contact:", error);

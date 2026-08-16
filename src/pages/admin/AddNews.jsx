@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../config/firebase'; 
-import { collection, addDoc } from 'firebase/firestore';
+// 👇 Tambahkan serverTimestamp di import ini
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { Save, Image as ImageIcon, Type, AlignLeft, Hash, Tag } from 'lucide-react';
 
@@ -41,6 +42,16 @@ export default function AddNews() {
         views: 0,
         author: 'Admin UKM Penalaran'
       });
+
+      // 👇 CCTV: CATAT KE AUDIT LOG
+      await addDoc(collection(db, 'activity_logs'), {
+        action: 'tambah', 
+        module: 'Berita',
+        description: `menambahkan berita baru berjudul "${title}"`, 
+        user: 'Admin', 
+        timestamp: serverTimestamp()
+      });
+      // 👆 SELESAI
 
       alert('Berita berhasil ditambahkan!');
       navigate('/admin/manage-news');
