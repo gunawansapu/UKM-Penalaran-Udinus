@@ -1,3 +1,4 @@
+// src/pages/Home.jsx
 import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -183,9 +184,13 @@ const Home = () => {
             </h2>
           </div>
 
-          {/* Grid EventCards DARI FIREBASE */}
+          {/* 👇 SOLUSI BUG: Ganjalan Skeleton Loading Biar Tinggi Layar Tidak Melar Mendadak 👇 */}
           {loadingEvents ? (
-            <div className="text-center py-10 text-slate-500 animate-pulse">Memuat kegiatan terbaru...</div>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
+              {[1, 2, 3].map((item) => (
+                <div key={item} className="h-[400px] rounded-3xl bg-slate-100 animate-pulse border border-slate-200"></div>
+              ))}
+            </div>
           ) : (
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
               {latestEvents.map((event, index) => (
