@@ -1,7 +1,6 @@
 // src/pages/admin/ManageGallery.jsx
 import React, { useEffect, useState } from 'react';
 import { db } from '../../config/firebase';
-// 👇 Tambahkan addDoc dan serverTimestamp di import ini
 import { collection, getDocs, deleteDoc, doc, addDoc, serverTimestamp } from 'firebase/firestore';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { Link } from 'react-router-dom';
@@ -37,13 +36,11 @@ export default function ManageGallery() {
     if (!confirmDelete) return;
 
     try {
-      // Cari tau keterangan gambar (alt) sebelum di-delete
       const itemToDelete = galleryList.find(item => item.id === id);
       const itemAlt = itemToDelete && itemToDelete.alt ? itemToDelete.alt : 'Tanpa Keterangan';
 
       await deleteDoc(doc(db, "gallery", id));
 
-      // 👇 CCTV: CATAT KE AUDIT LOG
       await addDoc(collection(db, 'activity_logs'), {
         action: 'hapus', 
         module: 'Galeri',
@@ -51,7 +48,6 @@ export default function ManageGallery() {
         user: 'Admin', 
         timestamp: serverTimestamp()
       });
-      // 👆 SELESAI
 
       alert("Foto berhasil dihapus!");
       setGalleryList(galleryList.filter(item => item.id !== id));
@@ -65,7 +61,6 @@ export default function ManageGallery() {
     <SidebarAdmin>
       <div className="max-w-7xl mx-auto pb-12 animate-fade-in-up">
         
-        {/* Header Section */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
             <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Kelola Galeri</h1>
@@ -80,7 +75,6 @@ export default function ManageGallery() {
           </Link>
         </div>
 
-        {/* Konten Utama */}
         {loading ? (
           <div className="bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex flex-col items-center justify-center py-20 px-6">
             <Loader2 className="w-10 h-10 text-indigo-600 animate-spin mb-4" />
@@ -95,7 +89,6 @@ export default function ManageGallery() {
             <p className="text-slate-500 text-sm font-medium">Klik tombol "Tambah Foto" di atas untuk mengunggah dokumentasi.</p>
           </div>
         ) : (
-          /* Grid Layout untuk Kartu Foto */
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {galleryList.map((item) => {
               const dateStr = item.createdAt 
@@ -109,7 +102,6 @@ export default function ManageGallery() {
               return (
                 <div key={item.id} className="group relative bg-white rounded-3xl shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 overflow-hidden transition-all duration-300 flex flex-col">
                   
-                  {/* Area Gambar */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-50 border-b border-slate-100">
                     <img 
                       src={item.src} 
@@ -125,10 +117,8 @@ export default function ManageGallery() {
                     </div>
                   </div>
 
-                  {/* Konten Teks & Tombol Aksi */}
                   <div className="p-5 flex flex-col flex-grow justify-between gap-4">
                     
-                    {/* Judul & Tanggal */}
                     <div>
                       <p className="text-slate-800 font-bold text-sm leading-snug line-clamp-2 mb-1.5" title={item.alt}>
                         {item.alt || 'Tanpa Keterangan'}
@@ -138,10 +128,7 @@ export default function ManageGallery() {
                       </p>
                     </div>
 
-                    {/* DERETAN TOMBOL (100% COPY PASTE DARI MANAGE NEWS) */}
                     <div className="flex items-center justify-center gap-2.5 pt-4 border-t border-slate-100 mt-auto">
-                      
-                      {/* Tombol Lihat (Murni pakai kodingan ManageNews mu) */}
                       <Link 
                         to="/galeri" 
                         target="_blank"
@@ -155,7 +142,6 @@ export default function ManageGallery() {
                         />
                       </Link>
 
-                      {/* Tombol Edit (Murni pakai kodingan ManageNews mu) */}
                       <Link 
                         to={`/admin/edit-gallery/${item.id}`}
                         className="flex items-center justify-center w-10 h-10 bg-slate-100 hover:bg-amber-500 text-slate-600 hover:text-white rounded-xl transition-all duration-300 shadow-sm group/btn"
@@ -168,7 +154,6 @@ export default function ManageGallery() {
                         />
                       </Link>
 
-                      {/* Tombol Hapus (Murni pakai kodingan ManageNews mu) */}
                       <button 
                         onClick={() => handleDelete(item.id)}
                         className="flex items-center justify-center w-10 h-10 !bg-red-600 hover:!bg-red-700 text-white rounded-xl transition-all duration-300 shadow-md shadow-red-500/20 border-0 cursor-pointer"

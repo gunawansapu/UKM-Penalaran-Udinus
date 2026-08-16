@@ -8,7 +8,8 @@ const ScrollToTop = () => {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth', // bisa ganti ke 'auto' kalau mau tanpa animasi
+      left: 0,
+      behavior: 'instant', // 👈 WAJIB pakai instant atau auto, jangan smooth!
     });
   }, [pathname]);
 

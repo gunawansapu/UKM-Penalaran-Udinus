@@ -1,23 +1,25 @@
 // src/pages/admin/AddGallery.jsx
 import React, { useState } from 'react';
 import { db } from '../../config/firebase'; 
-// 👇 Tambahkan serverTimestamp di import ini
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import SidebarAdmin from '../../components/admin/SidebarAdmin';
 import { 
   Image as ImageIcon, 
   FileText, 
-  Save
+  Save,
+  Layers
 } from 'lucide-react';
 
 export default function AddGallery() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [uploadType, setUploadType] = useState('single'); // 'single' atau 'multiple'
   
   const [formData, setFormData] = useState({
     altText: '',
-    imageUrl: '' 
+    imageUrl: '', // Untuk single upload
+    multipleUrls: '' // Untuk multiple upload
   });
 
   const handleChange = (e) => {
@@ -26,33 +28,65 @@ export default function AddGallery() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.imageUrl) {
-      alert("Masukkan link URL foto terlebih dahulu!");
-      return;
-    }
-    
     setLoading(true);
 
     try {
-      // Simpan URL langsung ke Firestore
-      await addDoc(collection(db, "gallery"), {
-        src: formData.imageUrl,
-        alt: formData.altText,
-        createdAt: new Date().toISOString()
-      });
+      if (uploadType === 'single') {
+        if (!formData.imageUrl) {
+          alert("Masukkan link URL foto terlebih dahulu!");
+          setLoading(false);
+          return;
+        }
 
-      // 👇 CCTV: CATAT KE AUDIT LOG
-      await addDoc(collection(db, 'activity_logs'), {
-        action: 'tambah', 
-        module: 'Galeri',
-        description: `menambahkan foto galeri "${formData.altText}"`, 
-        user: 'Admin', 
-        timestamp: serverTimestamp()
-      });
-      // 👆 SELESAI
+        await addDoc(collection(db, "gallery"), {
+          src: formData.imageUrl,
+          alt: formData.altText,
+          createdAt: new Date().toISOString()
+        });
 
-      alert("Foto berhasil ditambahkan ke Galeri!");
+        // Audit Log
+        await addDoc(collection(db, 'activity_logs'), {
+          action: 'tambah', 
+          module: 'Galeri',
+          description: `menambahkan foto galeri "${formData.altText}"`, 
+          user: 'Admin', 
+          timestamp: serverTimestamp()
+        });
+
+        alert("Foto berhasil ditambahkan ke Galeri!");
+
+      } else {
+        // MODE MULTIPLE UPLOAD
+        const urlList = formData.multipleUrls.split('\n').map(url => url.trim()).filter(url => url !== '');
+
+        if (urlList.length === 0) {
+          alert("Masukkan minimal 1 link gambar di area teks!");
+          setLoading(false);
+          return;
+        }
+
+        const uploadPromises = urlList.map((url) => {
+          return addDoc(collection(db, "gallery"), {
+            src: url,
+            alt: formData.altText,
+            createdAt: new Date().toISOString()
+          });
+        });
+
+        await Promise.all(uploadPromises);
+
+        // Audit Log
+        await addDoc(collection(db, 'activity_logs'), {
+          action: 'tambah', 
+          module: 'Galeri',
+          description: `menambahkan ${urlList.length} foto galeri massal "${formData.altText}"`, 
+          user: 'Admin', 
+          timestamp: serverTimestamp()
+        });
+
+        alert(`Berhasil mengunggah ${urlList.length} foto dokumentasi!`);
+      }
+
       navigate('/admin/manage-gallery'); 
 
     } catch (error) {
@@ -67,39 +101,52 @@ export default function AddGallery() {
     <SidebarAdmin>
       <div className="max-w-5xl mx-auto pb-12 animate-fade-in-up">
         
-        {/* Header Section */}
-        <div className="mb-10">
-          <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Tambah Foto Galeri</h1>
-          <p className="text-slate-500 font-medium mt-2 text-base">Publikasikan dokumentasi kegiatan atau prestasi UKM Penalaran.</p>
+        <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Tambah Foto Galeri</h1>
+            <p className="text-slate-500 font-medium mt-2 text-base">Publikasikan dokumentasi kegiatan atau prestasi UKM Penalaran.</p>
+          </div>
+          
+          {/* 👇 PERBAIKAN: Toggles Upload Type Menggunakan DIV agar kebal CSS Global */}
+          <div className="flex bg-slate-100 p-1.5 rounded-xl w-fit border border-slate-200 shadow-sm">
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => setUploadType('single')}
+              className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all cursor-pointer select-none"
+              style={{
+                backgroundColor: uploadType === 'single' ? '#ffffff' : 'transparent',
+                color: uploadType === 'single' ? '#4f46e5' : '#64748b',
+                boxShadow: uploadType === 'single' ? '0 2px 4px rgba(0,0,0,0.05)' : 'none',
+              }}
+            >
+              Upload Satuan
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => setUploadType('multiple')}
+              className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all cursor-pointer select-none"
+              style={{
+                backgroundColor: uploadType === 'multiple' ? '#ffffff' : 'transparent',
+                color: uploadType === 'multiple' ? '#4f46e5' : '#64748b',
+                boxShadow: uploadType === 'multiple' ? '0 2px 4px rgba(0,0,0,0.05)' : 'none',
+              }}
+            >
+              Upload Massal
+            </div>
+          </div>
         </div>
 
-        {/* Form Container */}
         <form onSubmit={handleSubmit} className="bg-white p-8 md:p-10 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
           
           <div className="grid grid-cols-1 gap-8 mb-8">
             
-            {/* Field URL Gambar */}
-            <div className="space-y-2">
-              <label className="flex items-center gap-2 text-sm font-bold text-slate-700 ml-1">
-                <ImageIcon className="w-4 h-4 text-indigo-500" />
-                URL / Link Foto (Penting)
-              </label>
-              <input 
-                type="url" 
-                name="imageUrl" 
-                required 
-                onChange={handleChange} 
-                value={formData.imageUrl}
-                placeholder="Ex: https://i.ibb.co/dokumentasi.jpg atau link Google Drive"
-                className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 font-medium placeholder-slate-400 outline-none transition-all duration-300 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10" 
-              />
-            </div>
-
-            {/* Field Keterangan / Alt Text */}
+            {/* Field Keterangan / Alt Text (Digunakan di kedua mode) */}
             <div className="space-y-2">
               <label className="flex items-center gap-2 text-sm font-bold text-slate-700 ml-1">
                 <FileText className="w-4 h-4 text-indigo-500" />
-                Judul / Keterangan Foto
+                Judul / Keterangan Kegiatan
               </label>
               <input 
                 type="text" 
@@ -110,11 +157,49 @@ export default function AddGallery() {
                 placeholder="Ex: Juara 2 LKTIN Nasional 2026 di Universitas Brawijaya"
                 className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 font-medium placeholder-slate-400 outline-none transition-all duration-300 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10" 
               />
+              {uploadType === 'multiple' && (
+                <p className="text-xs text-slate-500 ml-1 mt-1">Keterangan ini akan dipakai otomatis untuk semua link foto di bawah.</p>
+              )}
             </div>
+
+            {uploadType === 'single' ? (
+              /* Field URL Gambar (Single) */
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-sm font-bold text-slate-700 ml-1">
+                  <ImageIcon className="w-4 h-4 text-indigo-500" />
+                  URL / Link Foto
+                </label>
+                <input 
+                  type="url" 
+                  name="imageUrl" 
+                  onChange={handleChange} 
+                  value={formData.imageUrl}
+                  placeholder="Ex: https://i.ibb.co/dokumentasi.jpg"
+                  className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 font-medium placeholder-slate-400 outline-none transition-all duration-300 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10" 
+                  required={uploadType === 'single'}
+                />
+              </div>
+            ) : (
+              /* Field URL Gambar (Multiple) */
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-sm font-bold text-slate-700 ml-1">
+                  <Layers className="w-4 h-4 text-indigo-500" />
+                  Link Foto Massal (Pisahkan dengan Enter)
+                </label>
+                <textarea 
+                  name="multipleUrls" 
+                  onChange={handleChange} 
+                  value={formData.multipleUrls}
+                  placeholder={`https://link-gambar-1.com/foto1.jpg\nhttps://link-gambar-2.com/foto2.jpg\nhttps://link-gambar-3.com/foto3.jpg`}
+                  rows={6}
+                  className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 font-medium placeholder-slate-400 outline-none transition-all duration-300 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 whitespace-pre-wrap" 
+                  required={uploadType === 'multiple'}
+                />
+              </div>
+            )}
 
           </div>
 
-          {/* Area Tombol */}
           <div className="pt-8 mt-8 border-t border-slate-100 flex justify-end">
             <button
               type="submit"

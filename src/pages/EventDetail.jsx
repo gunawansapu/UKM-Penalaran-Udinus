@@ -4,6 +4,18 @@ import { useParams, Link } from 'react-router-dom';
 import { db } from '../config/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 
+// 👇 FUNGSI PENGUBAH LINK YOUTUBE (Otomatis deteksi ID video)
+const getYoutubeEmbedUrl = (url) => {
+  if (!url) return null;
+  // Regex untuk menangkap ID dari link youtube.com atau youtu.be
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  // Kalau ID ketemu (panjangnya 11 karakter), ubah jadi format embed
+  return (match && match[2].length === 11) 
+    ? `https://www.youtube.com/embed/${match[2]}` 
+    : url; // Jika gagal/bukan link YouTube, kembalikan URL aslinya
+};
+
 const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
@@ -120,7 +132,14 @@ const EventDetail = () => {
                       <div className="space-y-2">
                         <p className="text-xs font-bold text-indigo-900 uppercase tracking-wider">Video Panduan:</p>
                         <div className="relative aspect-video rounded-2xl overflow-hidden shadow-sm border border-indigo-100 bg-black">
-                          <iframe src={event.tutorialVideo} title="Video Tutorial" className="w-full h-full" allowFullScreen></iframe>
+                          {/* 👇 PERBAIKAN: Gunakan fungsi getYoutubeEmbedUrl di bagian src */}
+                          <iframe 
+                            src={getYoutubeEmbedUrl(event.tutorialVideo)} 
+                            title="Video Tutorial" 
+                            className="w-full h-full" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          ></iframe>
                         </div>
                       </div>
                     )}
