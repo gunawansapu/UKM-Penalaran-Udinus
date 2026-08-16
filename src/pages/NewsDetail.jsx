@@ -532,19 +532,29 @@ const DetailNews = () => {
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">Berita Lainnya</h3>
                 </div>
+                
                 <div className="space-y-4">
                   {trendingNews.length > 0 ? (
-                    trendingNews.map((news, index) => (
+                    trendingNews.map((news) => (
                       <div 
                         key={news.id} 
                         className="flex gap-4 cursor-pointer group hover:bg-slate-50 p-3 rounded-2xl transition-all shadow-sm border border-transparent hover:border-slate-100"
                         onClick={() => handleNewsClick(news.id)}
                       >
-                        <div className="w-10 h-10 bg-red-500 text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-md">
-                          {index + 1}
+                        {/* 👇 PERUBAHAN: Thumbnail Foto menggantikan Kotak Angka Merah 👇 */}
+                        <div className="w-20 h-16 rounded-xl overflow-hidden flex-shrink-0 shadow-sm border border-slate-200 bg-slate-100">
+                          <img
+                            src={news.imageUrl || news.image || 'https://via.placeholder.com/150/e5e7eb/9ca3af?text=No+Image'}
+                            alt={news.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            onError={(e) => {
+                              e.target.src = 'https://via.placeholder.com/150/e5e7eb/9ca3af?text=No+Image';
+                            }}
+                          />
                         </div>
-                        <div className="flex-1">
-                          <h4 className="text-sm font-bold text-slate-800 group-hover:text-red-600 line-clamp-2 leading-snug mb-2">
+
+                        <div className="flex-1 flex flex-col justify-center">
+                          <h4 className="text-sm font-bold text-slate-800 group-hover:text-red-600 line-clamp-2 leading-snug mb-1.5">
                             {news.title}
                           </h4>
                           <div className="flex items-center gap-2 text-xs text-slate-400">
