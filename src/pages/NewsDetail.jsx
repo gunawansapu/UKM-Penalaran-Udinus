@@ -35,10 +35,17 @@ const DetailNews = () => {
       try {
         const docRef = doc(db, "news", id);
         
-        await updateDoc(docRef, {
-          views: increment(1)
-        });
+        // 👇 PERBAIKAN: Pisahkan try-catch khusus untuk update views
+        // Jadi kalau gagal nambah views (karena Security Rules Firestore), proses ambil berita tetap jalan!
+        try {
+          await updateDoc(docRef, {
+            views: increment(1)
+          });
+        } catch (updateError) {
+          console.warn("Views tidak bertambah karena diblokir Firebase Rules. Lanjut load berita...");
+        }
 
+        // 👇 LOAD DATA BERITA TETAP AMAN DIEKSEKUSI
         const docSnap = await getDoc(docRef);
         
         if (docSnap.exists()) {
@@ -163,7 +170,6 @@ const DetailNews = () => {
   };
 
   return (
-    // 👇 SPASI ATAS DIPERKETAT: pt-16 (mobile) & md:pt-28 (desktop) agar tidak ada jarak kosong besar
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 pt-16 sm:pt-20 md:pt-28 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         
