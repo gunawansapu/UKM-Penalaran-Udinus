@@ -9,11 +9,23 @@ const Footer = () => {
   const [hoveredSocial, setHoveredSocial] = useState(null);
   const location = useLocation();
 
+  // 👇 STATE BARU: JURUS GAIB (Menahan Footer agar tidak langsung muncul)
+  const [isReadyToShow, setIsReadyToShow] = useState(false);
+
   // STATE UNTUK MENYIMPAN INFO KONTAK DARI FIREBASE (Dynamic WA)
   const [contactInfo, setContactInfo] = useState({
     cp1Name: 'WhatsApp',
     cp1Wa: '6283107154446' // Default WA jika gagal fetch
   });
+
+  // 👇 USE-EFFECT BARU: Tunda kemunculan Footer selama 400 milidetik
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsReadyToShow(true);
+    }, 400); // 400ms sudah sangat cukup untuk membiarkan layar fokus ke Hero atas
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   // FETCH DATA WA DARI FIREBASE SAAT FOOTER DI-LOAD
   useEffect(() => {
@@ -35,9 +47,9 @@ const Footer = () => {
     }
   }, [location.pathname]);
 
-  // JIKA BERADA DI HALAMAN ADMIN, SEMBUNYIKAN FOOTER SEPENUHNYA
-  if (location.pathname.startsWith('/admin')) {
-    return null;
+  // 👇 JIKA BERADA DI HALAMAN ADMIN *ATAU* FOOTER BELUM READY, KOSONGKAN WUJUDNYA!
+  if (location.pathname.startsWith('/admin') || !isReadyToShow) {
+    return null; 
   }
 
   // FUNGSI UNTUK MEMFORMAT NOMOR WA (Agar tampil cantik di layar: +62 812-3456-7890)
@@ -82,7 +94,6 @@ const Footer = () => {
       color: 'from-blue-500 to-cyan-600'
     },
     { 
-      // 👇 DYNAMIC WHATSAPP DARI FIREBASE
       name: 'WhatsApp', 
       handle: formatWaNumber(contactInfo.cp1Wa), 
       url: `https://wa.me/${contactInfo.cp1Wa}`,
