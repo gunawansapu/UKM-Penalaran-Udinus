@@ -62,10 +62,9 @@ const Gallery = () => {
         <div className="absolute top-1/2 -left-40 w-96 h-96 bg-gradient-to-tr from-purple-200/20 to-pink-200/20 rounded-full blur-3xl"></div>
       </div>
 
-      {/* 👇 SPASI ATAS DIPANGKAS JADI pt-24 (sebelumnya sm:pt-28) */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-6 sm:pt-10 pb-16">
         
-        {/* Header - Jarak mb ditipiskan */}
+        {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-6">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent tracking-tight leading-normal py-1">
             Galeri Kegiatan
@@ -75,23 +74,20 @@ const Gallery = () => {
           </p>
         </div>
 
-        {/* TAB FILTER / ALBUM DENGAN TOMBOL NAVIGASI < > (Jarak margin mb ditipiskan) */}
+        {/* TAB FILTER / ALBUM */}
         {!loading && albums.length > 0 && (
           <div className="mb-8 animate-fade-in-up relative max-w-4xl mx-auto flex items-center px-8 sm:px-12">
             
-            {/* Tombol Panah Kiri (<) */}
             <div
               role="button"
               tabIndex={0}
               onClick={scrollLeft}
               className="absolute left-0 z-20 flex items-center justify-center bg-white/90 hover:bg-white text-slate-700 shadow-md rounded-full w-9 h-9 border border-slate-200 cursor-pointer transition-transform hover:scale-110 select-none"
               title="Geser Kiri"
-              style={{ backgroundColor: '#ffffff', color: '#334155' }}
             >
               &#10094;
             </div>
 
-            {/* Container Scroll */}
             <div 
               ref={scrollRef}
               className="flex overflow-x-auto pb-3 pt-1 gap-2.5 hide-scrollbar snap-x items-center w-full scroll-smooth px-2"
@@ -127,14 +123,12 @@ const Gallery = () => {
               ))}
             </div>
 
-            {/* Tombol Panah Kanan (>) */}
             <div
               role="button"
               tabIndex={0}
               onClick={scrollRight}
               className="absolute right-0 z-20 flex items-center justify-center bg-white/90 hover:bg-white text-slate-700 shadow-md rounded-full w-9 h-9 border border-slate-200 cursor-pointer transition-transform hover:scale-110 select-none"
               title="Geser Kanan"
-              style={{ backgroundColor: '#ffffff', color: '#334155' }}
             >
               &#10095;
             </div>
@@ -154,13 +148,13 @@ const Gallery = () => {
                   className="group relative overflow-hidden rounded-3xl bg-white shadow-md hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1.5 cursor-pointer border border-slate-100"
                   onClick={() => setSelectedImage(img)}
                 >
-                  <div className="relative overflow-hidden rounded-3xl h-full bg-slate-100">
+                  <div className="relative overflow-hidden rounded-3xl h-72 bg-slate-100">
                     <img
                       src={img.src}
                       alt={img.alt}
                       loading="lazy"
                       onContextMenu={(e) => e.preventDefault()}
-                      className="w-full h-72 object-cover transition-all duration-700 group-hover:scale-105 select-none"
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 select-none"
                       onError={(e) => { e.target.style.display = 'none'; }}
                     />
                     
@@ -169,18 +163,8 @@ const Gallery = () => {
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none">
                       <h3 className="text-base font-bold mb-2 line-clamp-2">{img.alt}</h3>
                       <div className="flex items-center text-xs opacity-90 font-medium">
-                        <svg className="!w-3.5 !h-3.5 !mr-1.5 !bg-transparent" fill="none" style={{ fill: 'none', stroke: 'currentColor', backgroundColor: 'transparent' }} viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
                         Klik untuk memperbesar
                       </div>
-                    </div>
-
-                    <div className="absolute top-4 right-4 w-9 h-9 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-white/20 text-white">
-                      <svg className="!w-4 !h-4 !text-white !bg-transparent" fill="none" style={{ fill: 'none', stroke: 'currentColor', backgroundColor: 'transparent' }} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                      </svg>
                     </div>
                   </div>
                 </div>
@@ -194,91 +178,99 @@ const Gallery = () => {
             )}
           </>
         )}
-
-        {/* Stats Section */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
-          <div className="text-center p-6 rounded-3xl bg-white/80 backdrop-blur-md border border-slate-100 shadow-lg shadow-blue-900/5">
-            <div className="text-3xl font-black text-blue-600 mb-1">{images.length}+</div>
-            <div className="text-slate-600 font-medium text-sm">Kegiatan Terdokumentasi</div>
-          </div>
-          <div className="text-center p-6 rounded-3xl bg-white/80 backdrop-blur-md border border-slate-100 shadow-lg shadow-purple-900/5">
-            <div className="text-3xl font-black text-purple-600 mb-1">30+</div>
-            <div className="text-slate-600 font-medium text-sm">Anggota Aktif</div>
-          </div>
-          <div className="text-center p-6 rounded-3xl bg-white/80 backdrop-blur-md border border-slate-100 shadow-lg shadow-pink-900/5">
-            <div className="text-3xl font-black text-pink-600 mb-1">12+</div>
-            <div className="text-slate-600 font-medium text-sm">Tahun Berpengalaman</div>
-          </div>
-        </div>
       </div>
 
-      {/* ================= LIGHTBOX MODAL (RESPONSIF & PROPORTIONAL) ================= */}
+      {/* ================= LIGHTBOX MODAL (AESTHETIC INSTAGRAM STYLE) ================= */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-[100] bg-slate-900/40 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 transition-all duration-300 overflow-y-auto"
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 transition-all duration-300 overflow-y-auto"
           onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              setSelectedImage(null);
-            }
+            if (e.target === e.currentTarget) setSelectedImage(null);
           }}
+          // Memaksa penggunaan Apple System Font / IG Font
+          style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
         >
-          {/* Modal Container dengan my-auto agar di HP tidak melar/lonjong */}
+          {/* Modal Container berbentuk Postingan IG */}
           <div 
-            className="relative bg-white border border-slate-100 rounded-[2.5rem] shadow-2xl overflow-hidden max-w-xl sm:max-w-3xl w-full flex flex-col my-auto"
+            className="relative bg-white rounded-xl shadow-2xl overflow-hidden max-w-md sm:max-w-xl w-full flex flex-col my-auto"
             onClick={(e) => e.stopPropagation()}
-            style={{
-              boxShadow: '0 25px 50px -12px rgba(15, 23, 42, 0.25)'
-            }}
           >
-            {/* Top Bar (Header dengan Logo Penalaran) */}
-            <div className="flex items-center justify-between px-6 sm:px-8 py-4 sm:py-5 border-b border-slate-100 bg-white">
+            {/* 1. HEADER (Profile Picture & Username IG) */}
+            <div className="flex items-center justify-between px-4 py-3 bg-white">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-2xl overflow-hidden border border-slate-100 shadow-sm bg-slate-50 flex items-center justify-center shrink-0">
-                  <img 
-                    src="https://raw.githubusercontent.com/gunawansapu/avatar/main/penalaran.png" 
-                    alt="Logo Penalaran" 
-                    className="w-full h-full object-cover"
-                  />
+                {/* Lingkaran Gradasi Story IG */}
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-[2px] cursor-pointer">
+                  <div className="w-full h-full rounded-full border-[1.5px] border-white overflow-hidden bg-white">
+                    <img 
+                      src="https://raw.githubusercontent.com/gunawansapu/avatar/main/penalaran.png" 
+                      alt="Logo Penalaran" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">UKM Penalaran UDINUS</h4>
-                  <p className="text-[11px] text-slate-400 font-medium">Dokumentasi Resmi</p>
+                {/* Username Lowercase ala IG */}
+                <div className="flex flex-col">
+                  <h4 className="text-[13px] font-semibold text-slate-900 leading-none tracking-tight">
+                    ukmpenalaran
+                  </h4>
+                  <p className="text-[11px] text-slate-500 font-normal mt-1">
+                    Universitas Dian Nuswantoro
+                  </p>
                 </div>
               </div>
               
-              {/* Tombol Tutup */}
+              {/* Tombol X */}
               <div
                 role="button"
-                tabIndex={0}
                 onClick={() => setSelectedImage(null)}
-                className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center cursor-pointer transition-all duration-200 select-none shadow-sm"
-                title="Tutup"
+                className="text-slate-400 hover:text-slate-700 cursor-pointer p-1"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </div>
             </div>
 
-            {/* Container Area Foto (Dibatasi tingginya di HP max-[45vh] agar tidak lonjong) */}
-            <div className="p-4 sm:p-8 bg-slate-50/50 flex items-center justify-center overflow-hidden">
+            {/* 2. AREA FOTO (Background Hitam supaya pop-up) */}
+            <div className="bg-slate-50 flex items-center justify-center overflow-hidden border-y border-slate-100">
               <img
                 src={selectedImage.src}
                 alt={selectedImage.alt}
                 onContextMenu={(e) => e.preventDefault()}
-                className="max-h-[45vh] sm:max-h-[65vh] w-auto max-w-full object-contain rounded-2xl shadow-sm select-none"
+                className="max-h-[55vh] sm:max-h-[65vh] w-auto max-w-full object-contain"
               />
             </div>
 
-            {/* Footer Keterangan Foto */}
-            <div className="px-6 sm:px-8 py-5 sm:py-6 bg-white border-t border-slate-100 flex items-center justify-between gap-4">
-              <p className="text-slate-800 text-sm sm:text-base font-bold leading-relaxed">
+            {/* 3. FOOTER (Ikon Interaksi & Caption IG) */}
+            <div className="px-4 py-3 bg-white flex flex-col gap-2">
+              
+              {/* Action Buttons (Like, Comment, Share, Save) */}
+              <div className="flex items-center justify-between mt-1">
+                 <div className="flex items-center gap-4 text-slate-900">
+                    <svg aria-label="Suka" className="w-6 h-6 hover:text-slate-500 cursor-pointer transition-colors" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path></svg>
+                    <svg aria-label="Komentari" className="w-6 h-6 hover:text-slate-500 cursor-pointer transition-colors" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"></path></svg>
+                    <svg aria-label="Bagikan" className="w-6 h-6 hover:text-slate-500 cursor-pointer transition-colors" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"></path></svg>
+                 </div>
+                 <svg aria-label="Simpan" className="w-6 h-6 text-slate-900 hover:text-slate-500 cursor-pointer transition-colors" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"></path></svg>
+              </div>
+
+              {/* Likes (Aesthetic Detail) */}
+              <p className="text-[13px] font-semibold text-slate-900 mt-1">
+                Disukai oleh udinus_smg dan lainnya
+              </p>
+
+              {/* Teks Caption */}
+              <p className="text-[13.5px] text-slate-900 leading-snug">
+                <span className="font-semibold mr-1.5 cursor-pointer">ukmpenalaran</span>
                 {selectedImage.alt || 'Dokumentasi Kegiatan UKM Penalaran'}
               </p>
-              <span className="text-xs font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 border border-indigo-100 shrink-0">
-                Gallery
-              </span>
+              
+              {/* Tanggal/Waktu */}
+              <p className="text-[10px] text-slate-400 font-medium uppercase mt-1 tracking-widest">
+                Dokumentasi Resmi
+              </p>
             </div>
+
           </div>
         </div>
       )}
